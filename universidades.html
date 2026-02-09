@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona de Admisión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --primary: #0049c6; --secondary: #002a70; --bg: #f4f6f9; --card: #ffffff; --text: #333; }
+        body { font-family: 'Roboto', sans-serif; background: var(--bg); margin: 0; padding: 20px; padding-bottom: 80px; }
+        .main-wrapper { max-width: 1000px; margin: 0 auto; width: 100%; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { font-size: 22px; color: var(--primary); margin: 0; font-weight: 800; flex: 1; text-align: center; margin-right: 40px; }
+        .back-btn { font-size: 20px; color: #333; cursor: pointer; padding: 10px; background: white; border-radius: 50%; border: none; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+        .filters { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 20px; scrollbar-width: none; justify-content: center; }
+        .filter-chip { background: white; padding: 8px 16px; border-radius: 20px; font-size: 13px; border: 1px solid #eee; cursor: pointer; color: #666; white-space: nowrap; }
+        .filter-chip.active { background: var(--primary); color: white; font-weight: bold; }
+        .uni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; justify-content: center; }
+        .uni-card { background: var(--card); border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); cursor: pointer; position: relative; display: flex; flex-direction: column; align-items: center; }
+        .uni-card img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 10px; }
+        .uni-name { font-weight: bold; font-size: 14px; text-transform: uppercase; }
+        .info-bubble { position: absolute; top: 10px; right: 10px; width: 24px; height: 24px; background: #e0f0ff; border-radius: 50%; font-size: 12px; color: var(--primary); display: flex; justify-content: center; align-items: center; font-weight: bold; }
+        #blocksView { display: none; animation: fadeIn 0.3s; }
+        .uni-banner { background: linear-gradient(135deg, var(--primary), #002a70); border-radius: 15px; padding: 20px; color: white; text-align: center; margin-bottom: 20px; }
+        .uni-banner img { width: 50px; background: white; border-radius: 50%; padding: 5px; }
+        .block-list { display: flex; flex-direction: column; gap: 12px; }
+        .block-card { background: white; border-radius: 12px; padding: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); cursor: pointer; }
+        .block-icon { width: 40px; height: 40px; background: #e0f0ff; color: var(--primary); border-radius: 10px; display: flex; justify-content: center; align-items: center; font-weight: bold; margin-right: 15px; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; display: none; justify-content: center; align-items: end; }
+        .modal-content { background: white; width: 100%; border-radius: 20px 20px 0 0; padding: 25px; max-height: 85vh; overflow-y: hidden; display: flex; flex-direction: column; animation: slideUp 0.3s; }
+        .modal-scroll-area { overflow-y: auto; flex: 1; margin-bottom: 10px; }
+        .exam-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
+        .btn-group { display: flex; gap: 8px; }
+        .exam-btn { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; }
+        .rank-btn { background: #ffcc00; color: #333; border: none; padding: 8px 12px; border-radius: 20px; font-size: 14px; cursor: pointer; }
+        .rank-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; }
+        .rank-pos { width: 25px; height: 25px; background: #eee; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin-right: 10px; }
+        .rank-1 { background: #ffcc00; color: white; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="header">
+            <button id="backBtn" class="back-btn" onclick="handleNavigation()"><i class="fas fa-arrow-left"></i></button>
+            <h1 id="pageTitle">Universidades</h1>
+            <div style="width: 20px;"></div>
+        </div>
+
+        <div id="universitiesView">
+            <div class="filters">
+                <div class="filter-chip active" onclick="filterUni('all', this)">Todas</div>
+                <div class="filter-chip" onclick="filterUni('lima', this)">Lima</div>
+                <div class="filter-chip" onclick="filterUni('arequipa', this)">Arequipa</div>
+                <div class="filter-chip" onclick="filterUni('cajamarca', this)">Cajamarca</div>
+            </div>
+
+            <div class="uni-grid">
+                <div class="uni-card" data-cat="lima" onclick="openUni('unjfsc')">
+                    <div class="info-bubble" onclick="openInfoModal('unjfsc', event)">i</div>
+                    <img src="img/ujfsc.png">
+                    <div class="uni-name">UNJFSC</div>
+                </div>
+                <div class="uni-card" data-cat="lima" onclick="openUni('unab')">
+                    <div class="info-bubble" onclick="openInfoModal('unab', event)">i</div>
+                    <img src="img/unab.png">
+                    <div class="uni-name">UNAB</div>
+                </div>
+                <div class="uni-card" data-cat="lima" onclick="openUni('unmsm')">
+                    <div class="info-bubble" onclick="openInfoModal('unmsm', event)">i</div>
+                    <img src="img/sanmarcos.png">
+                    <div class="uni-name">San Marcos</div>
+                </div>
+                <div class="uni-card" data-cat="arequipa" onclick="openUni('unsa')">
+                    <div class="info-bubble" onclick="openInfoModal('unsa', event)">i</div>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBk8nFZZuFX-0aRXyNvFusoxoyFifxct-_eQ&s">
+                    <div class="uni-name">UNSA</div>
+                </div>
+                <div class="uni-card" data-cat="lima" onclick="openUni('untels')">
+                    <div class="info-bubble" onclick="openInfoModal('untels', event)">i</div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Untels_01.png/250px-Untels_01.png">
+                    <div class="uni-name">UNTELS</div>
+                </div>
+                <div class="uni-card" data-cat="cajamarca" onclick="openUni('unc')">
+                    <div class="info-bubble" onclick="openInfoModal('unc', event)">i</div>
+                    <img src="https://dondeestudiar.pe/wp-content/uploads/2023/11/universidad-de-cajamarca.png">
+                    <div class="uni-name">UNC</div>
+                </div>
+                <div class="uni-card" data-cat="lima" onclick="openUni('usmp')">
+                    <div class="info-bubble" onclick="openInfoModal('usmp', event)">i</div>
+                    <img src="https://filialsur.usmp.edu.pe/wp-content/uploads/2023/03/cropped-logo_USMP.webp">
+                    <div class="uni-name">USMP</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="blocksView">
+            <div class="uni-banner">
+                <img id="selectedUniImg" src="" alt="">
+                <h2 id="selectedUniName" style="margin:0;">Universidad</h2>
+                <p style="margin:5px 0 0; opacity:0.8; font-size:12px;">Selecciona tu área</p>
+            </div>
+            <div id="blocksContainer" class="block-list"></div>
+        </div>
+
+    </div>
+    <div id="universalModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content">
+            <h3 id="modalTitle" style="color:#0049c6; margin-top:0; flex-shrink:0;">Título</h3>
+            <div id="modalBody" class="modal-scroll-area"></div>
+            <button onclick="document.getElementById('universalModal').style.display='none'" style="width:100%; padding:15px; margin-top:10px; border:none; background:#eee; border-radius:10px; font-weight:bold; flex-shrink:0;">Cerrar</button>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec";
+
+        const universityData = {
+            'unjfsc': {
+                name: "UNJFSC",
+                img: "img/ujfsc.png",
+                info: {
+                    web: "http://www.unjfsc.edu.pe/",
+                    carreras: ["Ciencias", "Ingeniería", "Educación", "Ciencias Sociales"],
+                    requisitos: "DNI, Pago por derecho de admisión, Foto tamaño carnet."
+                },
+                blocks: [
+                    { id: 'A', name: "Bloque A: Ingenierias", exams: [{ t: "Examen I", l: "Faustino_A", x: 100 }] },
+                    { id: 'B', name: "Bloque B: Salud", exams: [{ t: "Examen I", l: "Faustino_B", x: 100 }]  },
+                    { id: 'C', name: "Bloque C: Ciencias Sociales", exams: [{ t: "Examen I", l: "Faustino_C", x: 100 }]  },
+                    { id: 'D', name: "Bloque D: Economia", exams: [{ t: "Examen I", l: "Faustino_D", x: 100 }]  }
+                ]
+            },
+            'unmsm': {
+                name: "UNMSM",
+                img: "img/sanmarcos.png",
+                info: {
+                    web: "https://admision.unmsm.edu.pe/",
+                    carreras: ["Medicina Humana", "Derecho", "Ingeniería de Sistemas", "Psicología"],
+                    requisitos: "DNI, Compra de Prospecto, Pago de inscripción."
+                },
+                blocks: [
+                    { id: 'A', name: "Área A: Ciencias de la Salud", exams: [{ t: "Simulacro 2024-I", l: "unmsm_2024_1", x: 0 }] },
+                    { id: 'B', name: "Área B: Ciencias Básicas", exams: [] },
+                    { id: 'C', name: "Área C: Ingenierías", exams: [] }
+                ]
+            },
+            'unab': {
+                name: "UNAB",
+                img: "img/unab.png",
+                info: {
+                    web: "https://www.unab.edu.pe",
+                    carreras: ["Ingeniería Civil", "Enfermería", "Derecho", "Agronomía", "Ind. Alimentarias"],
+                    requisitos: "Certificado de estudios, DNI, Pago de tasa."
+                },
+                blocks: [
+                    { id: 'ORD', name: "Examen Ordinario", exams: [] }
+                ]
+            },
+            'untels': {
+                name: "UNTELS",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Untels_01.png/250px-Untels_01.png",
+                info: {
+                    web: "https://www.untels.edu.pe",
+                    carreras: ["Ing. de Sistemas", "Ing. Ambiental", "Ing. Electrónica", "Administración"],
+                    requisitos: "DNI vigente, Voucher de pago, Constancia de logros."
+                },
+                blocks: [
+                    { id: 'I', name: "Examen General", exams: [] }
+                ]
+            },
+            'unsa': {
+                name: "UNSA",
+                img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBk8nFZZuFX-0aRXyNvFusoxoyFifxct-_eQ&s",
+                info: {
+                    web: "https://www.unsa.edu.pe",
+                    carreras: ["Medicina", "Derecho", "Ingeniería de Minas", "Arquitectura", "Psicología"],
+                    requisitos: "Inscripción vía web, DNI, Fotografía digital."
+                },
+                blocks: [
+                    { id: 'ORD', name: "Ordinario I Fase", exams: [] },
+                    { id: 'CEP', name: "CEPRUNSA", exams: [] }
+                ]
+            },
+            'unc': {
+                name: "UNC",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Logo_UNC.png/240px-Logo_UNC.png",
+                info: {
+                    web: "https://dondeestudiar.pe/wp-content/uploads/2023/11/universidad-de-cajamarca.png",
+                    carreras: ["Ingeniería Civil", "Medicina Humana", "Derecho", "Educación", "Enfermería"],
+                    requisitos: "Certificado de secundaria, DNI, Pago de derecho."
+                },
+                blocks: [
+                    { id: 'G', name: "Examen General", exams: [] }
+                ]
+            },
+            'usmp': {
+                name: "USMP",
+                img: "https://filialsur.usmp.edu.pe/wp-content/uploads/2023/03/cropped-logo_USMP.webp",
+                info: {
+                    web: "https://usmp.edu.pe/",
+                    carreras: ["Medicina", "Derecho", "Ciencias de la Comunicación", "Psicología", "Odontología"],
+                    requisitos: "Examen de Admisión Ordinario, Documentos académicos."
+                },
+                blocks: [
+                    { id: 'ORD', name: "Examen Ordinario", exams: [{ t: "Simulacro General 2024", l: "usmp_ordinario_1", x: 0 }] }
+                ]
+            }
+        };
+
+        function handleNavigation() {
+            if (document.getElementById('blocksView').style.display === 'block') {
+                document.getElementById('blocksView').style.display = 'none';
+                document.getElementById('universitiesView').style.display = 'block';
+                document.getElementById('pageTitle').innerText = "Universidades";
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function openUni(key) {
+            const d = universityData[key];
+            if (!d) return alert("Próximamente");
+            document.getElementById('selectedUniName').innerText = d.name;
+            document.getElementById('selectedUniImg').src = d.img;
+
+            const box = document.getElementById('blocksContainer');
+            box.innerHTML = "";
+            d.blocks.forEach(b => {
+                box.innerHTML += `
+                <div class="block-card" onclick="openExamList('${key}', '${b.id}')">
+                    <div style="display:flex;align-items:center;">
+                        <div class="block-icon">${b.id}</div>
+                        <div><div style="font-weight:bold;">${b.name}</div><div style="font-size:12px;color:#888;">${b.exams.length} exámenes</div></div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:#ccc;"></i>
+                </div>`;
+            });
+
+            document.getElementById('universitiesView').style.display = 'none';
+            document.getElementById('blocksView').style.display = 'block';
+            document.getElementById('pageTitle').innerText = "Selección";
+        }
+
+        function openExamList(uKey, bId) {
+            const b = universityData[uKey].blocks.find(x => x.id === bId);
+            document.getElementById('modalTitle').innerText = b.name;
+            const html = b.exams.length ? b.exams.map(e => `
+                <div class="exam-item">
+                    <div><b>${e.t}</b></div>
+                    <div class="btn-group">
+                        <button class="rank-btn" onclick="fetchRanking('${e.l}', '${e.t}')">🏆</button>
+                        <button class="exam-btn" onclick="location.href='simulacro.html?id=${e.l}'">JUGAR</button>
+                    </div>
+                </div>`).join('') : "<p style='text-align:center;color:#999;'>No hay exámenes disponibles.</p>";
+
+            document.getElementById('modalBody').innerHTML = html;
+            document.getElementById('universalModal').style.display = 'flex';
+        }
+
+        function fetchRanking(examId, title) {
+            document.getElementById('modalTitle').innerText = "🏆 Top - " + title;
+            document.getElementById('modalBody').innerHTML = "<p align='center'>Cargando ranking...</p>";
+
+            fetch(`${API_URL}?action=getRanking&curso=${encodeURIComponent(examId)}`)
+                .then(r => r.json())
+                .then(d => {
+                    let h = "";
+                    if (d.length === 0) h += "<p align='center'>Sé el primero en el ranking.</p>";
+                    d.forEach((u, i) => {
+                        const c = i === 0 ? '#ffcc00' : '#eee';
+                        h += `<div class="rank-item">
+                            <div style="display:flex; align-items:center;">
+                                <span class="rank-pos" style="background:${c}">${i + 1}</span> ${u.nombre}
+                            </div>
+                            <b>${u.xp} pts</b>
+                          </div>`;
+                    });
+                    document.getElementById('modalBody').innerHTML = h;
+                });
+        }
+
+        function openInfoModal(k, ev) {
+            ev.stopPropagation();
+            const uni = universityData[k]; 
+            const info = uni.info;
+
+            document.getElementById('modalTitle').innerText = "Información - " + uni.name;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="info-detail">
+                    <div style="text-align:center; margin-bottom:20px;">
+                        <img src="${uni.img}" style="width:100px; height:100px; object-fit:contain; background:white; border-radius:15px; padding:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+                    </div>
+                    
+                    <h4 style="color:#0049c6; margin-bottom:5px;">🌐 Web Oficial</h4>
+                    <a href="${info.web}" target="_blank" style="text-decoration:none; color:#333; font-weight:bold;">
+                        ${info.web} <i class="fas fa-external-link-alt" style="color:#0049c6;"></i>
+                    </a>
+                    
+                    <h4 style="color:#0049c6; margin-top:20px; margin-bottom:5px;">🎓 Carreras Principales</h4>
+                    <ul style="margin-top:0; padding-left:20px; color:#555;">
+                        ${info.carreras.map(c => `<li>${c}</li>`).join('')}
+                    </ul>
+                    
+                    <h4 style="color:#0049c6; margin-top:20px; margin-bottom:5px;">📋 Requisitos</h4>
+                    <p style="margin-top:0; color:#555; line-height:1.4;">${info.requisitos}</p>
+                </div>`;
+                
+            document.getElementById('universalModal').style.display = 'flex';
+        }
+
+        function filterUni(c, btn) {
+            document.querySelectorAll('.filter-chip').forEach(x => x.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.uni-card').forEach(u => u.style.display = (c === 'all' || u.dataset.cat === c) ? 'flex' : 'none');
+        }
+
+        function closeModal(e) { if (e.target.id === 'universalModal') document.getElementById('universalModal').style.display = 'none'; }
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Vocacional</title>
+    <link rel="stylesheet" href="css/testStyle.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <!-- Pantalla inicial -->
+    <div id="tutorial-screen" class="screen active">
+        <h2>Bienvenido al Test Vocacional de X-ACADEMY</h2>
+        <p>Descubre tu camino profesional contestando preguntas rápidas.</p>
+        <img src="img/test.png" alt="Recomendaciones" style="max-width: 100%; height: auto;">
+        <ul>
+            <li>📖 Lee bien cada pregunta.</li>
+            <li>⏳ Tómate el tiempo necesario.</li>
+            <li>✔️ Responde con total sinceridad.</li>
+        </ul>
+        <button id="start-test-btn">Comenzar Test</button>
+    </div>
+
+    <!-- Pantalla de preguntas -->
+    <div id="question-screen" class="screen">
+        <h2>Pregunta <span id="current-question">1</span>/21</h2>
+        <div class="question-container">
+            <p id="question-text"></p>
+            <div class="option" onclick="selectAnswer(0)">Muy de acuerdo</div>
+            <div class="option" onclick="selectAnswer(1)">De acuerdo</div>
+            <div class="option" onclick="selectAnswer(2)">Neutral</div>
+            <div class="option" onclick="selectAnswer(3)">En desacuerdo</div>
+        </div>
+    </div>
+
+    <!-- Pantalla de resultados -->
+    <div id="results-screen" class="screen">
+        <h2>Resultados</h2>
+        <p>Basado en tus respuestas, estas son las carreras sugeridas para ti:</p>
+        <div id="careers-list" class="results-container"></div>
+        <button onclick="resetTest()">Volver a comenzar</button>
+    </div>
+
+    <script src="scriptTest.js">
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plataforma de Cursos</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1e293b',
+            accent: '#3b82f6',
+            soft: '#f1f5f9',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #f0f4f8, #e0f2fe);
+    }
+    #sidebar {
+      background: linear-gradient(to bottom right, #ffffff, #f1f5f9);
+      box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    }
+    #temas-lista {
+        max-height: calc(100vh - 100px);
+        overflow-y: auto;
+    }
+    /* Toast XP */
+    #xpToast {
+        position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+        background: #333; color: #ffcc00; padding: 10px 25px; border-radius: 30px;
+        font-weight: bold; z-index: 3000; display: none; text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2); animation: fadeInUp 0.5s;
+    }
+    @keyframes fadeInUp { from { opacity:0; transform:translate(-50%, 20px); } to { opacity:1; transform:translate(-50%, 0); } }
+  </style>
+</head>
+<body class="bg-soft">
+
+  <div id="xpToast">🎓 Lección Iniciada: +5 XP</div>
+
+  <div class="flex h-screen overflow-hidden">
+    <aside class="w-64 p-4 fixed top-0 right-0 h-full z-50 transform translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:right-auto md:left-0 flex flex-col" id="sidebar">
+      
+      <button onclick="window.location.href='index.html'" class="mb-4 flex items-center text-gray-600 hover:text-blue-600 font-bold border-b pb-2 w-full">
+        <i class="fas fa-arrow-left mr-2"></i> Volver al Inicio
+      </button>
+
+      <h2 class="text-xl font-bold mb-4">Temas del Curso</h2>
+      <ul id="temas-lista" class="space-y-2 flex-1">
+        </ul>
+    </aside>
+
+    <main class="flex-1 overflow-auto p-4 w-full md:ml-64">
+      <div class="mb-4 max-w-4xl mx-auto">
+        <label for="curso-select" class="block text-lg font-semibold mb-2 text-gray-700">Selecciona un curso:</label>
+        <select id="curso-select" class="w-full p-3 border rounded-xl shadow-sm focus:ring-2 focus:ring-blue-400 outline-none bg-white">
+          <option value="">-- Selecciona --</option>
+          <option value="algebra">Álgebra</option>
+          <option value="aritmetica">Aritmética</option>
+          <option value="geometria">Geometría</option>
+          <option value="trigonometria">Trigonometría</option>
+          <option value="estadistica">Estadística</option>
+          <option value="anatomia">Anatomía</option>
+          <option value="biologia">Biología</option>
+          <option value="literatura">Literatura</option>
+          <option value="lenguaje">Lenguaje</option>
+          <option value="economia">Economía</option>
+          <option value="psicologia">Psicología</option>
+          <option value="filosofia">Filosofía</option>
+        </select>
+      </div>
+
+      <div id="contenido" class="hidden max-w-6xl mx-auto bg-white p-6 rounded-2xl shadow-lg">
+        <h2 id="titulo-tema" class="text-2xl font-extrabold mb-4 text-center text-blue-700"></h2>
+        
+        <div class="flex flex-col lg:flex-row lg:space-x-6">
+          <div class="lg:w-2/3">
+            <div class="aspect-video mb-4 bg-black rounded-xl overflow-hidden shadow-md">
+              <iframe id="video-frame" class="w-full h-full" src="" allowfullscreen></iframe>
+            </div>
+            
+            <div class="flex justify-between items-center mb-6 gap-2">
+              <button id="prev-btn" class="bg-gray-200 text-gray-700 hover:bg-gray-300 px-4 py-2 rounded-lg font-medium flex items-center">
+                <i class="fas fa-chevron-left mr-2"></i> Ant.
+              </button>
+              
+              <button id="Práctica-btn" class="bg-green-500 text-white hover:bg-green-600 px-6 py-2 rounded-full font-bold shadow-md transform hover:-translate-y-1 transition">
+                <i class="fas fa-pencil-alt mr-2"></i> Práctica
+              </button>
+              
+              <button id="next-btn" class="bg-blue-600 text-white hover:bg-blue-700 px-4 py-2 rounded-lg font-medium flex items-center">
+                Sig. <i class="fas fa-chevron-right ml-2"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="lg:w-1/3 flex flex-col">
+            <h3 class="text-lg font-bold mb-2 text-gray-700 border-b pb-2">Material PDF</h3>
+            <iframe id="pdf-frame" class="w-full flex-1 rounded-lg border border-gray-200 min-h-[300px]" src=""></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <button id="hamburger" class="fixed top-4 right-4 md:hidden z-50 p-2 bg-white rounded-full shadow-lg text-blue-600">
+    <i class="fas fa-bars text-xl"></i>
+  </button>
+
+  <div id="modal" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 backdrop-blur-sm">
+    <div class="bg-white rounded-2xl shadow-2xl p-6 w-11/12 max-w-md transform transition-all scale-100">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-gray-800">Prácticas del Tema</h3>
+        <button onclick="cerrarModal()" class="text-gray-400 hover:text-red-500 text-2xl">&times;</button>
+      </div>
+      <ul id="lista-Prácticas" class="space-y-3"></ul>
+      <button onclick="cerrarModal()" class="mt-6 w-full bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 rounded-xl">Cerrar</button>
+    </div>
+  </div>
+  
+  <script>
+    // --- INTEGRACIÓN: API Y XP (CON PROTECCIÓN ANTI-FARMEO) ---
+    const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec";
+
+    function awardXP(amount, activityName, uniqueID) {
+        // 1. Obtener lista de vistos
+        let viewedList = JSON.parse(localStorage.getItem('xAcademy_ViewedVideos')) || [];
+
+        // 2. Verificar si ya se vio este video
+        if (viewedList.includes(uniqueID)) {
+            console.log("XP ya reclamado para: " + uniqueID);
+            return; // NO DAR PUNTOS
+        }
+
+        // 3. Dar XP (Si es nuevo)
+        const toast = document.getElementById('xpToast');
+        toast.innerText = `🎓 ${activityName}: +${amount} XP`;
+        toast.style.display = 'block';
+        setTimeout(() => toast.style.display = 'none', 3000);
+
+        let currentXP = parseInt(localStorage.getItem('xAcademy_XP')) || 0;
+        localStorage.setItem('xAcademy_XP', currentXP + amount);
+
+        // 4. Guardar en lista de vistos para bloquear futuros intentos
+        viewedList.push(uniqueID);
+        localStorage.setItem('xAcademy_ViewedVideos', JSON.stringify(viewedList));
+
+        // 5. Guardar en Nube
+        const myID = localStorage.getItem('xAcademy_ID');
+        if (myID) {
+            const urlFinal = `${API_URL}?action=saveXP&id=${myID}&xp=${amount}&curso=VideoClases&actividad=${encodeURIComponent(activityName)}`;
+            fetch(urlFinal, { mode: 'no-cors' });
+        }
+    }
+
+    // --- VARIABLES UI ---
+    const contenido = document.getElementById('contenido');
+    const videoFrame = document.getElementById('video-frame');
+    const pdfFrame = document.getElementById('pdf-frame');
+    const tituloTema = document.getElementById('titulo-tema');
+    const PrácticaBtn = document.getElementById('Práctica-btn');
+    const sidebar = document.getElementById('sidebar');
+    const hamburger = document.getElementById('hamburger');
+    const modal = document.getElementById('modal');
+    const cursoSelect = document.getElementById('curso-select');
+    const temasLista = document.getElementById('temas-lista');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const listaPrácticas = document.getElementById('lista-Prácticas');
+
+    // DATOS DE CURSOS
+    let cursosData = {
+      algebra: [
+        { title: 'Teoria de Exponentes', video: 'https://www.youtube.com/embed/QTOF9_9LZSs?si=gwsP_gNTxXUs0xKM', pdf: 'https://drive.google.com/file/d/1KUQHmC8tEt2n9VLNHUUurk-d7EMho6Pz/preview', PrácticaId: 'algebra-1' },
+        { title: 'Polinomios', video: 'https://www.youtube.com/embed/tnf_wQ7-_Pw?si=K0RIw_ykte6GlU4i', pdf: 'https://drive.google.com/file/d/1VMmjAxqiBliQ5CyTfhQKiX7GBkweNQvF/preview', PrácticaId: 'algebra-2' },
+        { title: 'Productos Notables', video: 'https://www.youtube.com/embed/G-ym95yl3Es?si=KFhxUXzbSZDOqsFH', pdf: 'https://drive.google.com/file/d/1JPass7rTNxz6sPOexj_DGYHvdAt1CC7Y/preview', PrácticaId: 'algebra-3' },
+        { title: 'División de polinomios', video: 'https://www.youtube.com/embed/63y_SGwAoV4?si=B3VYnb_x6wpbJ-fO', pdf: 'https://drive.google.com/file/d/1nRy8s_LkKARFv1yT34e47sseKXwKR_B7/preview', PrácticaId: 'algebra-4' },
+        { title: 'Cocientes Notables', video: 'https://www.youtube.com/embed/Bqm4_wfIOiU?si=SVk8z-gWWBkxN1uX', pdf: 'https://drive.google.com/file/d/1Ts6F0HwWxaNK12Y-DRjRv9am3ORyEJOu/preview', PrácticaId: 'algebra-5' },
+        { title: 'Factorización', video: 'https://www.youtube.com/embed/-tS50MayXiE?si=5HV9KNcve6YqHy4S', pdf: 'https://drive.google.com/file/d/10Ek_lKF_N0FytANcwNbT8XeZy1d2XRNu/preview', PrácticaId: 'algebra-6' },
+      ],
+      aritmetica: [
+        { title: 'Lógica proposicional', video: 'https://www.youtube.com/embed/3I5OJTPyKRY?si=wEkg0MJUOEzgUnmy', pdf: 'https://drive.google.com/file/d/1ixIfBsF0sEH8NPQDi_TRmcPJz-bMfJb1/preview', PrácticaId: 'aritmetica-1' },
+        { title: 'Teoría de conjuntos', video: 'https://www.youtube.com/embed/PvfmttWrGM0?si=GX22tMz1piJC4ojt', pdf: 'https://drive.google.com/file/d/167p7hqBvuI7B4862b0xg4J-vPeqbHqJW/preview', PrácticaId: 'aritmetica-2' },
+        { title: 'Numeración', video: 'https://www.youtube.com/embed/WuS487rpc5Q?si=Wj93seUpywS1Q85w', pdf: 'https://drive.google.com/file/d/1a8R0pwGmUGs5IOH8PKCF2B772uulfZLm/preview', PrácticaId: 'aritmetica-3' },
+        { title: 'Criterios de Divisibilidad', video: 'https://www.youtube.com/embed/vLWiNb8jLgY?si=DmBbxuzpx9Ng36B7', pdf: '', PrácticaId: 'aritmetica-4' },
+      ],
+      geometria: [
+        { title: 'Segmentos - Ángulos', video: 'https://www.youtube.com/embed/II89moaL214?si=me6SdzFGNK69JPY2', pdf: 'https://drive.google.com/file/d/1lKGr2HbwUme77Unk9b74AnojV885xXiV/preview', PrácticaId: 'geometria-1' },
+        { title: 'Triángulos', video: 'https://www.youtube.com/embed/sRD54NtabPM?si=P4vEl2sF-2IRfElL', pdf: '', PrácticaId: 'geometria-2' },
+        { title: 'Congruencia de Triángulos', video: 'https://www.youtube.com/embed/8XZGF_ulaJA?si=nz0iPES1axn4lwkZ', pdf: '', PrácticaId: 'geometria-3' },
+        { title: 'Polígonos', video: 'https://www.youtube.com/embed/I9R2QuaebZY?si=9l0RDv9zrqfEMyDO', pdf: '', PrácticaId: 'geometria-4' },
+        { title: 'Cuadriláteros', video: 'https://www.youtube.com/embed/Pj_9JxndsME?si=J81hlXVlJ_EbJGZ0', pdf: '', PrácticaId: 'geometria-5' },
+      ],
+      trigonometria: [
+        { title: 'Sistema de medida angular - Sector circular', video: 'https://www.youtube.com/embed/lpCYh33U18I?si=8fbvbG9wi24av1cP', pdf: '', PrácticaId: 'trigonometria-1' },
+        { title: 'Razones trigonométricas de ángulos agudos', video: 'https://www.youtube.com/embed/rj0kkRM-JsM?si=B9BjRetRL-1rKFVW', pdf: '', PrácticaId: 'trigonometria-2' },
+      ],
+      estadistica: [
+        { title: 'Tablas de distribución - I', video: 'https://www.youtube.com/embed/BGrB4raG2rA?si=VLqsBtggYU_IuVud', pdf: '', PrácticaId: 'estadistica-1' },
+        { title: 'Tablas de distribución - II', video: 'https://www.youtube.com/embed/D2cs5rBynkA?si=qUkjxoou78JbOEtE', pdf: '', PrácticaId: 'estadistica-2' },
+      ],
+      anatomia: [
+        { title: 'Tejido Epitelial', video: 'https://www.youtube.com/embed/o77bu0QsQqQ?si=7u93OjhImACBUGA3', pdf: '', PrácticaId: 'anatomia-1' },
+        { title: 'Tejido óseo', video: 'https://www.youtube.com/embed/iPSqE5Hld-E?si=W77QiDHRwQ4g7Rph', pdf: '', PrácticaId: 'anatomia-2' },
+        { title: 'Tejido cartilaginoso', video: 'https://www.youtube.com/embed/meUDcJrC6v8?si=Vx-rKIJ_E_ovuqGm', pdf: '', PrácticaId: 'anatomia-3' },
+      ],
+      biologia: [
+        { title: 'Origen de la Vida - Evolucion', video: 'https://www.youtube.com/embed/fbZyNQgxY0M?si=qboC983iLKaZT6JE', pdf: '', PrácticaId: 'biologia-1' },
+        { title: 'Bioelementos y Biomoleculas ', video: 'https://www.youtube.com/embed/OqIhYmEHzIY?si=hH_uGSwpxdeLWJfS', pdf: '', PrácticaId: 'biologia-2' },
+        { title: 'Glúcidos - Lípidos - Proteinas', video: 'https://www.youtube.com/embed/p0k0T2epEd8?si=jjYX9S4AHy5vwAIa', pdf: '', PrácticaId: 'biologia-3' },
+      ],
+      literatura: [
+        { title: 'Figuras Literarias', video: 'https://www.youtube.com/embed/vxogyM8XP3g?si=_zDzTbF3mCDlrCw1', pdf: '', PrácticaId: 'literatura-1' },
+        { title: 'Clasicismo y medievalismo', video: 'https://www.youtube.com/embed/pUIE-1Pdri8?si=tP_QPv50WuVfUpG7', pdf: '', PrácticaId: 'literatura-2' },
+        { title: 'Renacimiento', video: 'https://www.youtube.com/embed/kDg9OCXvpfI?si=Sd9w1ygFX8NpEN4p', pdf: '', PrácticaId: 'literatura-3' },
+        { title: 'Neoclasicismo', video: 'https://www.youtube.com/embed/rxH75nZoMUw?si=rFkY_R_3wIGPCbsb', pdf: '', PrácticaId: 'literatura-3' },
+      ],
+    };
+
+    let PrácticasData = {
+      'algebra-1': [{ text: 'Práctica de Teoria de Exponentes', link: 'quiz.html?id=algebra_tema1' }],
+      'algebra-2': [{ text: 'Práctica de Polinomios', link: 'quiz.html?id=algebra_tema2' }],
+      'algebra-3': [{ text: 'Práctica de Productos Notables', link: 'quiz.html?id=algebra_tema3' }],
+      'aritmetica-1': [{ text: 'Práctica de Logica proposicional', link: 'quiz.html?id=aritmetica_tema1' }],
+      'aritmetica-2': [{ text: 'Práctica de Teoria de Conjuntos', link: 'quiz.html?id=aritmetica_tema2' }],
+      'aritmetica-3': [{ text: 'Práctica de Numeración', link: 'quiz.html?id=aritmetica_tema3' }],
+      'geometria-1': [{ text: 'Práctica de Segmentos - Angulos', link: 'quiz.html?id=geometria_tema1' }],
+      'geometria-2': [{ text: 'Práctica de Triángulos', link: 'quiz.html?id=geometria_tema2' }],
+      'geometria-3': [{ text: 'Práctica de Congruencia', link: 'quiz.html?id=geometria_tema3' }],
+      'geometria-4': [{ text: 'Práctica de Polígonos', link: 'quiz.html?id=geometria_tema4' }],
+      'geometria-5': [{ text: 'Práctica de Cuadriláteros', link: 'quiz.html?id=geometria_tema5' }],
+      'trigonometria-1': [{ text: 'Práctica de Sistema de medida', link: 'quiz.html?id=trigonometria_tema1' }],
+      'trigonometria-2': [{ text: 'Práctica de Razones trigonométricas', link: 'quiz.html?id=trigonometria_tema2' }],
+      'estadistica-1': [{ text: 'Práctica de Tablas I', link: 'quiz.html?id=estadistica_tema1' }],
+      'estadistica-2': [{ text: 'Práctica de Tablas II', link: 'quiz.html?id=estadistica_tema2' }],
+      'anatomia-1': [{ text: 'Quiz de huesos', link: 'quiz.html?id=anatomia_tema1' }],
+      'anatomia-2': [{ text: 'Quiz del Tejido Oseo', link: 'quiz.html?id=anatomia_tema2' }],
+      'anatomia-3': [{ text: 'Quiz del Tejido Cartilaginoso', link: 'quiz.html?id=anatomia_tema3' }],
+      'biologia-1': [{ text: 'Quiz de la evolucion', link: 'quiz.html?id=biologia_tema1' }],
+      'biologia-2': [{ text: 'Quiz de Bioelementos', link: 'quiz.html?id=biologia_tema2' }],
+      'biologia-3': [{ text: 'Quiz de Glucidos y lipidos', link: 'quiz.html?id=biologia_tema3' }],
+      'literatura-1': [{ text: 'Quiz de Figuras literarias', link: 'quiz.html?id=literatura_tema1' }],
+      'literatura-2': [{ text: 'Quiz de Clasicismo', link: 'quiz.html?id=literatura_tema2' }],
+      'literatura-3': [{ text: 'Quiz del Renacimiento', link: 'quiz.html?id=literatura_tema3' }],
+    };
+
+    let currentCourseTemas = [];
+    let currentTemaIndex = -1;
+
+    function mostrarTema(index) {
+      if (index >= 0 && index < currentCourseTemas.length) {
+        currentTemaIndex = index;
+        const tema = currentCourseTemas[index];
+
+        tituloTema.textContent = tema.title;
+        videoFrame.src = tema.video;
+        pdfFrame.src = tema.pdf;
+        PrácticaBtn.setAttribute('data-Práctica', tema.PrácticaId);
+        contenido.classList.remove('hidden');
+
+        const temaItems = temasLista.querySelectorAll('li');
+        temaItems.forEach((item, i) => {
+          if (i === index) {
+            item.className = 'cursor-pointer text-blue-700 font-bold bg-blue-50 p-2 rounded-lg block border-l-4 border-blue-500';
+          } else {
+            item.className = 'cursor-pointer text-gray-600 hover:text-blue-600 hover:bg-gray-50 p-2 rounded-lg block transition';
+          }
+        });
+
+        prevBtn.disabled = currentTemaIndex === 0;
+        nextBtn.disabled = currentTemaIndex === currentCourseTemas.length - 1;
+        if(prevBtn.disabled) prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        else prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        
+        if(nextBtn.disabled) nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        else nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+        if (window.innerWidth < 768) sidebar.classList.add('translate-x-full');
+
+        // DAR XP SOLO UNA VEZ POR VIDEO
+        awardXP(5, `Video: ${tema.title}`, tema.PrácticaId);
+      }
+    }
+
+    function cargarTemasDelCurso(courseId) {
+      temasLista.innerHTML = '';
+      currentCourseTemas = cursosData[courseId] || [];
+      currentTemaIndex = -1;
+
+      if (currentCourseTemas.length > 0) {
+        currentCourseTemas.forEach((tema, index) => {
+          const li = document.createElement('li');
+          li.textContent = tema.title;
+          li.onclick = () => mostrarTema(index);
+          temasLista.appendChild(li);
+        });
+        mostrarTema(0);
+        if (window.innerWidth < 768) sidebar.classList.remove('translate-x-full');
+      } else {
+        contenido.classList.add('hidden');
+        if (window.innerWidth < 768) sidebar.classList.add('translate-x-full');
+      }
+    }
+
+    cursoSelect.addEventListener('change', (event) => {
+      const selectedCourse = event.target.value;
+      if (selectedCourse) cargarTemasDelCurso(selectedCourse);
+      else {
+        temasLista.innerHTML = '';
+        contenido.classList.add('hidden');
+      }
+    });
+
+    prevBtn.addEventListener('click', () => { if (currentTemaIndex > 0) mostrarTema(currentTemaIndex - 1); });
+    nextBtn.addEventListener('click', () => { if (currentTemaIndex < currentCourseTemas.length - 1) mostrarTema(currentTemaIndex + 1); });
+
+    PrácticaBtn.addEventListener('click', () => {
+      const id = PrácticaBtn.getAttribute('data-Práctica');
+      listaPrácticas.innerHTML = '';
+
+      const Prácticas = PrácticasData[id] || [{ text: 'Iniciar Quiz', link: `quiz.html?id=${id}` }];
+
+      Prácticas.forEach(p => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <a href="${p.link}" class="block w-full text-center bg-blue-100 hover:bg-blue-200 text-blue-800 font-bold py-3 rounded-xl border border-blue-300 transition">
+                ${p.text} <i class="fas fa-play ml-2 text-xs"></i>
+            </a>`;
+        listaPrácticas.appendChild(li);
+      });
+      modal.classList.remove('hidden');
+    });
+
+    function cerrarModal() { modal.classList.add('hidden'); }
+
+    hamburger.addEventListener('click', () => { sidebar.classList.toggle('translate-x-full'); });
+
+    document.addEventListener('click', (event) => {
+      if (window.innerWidth < 768 && !sidebar.contains(event.target) && !hamburger.contains(event.target) && !sidebar.classList.contains('translate-x-full')) {
+        sidebar.classList.add('translate-x-full');
+      }
+    });
+  </script>
+</body>
+</html>

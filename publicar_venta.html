@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendedor VIP - X-Academy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #0049c6; --gold: #ffcc00; --bg: #f4f6f9; }
+        body { font-family: 'Nunito', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
+        
+        /* PANTALLA DE BLOQUEO */
+        #lockScreen { display:none; text-align:center; padding-top:50px; }
+        .lock-icon { font-size: 80px; color: #ccc; margin-bottom: 20px; }
+        .btn-buy { background: var(--primary); color: white; padding: 15px 30px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; }
+
+        /* LAYOUT PRINCIPAL */
+        .main-layout { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1000px; margin: 0 auto; display: none; }
+        
+        /* FORMULARIO */
+        .form-container { flex: 1; min-width: 300px; background: white; padding: 25px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        
+        /* VISTA PREVIA */
+        .preview-container { flex: 0 0 320px; background: #fff; padding: 20px; border-radius: 15px; height: fit-content; position: sticky; top: 20px; border: 1px dashed #ccc; }
+        .preview-label { text-align: center; font-weight: bold; color: #999; margin-bottom: 15px; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; }
+
+        /* ESTILOS DE TARJETA */
+        .file-card { background: white; border-radius: 15px; padding: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; overflow: hidden; border: 2px solid var(--gold); background: linear-gradient(to bottom right, #fff, #fffdf0); }
+        .premium-badge { position: absolute; top: 0; right: 0; background: var(--gold); color: #333; font-size: 10px; font-weight: 900; padding: 3px 10px; border-bottom-left-radius: 10px; }
+        .thumb-img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; margin-right: 15px; border: 1px solid #eee; background: #eee; }
+        .file-info { flex: 1; overflow: hidden; }
+        .file-title { font-weight: bold; font-size: 15px; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .file-meta { font-size: 12px; color: #888; }
+        .price-tag { color: var(--primary); font-weight: 900; font-size: 16px; margin-top: 5px; }
+        .btn-demo { background: var(--primary); color: white; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; border:none; display:flex; align-items:center; gap:5px; pointer-events: none; }
+
+        .vip-badge { background: linear-gradient(45deg, #ffd700, #ffaa00); color: white; padding: 10px 20px; border-radius: 10px; font-weight: 900; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; }
+        input, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; box-sizing: border-box; }
+        .btn-submit { width: 100%; background: var(--primary); color: white; padding: 15px; border: none; border-radius: 10px; font-weight: bold; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        .btn-submit:disabled { background: #ccc; }
+        .loader { display: none; text-align: center; margin-top: 10px; color: var(--primary); font-weight: bold; }
+
+        @media (max-width: 700px) { .main-layout { flex-direction: column-reverse; } .preview-container { position: relative; top: 0; } }
+    </style>
+</head>
+<body>
+
+    <div id="loadingCheck" style="text-align:center; margin-top:50px;">
+        <i class="fas fa-spinner fa-spin" style="font-size:40px; color:var(--primary);"></i>
+        <p>Verificando VIP...</p>
+    </div>
+
+    <div id="lockScreen">
+        <div class="lock-icon"><i class="fas fa-lock"></i></div>
+        <h2>Zona Exclusiva</h2>
+        <p>Necesitas una suscripción activa para vender.</p>
+        <a href="https://wa.me/51999999999" class="btn-buy">Adquirir Plan</a>
+        <br><br><a href="comunidad.html" style="color:#666;">Volver</a>
+    </div>
+
+    <div id="vipLayout" class="main-layout">
+        
+        <div class="form-container">
+            <div class="vip-badge">
+                <span><i class="fas fa-crown"></i> VENDEDOR VIP</span>
+                <span id="daysLeft" style="font-size:12px; background:rgba(255,255,255,0.3); padding:2px 5px; border-radius:4px;">...</span>
+            </div>
+
+            <div class="form-group">
+                <label>Título del Material</label>
+                <input type="text" id="pTitulo" placeholder="Ej: Pack Exámenes" oninput="updatePreview()">
+            </div>
+
+            <div class="form-group">
+                <label>Descripción</label>
+                <textarea id="pDesc" placeholder="Detalles del producto..." style="height:80px;"></textarea>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                <div class="form-group">
+                    <label>Precio (S/)</label>
+                    <input type="number" id="pPrecio" placeholder="0.00" oninput="updatePreview()">
+                </div>
+                <div class="form-group">
+                    <label>WhatsApp</label>
+                    <input type="number" id="pFono" placeholder="999..." >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Link de descarga (Drive/Mega)</label>
+                <input type="text" id="pLink" placeholder="https://...">
+            </div>
+
+            <div class="form-group">
+                <label>Link Foto Portada</label>
+                <input type="text" id="pImg" placeholder="https://..." oninput="updatePreview()">
+            </div>
+
+            <div class="form-group">
+                <label>Fotos Extra (Opcional, separadas por coma)</label>
+                <input type="text" id="pExtras" placeholder="url1, url2...">
+            </div>
+
+            <button class="btn-submit" onclick="submitVenta()">PUBLICAR</button>
+            <div id="loader" class="loader"><i class="fas fa-spinner fa-spin"></i> Enviando...</div>
+            <button onclick="window.location.href='comunidad.html'" style="width:100%; padding:10px; border:none; background:none; color:#666; cursor:pointer; margin-top:10px;">Cancelar</button>
+        </div>
+
+        <div class="preview-container">
+            <div class="preview-label"><i class="fas fa-eye"></i> Vista Previa en Tienda</div>
+            
+            <div class="file-card">
+                <div class="premium-badge">PREMIUM</div>
+                <img src="img/emotes/duda.png" id="prevImg" class="thumb-img">
+                <div class="file-info">
+                    <div class="file-title" id="prevTitle">Título del Archivo</div>
+                    <div class="file-meta">Por: <span id="prevUser">Tú</span></div>
+                    <div class="price-tag" id="prevPrice">S/ 0.00</div>
+                </div>
+                <button class="btn-demo">Ver <i class="fas fa-chevron-right"></i></button>
+            </div>
+            
+            <p style="text-align:center; font-size:11px; color:#999; margin-top:20px;">
+                Así verán los alumnos tu producto en la lista de aportes.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec";
+        const USER_EMAIL = localStorage.getItem('xAcademy_Email');
+        const USER_NAME = localStorage.getItem('xAcademy_Name');
+
+        window.onload = () => {
+            if (!USER_EMAIL) { alert("Inicia sesión primero"); window.location.href = "index.html"; return; }
+            document.getElementById('prevUser').innerText = USER_NAME || "Usuario";
+
+            fetch(`${API_URL}?action=checkVIP&email=${encodeURIComponent(USER_EMAIL)}`)
+            .then(r => r.json())
+            .then(data => {
+                document.getElementById('loadingCheck').style.display = 'none';
+                if (data.vip) {
+                    document.getElementById('vipLayout').style.display = 'flex';
+                    document.getElementById('daysLeft').innerText = `${data.dias} días`;
+                } else {
+                    document.getElementById('lockScreen').style.display = 'block';
+                }
+            });
+        };
+
+        function updatePreview() {
+            const t = document.getElementById('pTitulo').value;
+            const p = document.getElementById('pPrecio').value;
+            const i = document.getElementById('pImg').value;
+
+            document.getElementById('prevTitle').innerText = t || "Título del Archivo";
+            document.getElementById('prevPrice').innerText = "S/ " + (p || "0.00");
+            if(i) document.getElementById('prevImg').src = i;
+        }
+
+        function submitVenta() {
+            const titulo = document.getElementById('pTitulo').value;
+            const precio = document.getElementById('pPrecio').value;
+            const fono = document.getElementById('pFono').value;
+            const link = document.getElementById('pLink').value;
+            
+            if(!titulo || !precio || !fono || !link) return alert("Faltan datos obligatorios");
+
+            document.querySelector('.btn-submit').disabled = true;
+            document.getElementById('loader').style.display = 'block';
+
+            const params = new URLSearchParams();
+            params.append('action', 'saveVenta');
+            params.append('usuario', USER_NAME);
+            
+            // --- ACTUALIZADO: Enviamos email para aprobación automática VIP ---
+            params.append('email', USER_EMAIL); 
+            
+            params.append('titulo', titulo);
+            params.append('desc', document.getElementById('pDesc').value);
+            params.append('precio', precio);
+            params.append('fono', fono);
+            params.append('link', link);
+            params.append('img', document.getElementById('pImg').value);
+            params.append('extras', document.getElementById('pExtras').value);
+
+            fetch(API_URL, { method: 'POST', mode: 'no-cors', body: params })
+            .then(() => {
+                alert("Publicado con éxito");
+                window.location.href = "comunidad.html";
+            });
+        }
+    </script>
+</body>
+</html>

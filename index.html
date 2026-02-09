@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-ACADEMY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- 1. BASE --- */
+        body { 
+            font-family: 'Segoe UI', system-ui, sans-serif; 
+            margin: 0; padding: 0; 
+            background-color: #f4f6f9; 
+            padding-bottom: 90px;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; -webkit-tap-highlight-color: transparent; }
+
+        /* --- 2. BOTONES FLOTANTES --- */
+        .fab-container { position: fixed; bottom: 20px; right: 20px; z-index: 900; display: flex; align-items: center; gap: 10px; }
+        .fab-btn { width: 55px; height: 55px; background: #ffcc00; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.3); display: flex; justify-content: center; align-items: center; color: #0049c6; font-size: 22px; cursor: pointer; border: 3px solid white; transition: transform 0.2s; }
+        .fab-btn:active { transform: scale(0.9); }
+
+        .gift-fab { 
+            position: fixed; bottom: 20px; left: 20px; z-index: 900; 
+            width: 60px; height: 60px; background: #ff3b5c; border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(255, 59, 92, 0.4); border: 3px solid white;
+            display: flex; justify-content: center; align-items: center; color: white;
+            font-size: 24px; cursor: pointer; transition: transform 0.2s;
+        }
+        .gift-fab:active { transform: scale(0.9); }
+        .gift-fab.ready { animation: tada 1.5s infinite; }
+        
+        @keyframes tada {
+            0% {transform: scale(1);} 10%, 20% {transform: scale(0.9) rotate(-3deg);} 
+            30%, 50%, 70%, 90% {transform: scale(1.1) rotate(3deg);} 
+            40%, 60%, 80% {transform: scale(1.1) rotate(-3deg);} 100% {transform: scale(1) rotate(0);}
+        }
+
+        /* --- 3. HEADER & GAMIFICACIÓN --- */
+        .header-msg { padding: 20px 20px 5px 20px; }
+        .header-msg h2 { margin:0; color:#0049c6; font-size: 22px; font-weight: 800; }
+        .header-msg small { color:#666; font-size: 14px; }
+
+        .player-card {
+            background: linear-gradient(135deg, #0049c6 0%, #00d4ff 100%);
+            border-radius: 20px; padding: 20px; margin: 10px 20px;
+            color: white; display: flex; align-items: center;
+            box-shadow: 0 8px 20px rgba(0, 73, 198, 0.3); 
+            position: relative; overflow: hidden;
+        }
+        .player-card::after { content: ''; position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; pointer-events: none; }
+        .player-avatar { width: 60px; height: 60px; background: white; border-radius: 50%; margin-right: 15px; display: flex; justify-content: center; align-items: center; color: #0049c6; font-size: 30px; border: 4px solid #ffcc00; flex-shrink: 0; z-index: 2; }
+        .player-info { flex-grow: 1; z-index: 2; }
+        .xp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+        .xp-bar-bg { background: rgba(0,0,0,0.3); height: 10px; border-radius: 5px; width: 100%; overflow: hidden; }
+        .xp-bar-fill { background: #ffcc00; height: 100%; width: 0%; border-radius: 5px; transition: width 0.5s ease-out; box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); }
+        .info-btn { background: rgba(255,255,255,0.2); width: 26px; height: 26px; border-radius: 50%; text-align: center; line-height: 26px; font-size: 14px; font-weight: bold; font-family: serif; cursor: pointer; margin-left: 8px; border: 1px solid rgba(255,255,255,0.6); }
+
+        /* --- 4. MODALES (General) --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+            z-index: 2000; display: none; justify-content: center; align-items: center; 
+            padding: 20px; box-sizing: border-box; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .modal-overlay.show { opacity: 1; }
+
+        .modal-box {
+            background: white; width: 100%; max-width: 380px;
+            border-radius: 20px; padding: 25px; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transform: scale(0.9); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .modal-overlay.show .modal-box { transform: scale(1); }
+
+        /* Estilos específicos para opciones de práctica */
+        .practice-opt {
+            display: flex; align-items: center; padding: 15px; margin-bottom: 10px;
+            background: #f8f9fa; border-radius: 15px; border: 1px solid #eee;
+            text-align: left; cursor: pointer; transition: 0.2s;
+        }
+        .practice-opt:active { transform: scale(0.98); background: #e0f0ff; border-color: #0049c6; }
+        .practice-opt i.main-icon { font-size: 24px; margin-right: 15px; width: 30px; text-align: center; }
+        .practice-opt h4 { margin: 0; font-size: 16px; color: #333; }
+        .practice-opt p { margin: 2px 0 0; font-size: 12px; color: #888; }
+        .practice-opt i.arrow { margin-left: auto; color: #ccc; }
+
+        /* Modal Específico: Recompensa Diaria */
+        .daily-calendar { display: flex; justify-content: space-between; gap: 5px; margin: 20px 0; }
+        .day-box {
+            flex: 1; background: #f4f6f9; border-radius: 8px; padding: 8px 2px;
+            display: flex; flex-direction: column; align-items: center;
+            opacity: 0.5; border: 2px solid transparent; transition: 0.3s;
+        }
+        .day-box.active { opacity: 1; border-color: #0049c6; transform: scale(1.1); background: white; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 2; }
+        .day-box.claimed { opacity: 1; background: #e0ffe0; border-color: #20bf6b; color: #20bf6b; }
+        .day-icon { font-size: 14px; margin: 5px 0; color: #ccc; }
+        .day-box.claimed .day-icon { color: #20bf6b; }
+        .day-box.bonus .day-icon { color: #ffcc00; animation: wiggle 2s infinite; }
+        
+        .btn-claim {
+            background: #0049c6; color: white; border: none; padding: 12px 30px; 
+            border-radius: 25px; font-weight: bold; cursor: pointer; width: 100%;
+            transition: 0.2s; box-shadow: 0 4px 0 #00358f; font-size: 16px;
+        }
+        .btn-claim:disabled { background: #ddd; color: #999; box-shadow: none; cursor: default; }
+        .btn-claim:active { transform: translateY(4px); box-shadow: none; }
+
+        /* Confeti */
+        .confetti { position: absolute; width: 8px; height: 8px; background: red; animation: fall 3s linear forwards; pointer-events: none; }
+        @keyframes fall { to { transform: translateY(120vh) rotate(720deg); } }
+        @keyframes wiggle { 0%, 100% {transform:rotate(0);} 25% {transform:rotate(-10deg);} 75% {transform:rotate(10deg);} }
+
+        /* Otros Estilos de Modal */
+        .modal-title { font-size: 18px; font-weight: 800; color: #333; margin: 5px 0 15px; }
+        .reward-list { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .reward-item { display: flex; align-items: center; margin-bottom: 15px; }
+        .reward-lvl { background: #0049c6; color: white; width: 35px; height: 35px; border-radius: 50%; font-weight: bold; font-size: 12px; display: flex; justify-content: center; align-items: center; margin-right: 12px; flex-shrink: 0; }
+        .divider { height: 1px; background: #eee; margin: 15px 0; }
+        .modal-btn { background: #0049c6; color: white; border: none; padding: 10px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; width: 100%; margin-top: 10px; }
+
+        /* --- 5. SLIDER CORREGIDO --- */
+        .hero-section { padding: 10px 20px; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .hero-text-container { text-align: center; width: 100%; }
+        .hero-title { font-size: 24px; color: #0049c6; font-weight: 900; margin: 0 0 10px 0; min-height: 30px; transition: opacity 0.2s; }
+        .hero-desc { font-size: 14px; color: #555; line-height: 1.5; margin: 0 0 15px 0; min-height: 40px; transition: opacity 0.2s; }
+        .hero-btn { background: #0049c6; color: white; padding: 10px 30px; border-radius: 50px; font-weight: bold; box-shadow: 0 5px 15px rgba(0, 73, 198, 0.3); display: inline-block; }
+        
+        .slider-wrapper { width: 100%; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); position: relative; }
+        .slider-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+        .slider-track::-webkit-scrollbar { display: none; }
+        .slide { flex: 0 0 100%; scroll-snap-align: center; }
+        .slide img { width: 100%; height: auto; display: block; aspect-ratio: 16/9; object-fit: cover; }
+        .dots-container { display: flex; justify-content: center; margin-top: 10px; gap: 8px; }
+        .dot { width: 8px; height: 8px; background: #ccc; border-radius: 50%; transition: 0.3s; }
+        .dot.active { background: #0049c6; width: 25px; border-radius: 4px; }
+
+        /* Media Query PC */
+        @media (min-width: 768px) {
+            .hero-section { flex-direction: row; align-items: center; padding: 40px; }
+            .hero-text-container { text-align: left; flex: 1; }
+            .slider-wrapper { flex: 1.5; }
+            .hero-title { font-size: 36px; }
+            .hero-desc { font-size: 18px; }
+            .menu-grid { grid-template-columns: repeat(4, 1fr); } 
+            .full-width-mobile { grid-column: span 1; }
+        }
+
+        /* --- 6. MENÚ GRID --- */
+        .section-header { font-size: 18px; font-weight: 800; color: #333; margin: 30px 20px 15px 20px; border-left: 5px solid #0049c6; padding-left: 10px; }
+        .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; padding: 0 20px; max-width: 1200px; margin: 0 auto; }
+        .menu-btn { background: white; border-radius: 15px; padding: 20px; text-align: center; color: #333; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; align-items: center; justify-content: center; transition:transform 0.2s; cursor: pointer;}
+        .menu-btn:active { transform:scale(0.98); }
+        .menu-btn img { width: 45px; margin-bottom: 10px; }
+        .menu-label { font-weight: 800; font-size: 13px; color: #0049c6; text-transform: uppercase; }
+        .menu-sub { font-size: 11px; color: #888; margin-top: 4px; }
+        .full-width-mobile { grid-column: span 2; } 
+    </style>
+</head>
+
+<body>
+
+    <div id="practiceModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="modal-title" style="margin-bottom:20px;">¿Qué quieres practicar?</h3>
+            
+            <div class="practice-opt" onclick="window.location.href='practicaxcurso.html'">
+                <i class="fas fa-book-reader main-icon" style="color:#0049c6;"></i>
+                <div>
+                    <h4>Por Cursos</h4>
+                    <p>Temas y preguntas por materia</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </div>
+
+            <div class="practice-opt" onclick="window.location.href='universidades.html'">
+                <i class="fas fa-university main-icon" style="color:#ffcc00;"></i>
+                <div>
+                    <h4>Universidades</h4>
+                    <p>Simulacros de admisión</p>
+                </div>
+                <i class="fas fa-chevron-right arrow"></i>
+            </div>
+
+            <button class="modal-btn" onclick="closeModal('practiceModal')" style="background:#eee; color:#666; margin-top:20px;">Cancelar</button>
+        </div>
+    </div>
+
+    <div id="infoModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3 class="modal-title"><i class="fas fa-trophy" style="color:#ffcc00;"></i> Tus Metas</h3>
+            <p style="font-size:13px; color:#666; margin-bottom:15px;">Estudia y desbloquea funciones:</p>
+            <ul class="reward-list">
+                <li class="reward-item"><div class="reward-lvl">NV 5</div><div><h4>Banco de Exámenes</h4><p style="margin:0; font-size:11px; color:#777;">Desbloquea PDFs pasados.</p></div></li>
+                <li class="reward-item"><div class="reward-lvl">NV 10</div><div><h4>Reto Legendario</h4><p style="margin:0; font-size:11px; color:#777;">Acceso simulacro UNI.</p></div></li>
+            </ul>
+            <div class="divider"></div>
+            <button class="modal-btn" onclick="closeModal('infoModal')">¡Seguir Estudiando!</button>
+            <br><br><small onclick="deleteMyData()" style="color:red; cursor:pointer; text-decoration:underline;">Borrar mi cuenta</small>
+        </div>
+    </div>
+
+    <div id="dailyModal" class="modal-overlay">
+        <div class="modal-box">
+            <div style="font-size:50px; color:#ffcc00; animation: wiggle 2s infinite;"><i class="fas fa-gift"></i></div>
+            <h2 class="modal-title" style="margin-bottom:5px;">Bono Diario</h2>
+            <p style="font-size:12px; color:#666; margin-top:0;">¡Entra cada día para ganar más!</p>
+            <div class="daily-calendar" id="dailyGrid"></div>
+            <button id="btnDaily" class="btn-claim" onclick="claimDaily()">Cargando...</button>
+            <p id="dailyMsg" style="font-size:11px; color:#888; margin-top:10px;"></p>
+            <i class="fas fa-times" onclick="closeModal('dailyModal')" style="position:absolute; top:15px; right:15px; font-size:20px; color:#ccc; cursor:pointer;"></i>
+        </div>
+        <div id="confetti-zone" style="position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; overflow:hidden;"></div>
+    </div>
+
+    <div id="loginModal" class="modal-overlay" style="z-index:3000;">
+        <div class="modal-box" style="text-align:left;">
+            <h2 style="color:#0049c6; text-align:center;">¡Bienvenido!</h2>
+            <p style="text-align:center; color:#666; font-size:14px;">Registrate para guardar tu progreso.</p>
+            <label style="font-weight:bold; font-size:12px;">Nombre de usuario:</label>
+            <input type="text" id="regName" placeholder="Ej: TilinPro87" style="width:100%; padding:10px; margin:5px 0 15px; border:1px solid #ccc; border-radius:8px;">
+            <label style="font-weight:bold; font-size:12px;">Correo:</label>
+            <input type="email" id="regEmail" placeholder="correo@gmail.com" style="width:100%; padding:10px; margin:5px 0 15px; border:1px solid #ccc; border-radius:8px;">
+            <button class="modal-btn" onclick="doLogin()">ENTRAR</button>
+            <p id="loginStatus" style="text-align:center; font-size:12px; color:#666; margin-top:10px;"></p>
+        </div>
+    </div>
+
+    <div class="fab-container">
+        <a href="https://prettyform.addxt.com/a/form/vf/1FAIpQLSctnHeLvxiizyGGMCqegJNa2O-Us-U37WWEnf47EwtWdICnLQ" class="fab-btn"><i class="fas fa-comment-dots"></i></a>
+    </div>
+    
+    <div class="gift-fab" id="giftBtn" onclick="openDailyModal()">
+        <i class="fas fa-gift"></i>
+    </div>
+
+    <div class="header-msg">
+        <h2 id="userNameDisplay">Hola, Cachimbo</h2>
+        <small>Tu progreso de estudio:</small>
+    </div>
+
+    <div class="player-card">
+        <div class="player-avatar"><i class="fas fa-user-graduate"></i></div>
+        <div class="player-info">
+            <div class="xp-header">
+                <div style="display:flex; align-items:center;">
+                    <span id="lvlBadge" style="font-weight:bold; font-size:1.1em;">NIVEL 1</span>
+                    <div class="info-btn" onclick="openModal('infoModal')">i</div>
+                </div>
+                <span id="xpText" style="font-size:0.9em;">0 XP</span>
+            </div>
+            <div class="xp-bar-bg"><div id="xpBar" class="xp-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-text-container" id="heroTextContainer">
+            <h1 id="heroTitle" class="hero-title">Cargando...</h1>
+            <p id="heroDesc" class="hero-desc">...</p>
+            <a id="heroBtn" href="#" class="hero-btn">EXPLORAR</a>
+        </div>
+        <div style="width: 100%; flex: 1.5;">
+            <div class="slider-wrapper">
+                <div class="slider-track" id="sliderTrack">
+                    <div class="slide" data-title="Test Vocacional" data-desc="Descubre tu carrera ideal en minutos." data-link="testv.html">
+                        <a href="testv.html"><img src="img/demo1.png" alt="Test"></a>
+                    </div>
+                    <div class="slide" data-title="Video Clases" data-desc="Biblioteca completa de cursos." data-link="go:VID">
+                        <a href="videocursos.html"><img src="img/demo3.png" alt="Videos"></a>
+                    </div>
+                    <div class="slide" data-title="Simulacros" data-desc="Entrena con exámenes reales." data-link="universidades.html">
+                        <a href="universidades.html"><img src="img/demo4.png" alt="Examen"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="dots-container" id="dots"></div>
+        </div>
+    </div>
+
+    <div class="section-header">Explora la Academia</div>
+
+    <div class="menu-grid">
+        <a href="biblioteca.html" class="menu-btn">
+            <img src="img/biblio.png">
+            <span class="menu-label">BIBLIOTECA</span>
+            <span class="menu-sub">Libros PDF GRATIS!</span>
+        </a>
+        
+        <div class="menu-btn" onclick="openModal('practiceModal')">
+            <img src="img/examen.png">
+            <span class="menu-label">PRÁCTICAS</span>
+            <span class="menu-sub">Preguntas del tipo ADMISION.</span>
+        </div>
+
+        <a href="videocursos.html" class="menu-btn">
+            <img src="img/videos.png">
+            <span class="menu-label">VIDEOS</span>
+            <span class="menu-sub">Clases grabadas</span>
+        </a>
+
+        <a href="ranking.html" class="menu-btn">
+            <img src="https://cdn-icons-png.flaticon.com/512/3112/3112946.png">
+            <span class="menu-label">RANKING</span>
+            <span class="menu-sub">Tabla de líderes</span>
+        </a>
+
+        <a href="comunidad.html" class="menu-btn full-width-mobile">
+            <img src="img/foro.png">
+            <span class="menu-label">ZONA X</span>
+            <span class="menu-sub">Apuntes, Foro y más</span>
+        </a>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec"; 
+        const XP_PER_LEVEL = 1000;
+        const dailyRewards = [10, 20, 50, 20, 30, 40, 100]; 
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const myID = localStorage.getItem('xAcademy_ID');
+            if (!myID) { openModal('loginModal'); } 
+            else { 
+                updateUI(); 
+                const n = localStorage.getItem('xAcademy_Name');
+                if(n) document.getElementById('userNameDisplay').innerText = "Hola, " + n;
+                checkDailyStatus();
+            }
+            initSlider();
+        });
+
+        // --- SISTEMA DIARIO ---
+        function checkDailyStatus() {
+            const lastClaim = localStorage.getItem('lastClaimDate');
+            const today = new Date().toDateString();
+            if (lastClaim !== today) {
+                document.getElementById('giftBtn').classList.add('ready');
+            } else {
+                document.getElementById('giftBtn').classList.remove('ready');
+            }
+        }
+
+        function openDailyModal() {
+            openModal('dailyModal');
+            initDailyGrid();
+        }
+
+        function initDailyGrid() {
+            const lastClaim = localStorage.getItem('lastClaimDate');
+            const today = new Date().toDateString();
+            let streak = parseInt(localStorage.getItem('dailyStreak')) || 1;
+
+            if (lastClaim === today) {
+                renderDaily(streak, true);
+                setBtnState(false, "¡Vuelve mañana!");
+            } else {
+                const yesterday = new Date(); yesterday.setDate(yesterday.getDate() - 1);
+                if (lastClaim !== yesterday.toDateString() && lastClaim) streak = 1; 
+                if (streak > 7) streak = 1;
+                
+                localStorage.setItem('dailyStreak', streak);
+                renderDaily(streak, false);
+                setBtnState(true, `¡Reclamar Día ${streak}!`);
+            }
+        }
+
+        function renderDaily(currentDay, isClaimedToday) {
+            const grid = document.getElementById('dailyGrid');
+            grid.innerHTML = "";
+            dailyRewards.forEach((xp, idx) => {
+                const dayNum = idx + 1;
+                let classes = "day-box";
+                let icon = "fas fa-coins";
+                if (dayNum === 3 || dayNum === 7) { classes += " bonus"; icon = "fas fa-gift"; }
+                
+                if (dayNum < currentDay) { classes += " claimed"; icon = "fas fa-check"; }
+                else if (dayNum === currentDay) { 
+                    classes += " active"; 
+                    if (isClaimedToday) { classes += " claimed"; icon = "fas fa-check"; }
+                }
+
+                grid.innerHTML += `<div class="${classes}"><div style="font-size:9px;font-weight:bold;margin-bottom:2px;">Día ${dayNum}</div><i class="${icon} day-icon"></i><div style="font-size:9px;font-weight:bold;">+${xp}</div></div>`;
+            });
+        }
+
+        function setBtnState(enable, text) {
+            const btn = document.getElementById('btnDaily');
+            btn.innerText = text;
+            btn.disabled = !enable;
+            btn.style.background = enable ? "#0049c6" : "#ddd";
+            btn.style.color = enable ? "white" : "#888";
+            btn.style.boxShadow = enable ? "0 4px 0 #00358f" : "none";
+            document.getElementById('dailyMsg').innerText = enable ? "¡No pierdas tu racha!" : "Recompensa ya reclamada.";
+        }
+
+        function claimDaily() {
+            let streak = parseInt(localStorage.getItem('dailyStreak')) || 1;
+            const xpGain = dailyRewards[streak - 1];
+            
+            localStorage.setItem('lastClaimDate', new Date().toDateString());
+            addXP(xpGain, "Bonus", `Día ${streak}`);
+            localStorage.setItem('dailyStreak', streak + 1);
+            
+            initDailyGrid();
+            checkDailyStatus();
+            startConfetti();
+        }
+
+        function startConfetti() {
+            const colors = ['#ffcc00', '#ff3b5c', '#0099ff', '#20bf6b'];
+            const container = document.getElementById('confetti-zone');
+            container.innerHTML = '';
+            
+            for(let i=0; i<50; i++) {
+                const div = document.createElement('div');
+                div.classList.add('confetti');
+                div.style.left = Math.random() * 100 + '%';
+                div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                div.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                div.style.animationDelay = (Math.random() * 0.5) + 's';
+                container.appendChild(div);
+            }
+        }
+
+        // --- CORE FUNCTIONS ---
+        function openModal(id) {
+            const m = document.getElementById(id);
+            m.style.display = 'flex';
+            setTimeout(() => m.classList.add('show'), 10);
+        }
+        function closeModal(id) {
+            const m = document.getElementById(id);
+            m.classList.remove('show');
+            setTimeout(() => m.style.display = 'none', 300);
+        }
+
+        function addXP(puntos, curso, actividad) {
+            let currentXP = parseInt(localStorage.getItem('xAcademy_XP')) || 0;
+            currentXP += puntos;
+            localStorage.setItem('xAcademy_XP', currentXP);
+            updateUI();
+            
+            const myID = localStorage.getItem('xAcademy_ID');
+            if (myID) {
+                const url = `${API_URL}?action=saveXP&id=${myID}&xp=${puntos}&curso=${encodeURIComponent(curso)}&actividad=${encodeURIComponent(actividad)}`;
+                fetch(url, { mode: 'no-cors' });
+            }
+        }
+
+        function updateUI() {
+            let playerXP = parseInt(localStorage.getItem('xAcademy_XP')) || 0;
+            let lvl = Math.floor(playerXP / XP_PER_LEVEL) + 1;
+            let cur = playerXP % XP_PER_LEVEL;
+            let pct = (cur / XP_PER_LEVEL) * 100;
+            document.getElementById('lvlBadge').innerText = "NIVEL " + lvl;
+            document.getElementById('xpText').innerText = cur + " XP";
+            document.getElementById('xpBar').style.width = pct + "%";
+        }
+
+        function doLogin() {
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const status = document.getElementById('loginStatus');
+            if (name.length < 3 || !email.includes('@')) { status.innerText = "❌ Datos inválidos."; status.style.color = "red"; return; }
+            status.innerText = "🔄 Conectando...";
+            fetch(`${API_URL}?action=login&email=${encodeURIComponent(email)}&nombre=${encodeURIComponent(name)}`)
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('xAcademy_ID', data.id);
+                localStorage.setItem('xAcademy_Name', data.nombre);
+                localStorage.setItem('xAcademy_XP', data.xp);
+                
+                // --- CORRECCIÓN CLAVE PARA VIP ---
+                localStorage.setItem('xAcademy_Email', email); 
+                // ---------------------------------
+
+                closeModal('loginModal');
+                updateUI();
+                checkDailyStatus();
+                alert(`¡Hola ${data.nombre}!`);
+            })
+            .catch(err => { status.innerText = "⚠️ Error de conexión."; });
+        }
+
+        function deleteMyData() {
+            if(!confirm("¿Borrar cuenta?")) return;
+            const myID = localStorage.getItem('xAcademy_ID');
+            if (myID) fetch(`${API_URL}?action=deleteUser&id=${myID}`, { mode: 'no-cors' });
+            localStorage.clear();
+            location.reload();
+        }
+
+        // --- SLIDER LOGIC ---
+        function initSlider() {
+            const track = document.getElementById('sliderTrack');
+            const slides = document.querySelectorAll('.slide');
+            const dotsContainer = document.getElementById('dots');
+            
+            const hTitle = document.getElementById('heroTitle');
+            const hDesc = document.getElementById('heroDesc');
+            const hBtn = document.getElementById('heroBtn');
+            const txtContainer = document.getElementById('heroTextContainer');
+
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if(i===0) dot.classList.add('active');
+                dot.onclick = () => { track.scrollTo({left: track.clientWidth * i, behavior:'smooth'}); resetTimer(); };
+                dotsContainer.appendChild(dot);
+            });
+            const dots = document.querySelectorAll('.dot');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        const slide = entry.target;
+                        const idx = Array.from(slides).indexOf(slide);
+                        
+                        txtContainer.style.opacity = 0; 
+                        setTimeout(() => {
+                            hTitle.innerText = slide.dataset.title;
+                            hDesc.innerText = slide.dataset.desc;
+                            hBtn.href = slide.dataset.link;
+                            txtContainer.style.opacity = 1; 
+                        }, 200);
+
+                        dots.forEach(d => d.classList.remove('active'));
+                        if(dots[idx]) dots[idx].classList.add('active');
+                    }
+                });
+            }, { root: track, threshold: 0.5 });
+            
+            slides.forEach(s => observer.observe(s));
+
+            let autoPlayTimer;
+            function nextSlide() {
+                const slideWidth = slides[0].clientWidth;
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                if (track.scrollLeft >= maxScroll - 10) track.scrollTo({ left: 0, behavior: 'smooth' });
+                else track.scrollBy({ left: slideWidth, behavior: 'smooth' });
+            }
+            function startTimer() { autoPlayTimer = setInterval(nextSlide, 4000); }
+            function resetTimer() { clearInterval(autoPlayTimer); startTimer(); }
+            
+            startTimer();
+            track.addEventListener('touchstart', () => clearInterval(autoPlayTimer));
+            track.addEventListener('touchend', startTimer);
+        }
+    </script>
+</body>
+</html>

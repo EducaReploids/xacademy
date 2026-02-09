@@ -1,0 +1,115 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+.screen {
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+.active {
+    display: block;
+}
+.screen img{
+    width: 250px;
+}
+ul {
+    list-style-type: none; /* Quita el marcador predeterminado */
+    padding: 0; /* Elimina el relleno predeterminado */
+    margin: 0; /* Elimina el margen predeterminado */
+  }
+h2 {
+    color: #0084ff;
+}
+button {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #0084ff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+button:hover {
+    background-color: #0054a2;
+}
+.question-container {
+    margin-top: 20px;
+    text-align: left;
+}
+.option {
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+.option:hover {
+    background-color: #f1f1f1;
+    transform: scale(1.02);
+}
+#results-screen .career {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.career img {
+    width: 270px;
+    height: 140px;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+.career-description {
+    text-align: left;
+}
+.career-description h4 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+.career-description p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: #555;
+}
+/* Puedes agregar estilos aquí */
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.option {
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #f0f0f0;
+}
+.career-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.career-card img {
+    max-width: 100%;
+    height: auto;
+}

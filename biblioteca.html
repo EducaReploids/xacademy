@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Virtual</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #f4f6f9;
+            --text-color: #333;
+            /* Colores */
+            --col-mate: #0049c6;
+            --col-ciencias: #20bf6b;
+            --col-letras: #eb3b5a;
+            --col-sociales: #f7b731;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            padding-bottom: 90px;
+            color: var(--text-color);
+            max-width: 1100px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- CABECERA --- */
+        .header-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            font-weight: 900;
+            font-size: 24px;
+            color: #0049c6;
+            flex: 1;
+            text-align: center;
+            margin-right: 40px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        .back-btn {
+            font-size: 22px;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .back-btn:active { transform: scale(0.9); }
+
+        /* FILTROS */
+        .filter-container {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+        }
+
+        .filter-chip {
+            background: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            white-space: nowrap;
+            border: 1px solid #eee;
+            cursor: pointer;
+            color: #666;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .filter-chip.active {
+            background: #0049c6;
+            color: white;
+            border-color: #0049c6;
+        }
+
+        /* GRID */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            animation: fadeIn 0.4s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: transform 0.2s;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .book-card:active { transform: scale(0.98); }
+
+        /* PORTADA */
+        .book-cover {
+            width: 100%;
+            aspect-ratio: 2/3;
+            border-radius: 8px;
+            background-color: #eee;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            font-size: 13px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+
+        .book-cover.no-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.2) 100%);
+        }
+
+        .book-title {
+            font-weight: 800;
+            font-size: 13px;
+            line-height: 1.3;
+            margin-bottom: 2px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 34px;
+        }
+
+        .book-author {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 8px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .read-btn {
+            margin-top: auto;
+            background: #e0f0ff;
+            color: #0049c6;
+            border: none;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            width: 100%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .xp-tag {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #ffcc00;
+            color: #000;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+
+        #xpToast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #ffcc00;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            z-index: 3000;
+            display: none;
+            text-align: center;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-bar">
+        <div class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <h1 class="header-title">Biblioteca</h1>
+    </div>
+
+    <div class="filter-container">
+        <div class="filter-chip active" onclick="filterBooks('todos', this)">Todos</div>
+        <div class="filter-chip" onclick="filterBooks('matematicas', this)">Matemáticas</div>
+        <div class="filter-chip" onclick="filterBooks('ciencias', this)">Ciencias</div>
+        <div class="filter-chip" onclick="filterBooks('letras', this)">Letras</div>
+        <div class="filter-chip" onclick="filterBooks('sociales', this)">Sociales</div>
+    </div>
+
+    <div class="books-grid" id="booksContainer"></div>
+    <div id="xpToast">📖 +10 XP</div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec"
+
+        const libraryData = [
+            // --- MATEMÁTICAS ---
+            { title: "Álgebra", author: "X-Academy", cat: "matematicas", color: "#0049c6", img: "img/cursos/algebra.png", link: "https://drive.google.com/file/d/1M3NGAV4d8oEgKZvuV4m7-QrMqjZwtlO7/preview" },
+            { title: "Geometría", author: "X-Academy", cat: "matematicas", color: "#0049c6", img: "img/cursos/geometria.png", link: "https://drive.google.com/file/d/18R2Lbo9NWmJZnDiOl6JVWCTeUIzUpyb0/preview" },
+            { title: "Aritmética", author: "X-Academy", cat: "matematicas", color: "#0049c6", img: "img/cursos/aritmetica.png", link: "https://drive.google.com/file/d/1x7oNRMst_VZrt6P2_MB0pp2h244DKD6Q/preview" },
+            { title: "Trigonometría", author: "X-Academy", cat: "matematicas", color: "#0049c6", img: "img/cursos/trigonometria.png", link: "https://drive.google.com/file/d/1b1nErzrLUB4MI-CZSerBxiFJNjIWtSZx/preview" },
+            { title: "Estadística", author: "X-Academy", cat: "matematicas", color: "#0049c6", img: "img/cursos/estadistica.png", link: "https://drive.google.com/file/d/1fuswMECwuq5AeLKA-8v5YfD3ufHQ0zdM/preview" },
+
+            // --- CIENCIAS ---
+            { title: "Anatomia", author: "X-Academy", cat: "ciencias", color: "#20bf6b", img: "img/cursos/anatomia.png", link: "https://drive.google.com/file/d/11b44gza9SSvD4zXaM3_3dgqOBVvwByhE/preview" },
+            { title: "Biología", author: "X-Academy", cat: "ciencias", color: "#20bf6b", img: "img/cursos/biologia.png", link: "https://drive.google.com/file/d/1enj7LakYqWLmSMacM9_TYujjgGTMEE_L/preview" },
+
+            // --- LETRAS ---
+            //{ title: "Lenguaje", author: "X-Academy", cat: "letras", color: "#eb3b5a", img: "", link: "LINK_PDF_LENGUAJE" },
+            //{ title: "Literatura", author: "X-Academy", cat: "letras", color: "#eb3b5a", img: "", link: "LINK_PDF_LITERATURA" },
+
+            // --- SOCIALES ---
+            //{ title: "Historia del Perú", author: "X-Academy", cat: "sociales", color: "#f7b731", img: "img/cursos/hp.png", link: "LINK_PDF_HP" },
+            //{ title: "Geografía", author: "X-Academy", cat: "sociales", color: "#f7b731", img: "", link: "LINK_PDF_GEO" },
+            //{ title: "Historia Universal", author: "X-Academy", cat: "sociales", color: "#f7b731", img: "", link: "LINK_PDF_HU" },
+            { title: "Psicología", author: "X-Academy", cat: "sociales", color: "#f7b731", img: "img/cursos/psicologia.jpg", link: "https://drive.google.com/file/d/1MXZODZ-jQv1cBeT7_HiCzkFDZPfkvlqZ/preview" },
+            { title: "Economía", author: "X-Academy", cat: "sociales", color: "#f7b731", img: "img/cursos/economia.jpg", link: "https://drive.google.com/file/d/1YD9hv3Cg6pS8480zs1ecOBFxI3Q42EyV/preview" },
+        ];
+
+        // 3. RENDERIZADO OPTIMIZADO
+        const container = document.getElementById('booksContainer');
+
+        function renderBooks(filter) {
+            // Creamos un array con el HTML y luego lo unimos. Mucho más rápido.
+            const booksHTML = libraryData.filter(book => filter === 'todos' || book.cat === filter)
+                .map(book => {
+                    let coverStyle = '';
+                    let innerText = '';
+                    let extraClass = '';
+
+                    // LÓGICA DE PORTADA
+                    if (book.img && book.img.trim() !== "") {
+                        coverStyle = `background-image: url('${book.img}'); background-color: ${book.color};`;
+                        innerText = '';
+                    } else {
+                        coverStyle = `background-color: ${book.color};`;
+                        innerText = book.title;
+                        extraClass = 'no-img';
+                    }
+
+                    return `
+                    <div class="book-card" onclick="openBook('${book.link}', '${book.title}')">
+                        <div class="xp-tag">+10 XP</div>
+                        <div class="book-cover ${extraClass}" style="${coverStyle}">
+                            ${innerText}
+                        </div>
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-author">${book.author}</div>
+                        <button class="read-btn">LEER</button>
+                    </div>`;
+                }).join('');
+
+            container.innerHTML = booksHTML;
+        }
+
+        // 4. FILTRADO
+        window.filterBooks = function (cat, btn) {
+            document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+            btn.classList.add('active');
+            renderBooks(cat);
+        }
+
+        // 5. ABRIR + XP (CORREGIDO)
+        window.openBook = function (url, title) {
+            // Animación XP
+            const toast = document.getElementById('xpToast');
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 3000);
+
+            // Guardar XP Local
+            let xp = 10;
+            let currentXP = parseInt(localStorage.getItem('xAcademy_XP')) || 0;
+            currentXP += xp;
+            localStorage.setItem('xAcademy_XP', currentXP);
+
+            // Guardar XP en la Nube (Google Sheets)
+            const myID = localStorage.getItem('xAcademy_ID');
+            if (myID) {
+                const urlFinal = `${API_URL}?action=saveXP&id=${myID}&xp=${xp}&curso=Biblioteca&actividad=${encodeURIComponent("Libro: " + title)}`;
+                fetch(urlFinal, { mode: 'no-cors' }).catch(err => console.log("Error guardando XP online"));
+            }
+
+            // ABRIR EL LINK (RETRASO LEVE PARA QUE SE VEA EL CLICK)
+            setTimeout(() => {
+                if (url && url.startsWith('http')) {
+                    // _blank es universal para abrir en nueva pestaña/navegador
+                    window.open(url, '_blank'); 
+                } else {
+                    alert("Enlace no disponible por el momento.");
+                }
+            }, 300);
+        }
+
+        // Inicializar
+        renderBooks('todos');
+    </script>
+</body>
+</html>

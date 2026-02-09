@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zona X</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root { --primary: #0049c6; --bg: #f4f6f9; --text: #333; --accent: #ffcc00; --green: #20bf6b; }
+        body { font-family: 'Nunito', sans-serif; background: var(--bg); margin: 0; padding: 20px; padding-bottom: 90px; color: var(--text); max-width: 800px; margin-left: auto; margin-right: auto; }
+        
+        .header { display: flex; align-items: center; margin-bottom: 20px; }
+        .back-btn { width: 40px; height: 40px; background: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); cursor: pointer; color: #333; margin-right: 15px; }
+        .header h1 { margin: 0; color: var(--primary); font-weight: 900; font-size: 24px; }
+
+        /* CONTROLES */
+        .main-controls { display: flex; background: white; padding: 5px; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+        .main-opt { flex: 1; text-align: center; padding: 10px; font-weight: 800; font-size: 13px; border-radius: 8px; cursor: pointer; color: #666; transition: 0.2s; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .main-opt.active { background: #e0f0ff; color: var(--primary); }
+        .main-opt i { font-size: 18px; margin-bottom: 2px; }
+
+        .view-section { display: none; animation: fadeIn 0.3s ease; }
+        .view-section.active { display: block; }
+
+        /* POMODORO */
+        .pomo-card { background: white; border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px; position: relative; overflow: hidden; }
+        .pomo-mascot { height: 100px; object-fit: contain; margin-bottom: 10px; filter: drop-shadow(0 4px 5px rgba(0,0,0,0.1)); transition: transform 0.3s; }
+        .pomo-mascot.working { animation: float 3s infinite ease-in-out; }
+        .timer-display { font-size: 48px; font-weight: 900; color: #333; margin: 5px 0 15px; font-variant-numeric: tabular-nums; letter-spacing: 2px; }
+        .timer-controls { display: flex; justify-content: center; gap: 15px; margin-bottom: 15px; }
+        .btn-timer { width: 55px; height: 55px; border-radius: 50%; border: none; font-size: 20px; cursor: pointer; transition: 0.2s; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .btn-start { background: var(--primary); color: white; }
+        .btn-pause { background: #ffcc00; color: #333; }
+        .btn-reset { background: #eee; color: #666; }
+        .pomo-status { font-size: 14px; font-weight: 800; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+        .lofi-toggle { background: #f0f2f5; padding: 10px 20px; border-radius: 30px; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 12px; font-weight: bold; color: #555; transition: 0.3s; }
+        .lofi-toggle.active { background: #e0ffe0; color: var(--green); box-shadow: 0 4px 10px rgba(32, 191, 107, 0.2); }
+
+        /* AGENDA */
+        .agenda-container { background: white; border-radius: 15px; padding: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .day-row { display: flex; align-items: center; border-bottom: 1px solid #f0f0f0; padding: 12px 0; }
+        .day-row:last-child { border-bottom: none; }
+        .day-name { width: 40px; font-weight: 900; font-size: 13px; color: var(--primary); text-transform: uppercase; }
+        .day-input { flex: 1; border: none; background: #f9f9f9; padding: 8px 12px; border-radius: 8px; font-family: 'Nunito', sans-serif; font-size: 13px; color: #333; outline: none; transition: 0.2s; }
+        .day-input:focus { background: #e0f0ff; color: var(--primary); }
+
+        /* APUNTES */
+        .notes-container { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); height: 60vh; display: flex; flex-direction: column; }
+        .notes-area { flex: 1; border: none; outline: none; font-family: 'Nunito', sans-serif; font-size: 14px; line-height: 1.6; color: #333; resize: none; width: 100%; background: transparent; margin-top: 10px; }
+        .notes-header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; align-items: center; }
+        
+        /* COMUNIDAD */
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
+        .tab { background: white; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: bold; color: #666; border: 1px solid #eee; cursor: pointer; white-space: nowrap; }
+        .tab.active { background: var(--primary); color: white; border-color: var(--primary); }
+        
+        /* SEARCH BOX */
+        .search-box { background: white; border-radius: 25px; padding: 10px 15px; display: flex; align-items: center; margin-bottom: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); border: 1px solid #eee; }
+        .search-box i { color: #999; margin-right: 10px; }
+        .search-box input { border: none; outline: none; width: 100%; font-family: 'Nunito', sans-serif; font-size: 13px; color: #333; }
+
+        /* Foro Cards */
+        .forum-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border: 1px solid #f0f0f0; }
+        .f-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .f-user { font-weight: 800; font-size: 14px; color: #333; }
+        .f-date { font-size: 11px; color: #999; }
+        .f-msg { font-size: 14px; color: #555; line-height: 1.5; margin-bottom: 15px; }
+        .f-actions { display: flex; gap: 20px; border-top: 1px solid #f0f0f0; padding-top: 10px; }
+        .action-btn { font-size: 13px; color: #666; cursor: pointer; display: flex; align-items: center; gap: 5px; font-weight: bold; transition: 0.2s; }
+        .action-btn:hover { color: var(--primary); }
+        .action-btn.liked { color: #e74c3c; } 
+        .action-btn i { font-size: 16px; }
+
+        /* Comentarios */
+        .comments-section { background: #f9f9f9; padding: 10px; border-radius: 8px; margin-top: 10px; display: none; }
+        .comments-list { max-height: 200px; overflow-y: auto; margin-bottom: 10px; }
+        .comment-item { font-size: 12px; margin-bottom: 8px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        .comment-user { font-weight: bold; color: var(--primary); margin-right: 5px; }
+        .comment-input-box { display: flex; gap: 5px; }
+        .comment-inp { flex: 1; padding: 8px; border-radius: 20px; border: 1px solid #ddd; outline: none; font-size: 12px; }
+        .comment-send { background: var(--primary); color: white; border: none; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+
+        /* Tarjeta Negocios */
+        .business-card { background: linear-gradient(135deg, #2c3e50, #000000); color: white; border-radius: 15px; padding: 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); position: relative; overflow: hidden; }
+        .business-card::after { content: '$'; position: absolute; right: -20px; bottom: -30px; font-size: 120px; opacity: 0.1; font-weight: 900; }
+        .biz-btn { background: #20bf6b; color: white; border: none; padding: 8px 15px; border-radius: 20px; font-weight: 900; font-size: 12px; cursor: pointer; text-decoration: none; z-index: 2; display: flex; align-items: center; gap: 5px; box-shadow: 0 4px 10px rgba(32, 191, 107, 0.4); }
+
+        /* File Card (Gratis) */
+        .file-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 12px; display: flex; align-items: center; gap: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-left: 4px solid var(--accent); transition: 0.3s; }
+        .file-info h4 { margin: 0; font-size: 14px; color: #333; }
+        .file-info p { margin: 2px 0 0; font-size: 11px; color: #888; }
+        .file-btn { margin-left: auto; width: 35px; height: 35px; background: #f0f7ff; color: var(--primary); border-radius: 50%; display: flex; justify-content: center; align-items: center; text-decoration: none; }
+
+        /* --- ESTILOS PREMIUM (VENTA) --- */
+        .premium-card { border: 2px solid var(--accent); background: linear-gradient(to bottom right, #fff, #fffdf0); position: relative; overflow: hidden; }
+        .premium-badge { position: absolute; top: 0; right: 0; background: var(--accent); color: #333; font-size: 10px; font-weight: 900; padding: 3px 10px; border-bottom-left-radius: 10px; }
+        .price-tag { color: var(--primary); font-weight: 900; font-size: 14px; margin-top: 5px; display:block; }
+        .btn-buy { background: var(--primary); color: white; padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; border:none; display:flex; align-items:center; gap:5px; margin-left: auto; }
+        .thumb-img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; border: 1px solid #eee; flex-shrink: 0; }
+
+        /* BOTONES FLOTANTES (FAB) */
+        .fab-add { position: fixed; bottom: 25px; right: 25px; width: 55px; height: 55px; background: var(--primary); color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; box-shadow: 0 4px 15px rgba(0, 73, 198, 0.4); cursor: pointer; z-index: 100; transition: transform 0.2s; border: none; }
+        .fab-add:active { transform: scale(0.9); }
+        
+        /* Botón Secundario (Venta) - Flota arriba del principal */
+        .fab-secondary { bottom: 90px; background: var(--accent); color: #333; width: 45px; height: 45px; font-size: 18px; z-index: 99; display:none; }
+
+        /* MODALES */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 20px; }
+        .modal-content { background: white; width: 100%; max-width: 400px; padding: 25px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-height: 90vh; overflow-y: auto; }
+        .inp { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 15px; box-sizing: border-box; font-family: inherit; font-size: 14px; }
+        .btn-modal { width: 100%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        /* GALERÍA DE PRODUCTO (MODAL) */
+        .gallery-main { width: 100%; height: 200px; object-fit: cover; border-radius: 10px; background: #eee; margin-bottom: 10px; }
+        .gallery-thumbs { display: flex; gap: 10px; overflow-x: auto; margin-bottom: 15px; padding-bottom: 5px; }
+        .g-thumb { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid transparent; opacity: 0.7; }
+        .g-thumb.active { border-color: var(--primary); opacity: 1; }
+        .btn-whatsapp { width: 100%; background: #25D366; color: white; padding: 15px; border-radius: 12px; border: none; font-weight: bold; font-size: 16px; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 15px; text-decoration: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="back-btn" onclick="window.location.href='index.html'"><i class="fas fa-arrow-left"></i></div>
+        <h1>Zona X</h1>
+    </div>
+
+    <div class="main-controls">
+        <div class="main-opt active" onclick="setView('estudio', this)"><i class="fas fa-stopwatch"></i> Estudio</div>
+        <div class="main-opt" onclick="setView('apuntes', this)"><i class="fas fa-sticky-note"></i> Apuntes</div>
+        <div class="main-opt" onclick="setView('comunidad', this)"><i class="fas fa-users"></i> Comunidad</div>
+    </div>
+
+    <div id="view-estudio" class="view-section active">
+        <div class="pomo-card">
+            <img src="" id="mascotImg" class="pomo-mascot" alt="Compañero">
+            <div id="pomoStatus" class="pomo-status">Listo para estudiar</div>
+            <div id="pomoTimer" class="timer-display">25:00</div>
+            <div class="timer-controls">
+                <button class="btn-timer btn-start" onclick="startTimer()"><i class="fas fa-play"></i></button>
+                <button class="btn-timer btn-pause" onclick="pauseTimer()"><i class="fas fa-pause"></i></button>
+                <button class="btn-timer btn-reset" onclick="resetTimer()"><i class="fas fa-redo"></i></button>
+            </div>
+            <div class="lofi-toggle" onclick="toggleLofi(this)">
+                <i class="fas fa-headphones-alt"></i> Música Lo-Fi (Focus)
+            </div>
+            <audio id="lofiAudio" loop><source src="https://stream.zeno.fm/0r0xa792kwzuv" type="audio/mpeg"></audio>
+        </div>
+        <h3 style="margin: 0 0 10px 5px; color:#333; font-size:16px;">📅 Mi Horario</h3>
+        <div class="agenda-container" id="agendaGrid"></div>
+    </div>
+
+    <div id="view-apuntes" class="view-section">
+        <div class="notes-container">
+            <div class="notes-header">
+                <select id="noteCat" onchange="loadNote()" style="border:none; font-weight:bold; color:var(--primary); outline:none; background:transparent;">
+                    <option value="gen">📝 Generales</option>
+                    <option value="mat">📐 Matemáticas</option>
+                    <option value="cie">🧬 Ciencias</option>
+                    <option value="let">📖 Letras</option>
+                </select>
+                <span id="saveBadge" style="font-size:11px; color:var(--green); opacity:0;"><i class="fas fa-check"></i> Guardado</span>
+            </div>
+            <textarea id="noteArea" class="notes-area" placeholder="Tus apuntes se guardan automáticamente aquí..."></textarea>
+        </div>
+    </div>
+
+    <div id="view-comunidad" class="view-section">
+        <div class="tabs">
+            <div class="tab active" onclick="setTab('foro', this)">Foro</div>
+            <div class="tab" onclick="setTab('aportes', this)">Aportes</div>
+        </div>
+
+        <div id="tab-foro" style="display:block;">
+            <div id="foroFeed"><p style="text-align:center; color:#999; margin-top:40px;">Cargando foro...</p></div>
+            <button class="fab-add" onclick="modal('modalPost')" id="mainFab"><i class="fas fa-pen"></i></button>
+        </div>
+
+        <div id="tab-aportes" style="display:none;">
+            <div class="business-card">
+                <div style="z-index: 2;">
+                    <h3 style="margin:0; font-size:16px;">¿Quieres Vender Material?</h3>
+                    <p style="margin:5px 0 15px; font-size:12px; opacity:0.9;">Gana dinero vendiendo tus resúmenes.</p>
+                    <a href="https://wa.me/51922675479?text=Hola,%20quiero%20contactarme%20con%20uno%20de%20los%20administradores%20de%20la%20app%20de%20X-Academy%20para%20poder%20vender%20sus%20libros,%20archivos,%20clases%20o%20lo%20que%20quiera%20vender." target="_blank" class="biz-btn">
+                        <i class="fab fa-whatsapp"></i> CONTACTAR ADMIN
+                    </a>
+                </div>
+                <i class="fas fa-coins" style="font-size:60px; color:rgba(255,255,255,0.2); position:absolute; right:10px; bottom:10px;"></i>
+            </div>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchAportes" placeholder="Buscar por título, universidad o curso..." onkeyup="filterAportes()">
+            </div>
+
+            <div id="filesFeed"><p style="text-align:center; color:#999; margin-top:40px;">Buscando archivos...</p></div>
+            
+            <button class="fab-add fab-secondary" onclick="window.location.href='publicar_venta.html'" id="sellFab" style="display:none;">
+                <i class="fas fa-dollar-sign"></i>
+            </button>
+            
+            <button class="fab-add" style="background:var(--green);" onclick="modal('modalFile')" id="uploadFab" style="display:none;"><i class="fas fa-cloud-upload-alt"></i></button>
+        </div>
+    </div>
+
+    <div id="modalPost" class="modal" onclick="if(event.target==this)this.style.display='none'">
+        <div class="modal-content">
+            <h3 style="margin-top:0;">Nuevo Comentario</h3>
+            <textarea id="txtPost" class="inp" rows="4" placeholder="¿Qué quieres preguntar u opinar?"></textarea>
+            <button class="btn-modal" onclick="sendPost()">PUBLICAR</button>
+        </div>
+    </div>
+
+    <div id="modalFile" class="modal" onclick="if(event.target==this)this.style.display='none'">
+        <div class="modal-content">
+            <h3 style="margin-top:0;">Subir Aporte</h3>
+            <p style="font-size:12px; color:#666; margin-bottom:15px;">Tu aporte será revisado por el admin antes de publicarse.</p>
+            
+            <input type="text" id="fileTitle" class="inp" placeholder="Título (ej: Resumen Historia)">
+            <input type="text" id="fileUni" class="inp" placeholder="Universidad (ej: UNMSM, UNI)">
+            
+            <select id="fileCurso" class="inp" style="background:white;">
+                <option value="">Selecciona Curso...</option>
+                <option value="matematicas">Matemáticas</option>
+                <option value="ciencias">Ciencias</option>
+                <option value="letras">Letras</option>
+                <option value="sociales">Sociales</option>
+                <option value="varios">Varios</option>
+            </select>
+
+            <input type="text" id="fileLink" class="inp" placeholder="Link (Google Drive / Mega)">
+            
+            <button class="btn-modal" style="background:var(--green);" onclick="sendFile()">ENVIAR A REVISIÓN</button>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal" onclick="closeProductModal(event)">
+        <div class="modal-content" style="padding:0; overflow:hidden;">
+            <div style="padding:20px; max-height:85vh; overflow-y:auto;">
+                <img id="prodMainImg" class="gallery-main" src="">
+                <div id="prodGallery" class="gallery-thumbs"></div>
+                
+                <h2 id="prodTitle" style="margin:0 0 5px 0; color:var(--primary);">Titulo</h2>
+                <div id="prodPrice" style="font-size:24px; font-weight:900; color:var(--accent); margin-bottom:15px;">S/ 0.00</div>
+                
+                <div style="background:#f9f9f9; padding:15px; border-radius:10px; margin-bottom:15px;">
+                    <h4 style="margin:0 0 5px 0;">Descripción</h4>
+                    <p id="prodDesc" style="margin:0; font-size:14px; color:#555; white-space: pre-wrap;">...</p>
+                </div>
+                
+                <div style="font-size:12px; color:#999; text-align:center;">Vendido por: <span id="prodUser" style="font-weight:bold;">Usuario</span></div>
+
+                <a id="btnWsp" href="#" target="_blank" class="btn-whatsapp">
+                    <i class="fab fa-whatsapp" style="font-size:20px;"></i> Comprar por WhatsApp
+                </a>
+            </div>
+            <button onclick="document.getElementById('productModal').style.display='none'" style="width:100%; padding:15px; background:#eee; border:none; color:#333; font-weight:bold; cursor:pointer;">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="cursos_data.js"></script>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec";
+        const USER = localStorage.getItem('xAcademy_Name') || "Anónimo";
+        
+        const MASCOTS = ['img/emotes/señalar.png', 'img/emotes/señalaremotechica.png'];
+        let globalFiles = []; 
+        let allFiles = []; // Para Modal de Producto
+
+        // --- NAVEGACIÓN ---
+        function setView(v, el) {
+            document.querySelectorAll('.view-section').forEach(e => e.classList.remove('active'));
+            document.getElementById('view-' + v).classList.add('active');
+            document.querySelectorAll('.main-opt').forEach(e => e.classList.remove('active'));
+            el.classList.add('active');
+        }
+
+        function setTab(t, el) {
+            document.getElementById('tab-foro').style.display = t === 'foro' ? 'block' : 'none';
+            document.getElementById('tab-aportes').style.display = t === 'aportes' ? 'block' : 'none';
+            document.querySelectorAll('.tab').forEach(e => e.classList.remove('active'));
+            el.classList.add('active');
+
+            // GESTIÓN DE BOTONES FLOTANTES
+            const mainFab = document.getElementById('mainFab'); // Botón Foro
+            const uploadFab = document.getElementById('uploadFab'); // Botón Subir Archivo
+            const sellFab = document.getElementById('sellFab'); // Botón Vender
+
+            if (t === 'foro') {
+                mainFab.style.display = 'flex';
+                uploadFab.style.display = 'none';
+                sellFab.style.display = 'none';
+            } else {
+                mainFab.style.display = 'none';
+                uploadFab.style.display = 'flex';
+                sellFab.style.display = 'flex';
+            }
+        }
+
+        function modal(id) { document.getElementById(id).style.display = 'flex'; }
+
+        // --- POMODORO (Sin cambios) ---
+        let timer, timeLeft = 25 * 60, isRunning = false, isBreak = false;
+        function updateDisplay() {
+            const m = Math.floor(timeLeft / 60).toString().padStart(2, '0');
+            const s = (timeLeft % 60).toString().padStart(2, '0');
+            document.getElementById('pomoTimer').innerText = `${m}:${s}`;
+        }
+        function setMascot(active) {
+            const img = document.getElementById('mascotImg');
+            if(active) img.classList.add('working'); else img.classList.remove('working');
+        }
+        function startTimer() {
+            if (isRunning) return; isRunning = true; setMascot(true);
+            timer = setInterval(() => {
+                if (timeLeft > 0) { timeLeft--; updateDisplay(); } 
+                else {
+                    pauseTimer(); new Audio('https://actions.google.com/sounds/v1/alarms/beep_short.ogg').play(); setMascot(false);
+                    if(!isBreak) { if(confirm("¡Tiempo! ¿Descanso de 5 min?")) { isBreak=true; timeLeft=5*60; document.getElementById('pomoStatus').innerText="Modo Descanso ☕"; document.getElementById('pomoStatus').style.color="#f7b731"; updateDisplay(); startTimer(); }} 
+                    else { alert("¡A estudiar!"); resetTimer(); }
+                }
+            }, 1000);
+        }
+        function pauseTimer() { clearInterval(timer); isRunning = false; setMascot(false); }
+        function resetTimer() { pauseTimer(); isBreak = false; timeLeft = 25 * 60; document.getElementById('pomoStatus').innerText = "Listo para estudiar"; document.getElementById('pomoStatus').style.color = "var(--green)"; updateDisplay(); }
+        function toggleLofi(btn) {
+            const audio = document.getElementById('lofiAudio');
+            if (audio.paused) { audio.play(); btn.classList.add('active'); btn.innerHTML = '<i class="fas fa-volume-up"></i> Detener Música'; } 
+            else { audio.pause(); btn.classList.remove('active'); btn.innerHTML = '<i class="fas fa-headphones-alt"></i> Música Lo-Fi (Focus)'; }
+        }
+
+        // --- AGENDA (Sin cambios) ---
+        const days = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
+        function renderAgenda() {
+            const container = document.getElementById('agendaGrid');
+            const savedData = JSON.parse(localStorage.getItem('myAgenda')) || {};
+            container.innerHTML = "";
+            days.forEach((day, index) => {
+                const val = savedData[index] || "";
+                container.innerHTML += `<div class="day-row"><div class="day-name">${day}</div><input type="text" class="day-input" placeholder="..." value="${val}" oninput="saveAgenda(${index}, this.value)"></div>`;
+            });
+        }
+        function saveAgenda(index, value) {
+            const savedData = JSON.parse(localStorage.getItem('myAgenda')) || {};
+            savedData[index] = value;
+            localStorage.setItem('myAgenda', JSON.stringify(savedData));
+        }
+
+        // --- APUNTES (Sin cambios) ---
+        const noteArea = document.getElementById('noteArea');
+        const noteCat = document.getElementById('noteCat');
+        function loadNote() { noteArea.value = localStorage.getItem('notes_' + noteCat.value) || ""; }
+        noteArea.addEventListener('input', () => {
+            localStorage.setItem('notes_' + noteCat.value, noteArea.value);
+            const b = document.getElementById('saveBadge');
+            b.style.opacity = 1; setTimeout(() => b.style.opacity = 0, 1500);
+        });
+        loadNote();
+
+        // --- CARGAR DATOS (FORO Y APORTES) ---
+        function loadData() {
+            fetch(API_URL + "?action=getPosts").then(r => r.json()).then(data => {
+                const con = document.getElementById('foroFeed');
+                con.innerHTML = "";
+                if(data.length===0) con.innerHTML = "<p style='text-align:center;color:#ccc'>Aún no hay mensajes.</p>";
+                data.forEach(p => {
+                    const d = new Date(p.fecha).toLocaleDateString();
+                    const liked = localStorage.getItem('like_' + p.id) ? 'liked' : '';
+                    const heartIcon = liked ? 'fas' : 'far';
+                    con.innerHTML += `
+                    <div class="forum-card">
+                        <div class="f-header"><span class="f-user">${p.usuario}</span><span class="f-date">${d}</span></div>
+                        <div class="f-msg">${p.mensaje}</div>
+                        <div class="f-actions">
+                            <div class="action-btn ${liked}" onclick="toggleLike(${p.id}, this)"><i class="${heartIcon} fa-heart"></i> <span class="like-count">${p.likes}</span></div>
+                            <div class="action-btn" onclick="toggleComments(${p.id})"><i class="far fa-comment"></i> Comentar</div>
+                        </div>
+                        <div id="comments-${p.id}" class="comments-section">
+                            <div id="list-${p.id}" class="comments-list">Cargando...</div>
+                            <div class="comment-input-box">
+                                <input type="text" id="input-${p.id}" class="comment-inp" placeholder="Respuesta...">
+                                <button class="comment-send" onclick="sendComment(${p.id})"><i class="fas fa-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            }).catch(e => console.log(e));
+
+            // APORTES Y FILTRO
+            fetch(API_URL + "?action=getFiles").then(r => r.json()).then(data => {
+                globalFiles = data; // Guardamos en memoria
+                allFiles = data; // Para el modal de productos
+                renderFiles(globalFiles);
+            });
+        }
+
+        // --- FUNCIONES DE RENDERIZADO Y FILTRADO (CON VENTAS) ---
+        function renderFiles(list) {
+            const con = document.getElementById('filesFeed');
+            con.innerHTML = "";
+            if(list.length === 0) {
+                con.innerHTML = "<p style='text-align:center;color:#ccc'>No se encontraron archivos.</p>";
+                return;
+            }
+            list.forEach((f, idx) => {
+                if (f.tipo === 'VENTA') {
+                    // --- TARJETA DE VENTA (PREMIUM) ---
+                    const cover = f.img ? f.img : 'img/emotes/chibilike.png';
+                    con.innerHTML += `
+                    <div class="file-card premium-card">
+                        <div class="premium-badge">PREMIUM</div>
+                        <img src="${cover}" class="thumb-img">
+                        <div class="file-info">
+                            <div class="file-info h4" style="font-weight:bold; color:#333;">${f.titulo}</div>
+                            <div class="file-meta">Por: ${f.usuario}</div>
+                            <span class="price-tag">S/ ${f.precio}</span>
+                        </div>
+                        <button class="btn-buy" onclick="openProductModal(${idx})">
+                            Ver <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>`;
+                } else {
+                    // --- TARJETA GRATUITA (NORMAL) ---
+                    const subInfo = f.uni ? `${f.uni} - ${f.usuario}` : `Por: ${f.usuario}`;
+                    con.innerHTML += `
+                    <div class="file-card">
+                        <i class="fas fa-file-pdf" style="font-size:24px; color:#e74c3c;"></i>
+                        <div class="file-info"><h4>${f.titulo}</h4><p>${subInfo}</p></div>
+                        <a href="${f.link}" target="_blank" class="file-btn"><i class="fas fa-download"></i></a>
+                    </div>`;
+                }
+            });
+        }
+
+        function filterAportes() {
+            const term = document.getElementById('searchAportes').value.toLowerCase();
+            const filtered = globalFiles.filter(f => 
+                (f.titulo && f.titulo.toLowerCase().includes(term)) ||
+                (f.uni && f.uni.toLowerCase().includes(term)) ||
+                (f.curso && f.curso.toLowerCase().includes(term))
+            );
+            renderFiles(filtered);
+        }
+
+        // --- ENVIAR APORTE ---
+        function sendFile() {
+            const t = document.getElementById('fileTitle').value;
+            const l = document.getElementById('fileLink').value;
+            const u = document.getElementById('fileUni').value; // Universidad
+            const c = document.getElementById('fileCurso').value; // Curso
+
+            if(!t || !l || !u || !c) return alert("Por favor completa todos los datos para enviar.");
+
+            const url = `${API_URL}?action=saveFile&usuario=${encodeURIComponent(USER)}&titulo=${encodeURIComponent(t)}&link=${encodeURIComponent(l)}&uni=${encodeURIComponent(u)}&curso=${encodeURIComponent(c)}`;
+            
+            fetch(url, { mode: 'no-cors' })
+                .then(() => {
+                    alert("¡Gracias! Tu aporte ha sido enviado a revisión. Un administrador lo verificará antes de publicarlo.");
+                    document.getElementById('modalFile').style.display='none';
+                    // Limpiar campos
+                    document.getElementById('fileTitle').value = "";
+                    document.getElementById('fileLink').value = "";
+                    document.getElementById('fileUni').value = "";
+                });
+        }
+
+        function toggleLike(postId, btn) {
+            if (btn.classList.contains('liked')) return;
+            btn.classList.add('liked');
+            const icon = btn.querySelector('i');
+            icon.classList.remove('far'); icon.classList.add('fas'); 
+            const countSpan = btn.querySelector('.like-count');
+            countSpan.innerText = (parseInt(countSpan.innerText) || 0) + 1;
+            localStorage.setItem('like_' + postId, 'true');
+            fetch(`${API_URL}?action=addLike&id=${postId}`, {mode:'no-cors'});
+        }
+
+        function toggleComments(postId) {
+            const section = document.getElementById(`comments-${postId}`);
+            if (section.style.display === 'block') { section.style.display = 'none'; } else { section.style.display = 'block'; loadComments(postId); }
+        }
+
+        function loadComments(postId) {
+            const list = document.getElementById(`list-${postId}`);
+            list.innerHTML = '<div style="color:#999; font-size:11px;">Cargando...</div>';
+            fetch(`${API_URL}?action=getComments&post_id=${postId}`).then(r => r.json()).then(data => {
+                list.innerHTML = "";
+                if (data.length === 0) list.innerHTML = '<div style="color:#ccc; font-size:11px;">Sé el primero en comentar.</div>';
+                else { data.forEach(c => { list.innerHTML += `<div class="comment-item"><span class="comment-user">${c.usuario}:</span> ${c.texto}</div>`; }); }
+            });
+        }
+
+        function sendComment(postId) {
+            const input = document.getElementById(`input-${postId}`);
+            const text = input.value.trim();
+            if (!text) return;
+            const list = document.getElementById(`list-${postId}`);
+            if(list.innerText.includes("Sé el primero")) list.innerHTML = "";
+            list.innerHTML += `<div class="comment-item" style="opacity:0.7"><span class="comment-user">${USER}:</span> ${text} <i class="fas fa-clock"></i></div>`;
+            input.value = "";
+            fetch(`${API_URL}?action=saveComment&post_id=${postId}&usuario=${encodeURIComponent(USER)}&comentario=${encodeURIComponent(text)}`, {mode:'no-cors'})
+            .then(() => { setTimeout(() => loadComments(postId), 2000); });
+        }
+
+        function sendPost() {
+            const txt = document.getElementById('txtPost').value;
+            if(!txt) return;
+            fetch(`${API_URL}?action=savePost&usuario=${encodeURIComponent(USER)}&mensaje=${encodeURIComponent(txt)}`, {mode:'no-cors'})
+                .then(() => { alert("Mensaje enviado."); document.getElementById('modalPost').style.display='none'; loadData(); });
+        }
+
+        // --- LÓGICA DE PRODUCTO (NUEVO) ---
+        function openProductModal(idx) {
+            const item = allFiles[idx];
+            document.getElementById('prodTitle').innerText = item.titulo;
+            document.getElementById('prodPrice').innerText = "S/ " + item.precio;
+            document.getElementById('prodDesc').innerText = item.desc || "Sin descripción.";
+            document.getElementById('prodUser').innerText = item.usuario;
+            
+            const msg = `Hola, me interesa comprar tu material "${item.titulo}" que vi en X-Academy.`;
+            document.getElementById('btnWsp').href = `https://wa.me/${item.fono}?text=${encodeURIComponent(msg)}`;
+
+            const mainImg = document.getElementById('prodMainImg');
+            mainImg.src = item.img || 'img/emotes/duda.png';
+
+            const galleryBox = document.getElementById('prodGallery');
+            galleryBox.innerHTML = "";
+            let imgs = [item.img];
+            if(item.extras) {
+                const extrasArr = item.extras.split(',').map(s => s.trim()).filter(s => s);
+                imgs = imgs.concat(extrasArr);
+            }
+
+            imgs.forEach(url => {
+                if(url) {
+                    const thumb = document.createElement('img');
+                    thumb.src = url;
+                    thumb.className = 'g-thumb';
+                    thumb.onclick = () => { 
+                        mainImg.src = url; 
+                        document.querySelectorAll('.g-thumb').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    };
+                    galleryBox.appendChild(thumb);
+                }
+            });
+
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeProductModal(e) { if (e.target.id === 'productModal') document.getElementById('productModal').style.display = 'none'; }
+
+        window.onload = () => {
+            const randomMascot = MASCOTS[Math.floor(Math.random() * MASCOTS.length)];
+            document.getElementById('mascotImg').src = randomMascot;
+            loadData();
+            renderAgenda();
+        };
+    </script>
+</body>
+</html>

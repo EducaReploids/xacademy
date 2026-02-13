@@ -25,6 +25,23 @@ const cursosDB = {
         cat: 'matematicas', name: 'Estadística', img: 'img/estadistica.png', color: '#0049c6',
         topics: ["Tabla de frecuencias I", "Tabla de frecuencias II", "Gráficos estadísticos", "Medidas de tendencia central", "Medidas de posición", "Medidas de dispersión"]
     },
+    'rm': {
+        cat: 'matematicas', name: 'Raz. Matemático', img: 'img/rm.png', color: '#0049c6',
+        topics: [
+            "Razonamiento Lógico y Recreativo", 
+            "Orden de Información y Verdades", 
+            "Inducción y Deducción", 
+            "Planteo de Ecuaciones y Edades", 
+            "Cronometría y Móviles", 
+            "Fracciones, Porcentajes y Mezclas",
+            "Sucesiones y Series",
+            "Operadores Matemáticos",
+            "Análisis Combinatorio y Probabilidades",
+            "Conteo de Figuras y Trazos",
+            "Áreas y Perímetros (Raz. Geométrico)",
+            "Psicotécnico y Frecuencia de Sucesos"
+        ]
+    },
 
     // --- CIENCIAS ---
     'anatomia': {
@@ -51,7 +68,23 @@ const cursosDB = {
     },
     'aptitud': {
         cat: 'comunicacion', name: 'Aptitud Verbal', img: 'img/aptitud.png', color: '#eb3b5a',
-        topics: ["Etimología grecolatina", "Relaciones semánticas", "Sinonimia", "Antonimia", "Series verbales", "Analogías"]
+        topics: [
+            "Etimología grecolatina", 
+            "Relaciones semánticas", 
+            "Sinonimia", 
+            "Antonimia", 
+            "Series verbales", 
+            "Analogías",
+            "Conectores y Oraciones Incompletas", // Tema 7
+            "Término Excluido e Inclusión",       // Tema 8
+            "Plan de Redacción y Coherencia",     // Tema 9
+            "Eliminación de Oraciones",           // Tema 10 (Pendiente)
+            "Comprensión de Lectura I",           // Tema 11 (Pendiente)
+            "Comprensión de Lectura II",          // Tema 12 (Pendiente)
+            "Comprensión de Lectura III",          // Tema 13 (Pendiente)
+            "Miscenalea-I",
+            "Miscelanea-II"
+        ]
     },
     'lenguaje': {
         cat: 'comunicacion', name: 'Lenguaje', img: 'img/lenguaje.png', color: '#eb3b5a',
@@ -65,7 +98,20 @@ const cursosDB = {
     },
     'hu': {
         cat: 'sociales', name: 'Hist. Universal', img: 'img/hu.png', color: '#f7b731',
-        topics: ["Antropogénesis", "Caldeo-Asiria y Egipto", "Cultura Griega", "Cultura Romana", "Bárbaros - Carolingio", "Árabes"]
+        topics: [
+            "Antropogénesis", 
+            "Caldeo-Asiria y Egipto", 
+            "Cultura Griega", 
+            "Cultura Romana", 
+            "Bárbaros - Carolingio", 
+            "Árabes e Imperio Bizantino", // Pequeño ajuste para ser más completo
+            "Feudalismo y Capitalismo Mercantil", // Tema 7
+            "Edad Moderna: Humanismo y Reforma",  // Tema 8
+            "Ilustración y Revoluciones Burguesas", // Tema 9
+            "Siglo XIX: Industria e Imperialismo",  // Tema 10 (Pendiente de preguntas)
+            "Guerras Mundiales y Totalitarismo",    // Tema 11 (Pendiente de preguntas)
+            "Guerra Fría y Mundo Actual"            // Tema 12 (Pendiente de preguntas)
+        ]
     },
     'geografia': {
         cat: 'sociales', name: 'Geografía', img: 'img/geografia.png', color: '#f7b731',

@@ -1,0 +1,2679 @@
+[
+  {
+    "texto": "El Ancho de Clase (w) o Amplitud se calcula como:",
+    "img": "",
+    "opciones": [
+      "Rango / n",
+      "Rango / k (N° intervalos)",
+      "k / Rango",
+      "n / 2"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Estadística",
+    "tema": "Tabla de Frecuencias II"
+  },
+  {
+    "texto": "Calcula: P = (Sen 30° + Cos 60°) . Tan 37°",
+    "img": "",
+    "opciones": [
+      "3/4",
+      "1/2",
+      "1",
+      "4/3"
+    ],
+    "correcta": 0,
+    "tiempo": 35,
+    "curso": "Trigonometría",
+    "tema": "Ángulos Notables"
+  },
+  {
+    "texto": "Antónimo de 'EXIGUO' (Escaso):",
+    "opciones": [
+      "Mínimo",
+      "Abundante",
+      "Pequeño",
+      "Reducido"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Antonimia"
+  },
+  {
+    "texto": "Perímetro de región deforme: Si 'aplastas' los escalones de una escalera hasta pegarlos a la pared y piso, el perímetro es igual a:",
+    "img": "",
+    "opciones": [
+      "Suma de ancho y alto",
+      "Hipotenusa",
+      "Diagonal",
+      "Suma de catetos"
+    ],
+    "correcta": 0,
+    "tiempo": 35,
+    "curso": "Razonamiento Matemático",
+    "tema": "Áreas y Perímetros"
+  },
+  {
+    "texto": "Calcula: M = (Sen 270° + Cos 360°) / Tan 180°",
+    "img": "",
+    "opciones": [
+      "0",
+      "1",
+      "Indeterminado",
+      "-2"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Trigonometría",
+    "tema": "Ángulos en Posición Normal"
+  },
+  {
+    "texto": "Los bienes 'Inferiores' son aquellos cuya demanda disminuye cuando:",
+    "opciones": [
+      "Baja el precio",
+      "Sube el ingreso del consumidor",
+      "Baja el ingreso",
+      "Sube el precio del sustituto"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Economía",
+    "tema": "Necesidades y Bienes"
+  },
+  {
+    "texto": "La fermentación láctica ocurre en nuestros músculos ante la falta de:",
+    "opciones": [
+      "Glucosa",
+      "Oxígeno",
+      "ATP",
+      "Calcio"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Biología",
+    "tema": "Metabolismo Celular"
+  },
+  {
+    "texto": "Término Excluido (CÚPULA):",
+    "img": "",
+    "opciones": [
+      "Azotea",
+      "Cima",
+      "Cúpula",
+      "Sótano"
+    ],
+    "correcta": 3,
+    "tiempo": 25,
+    "curso": "Aptitúd Académica",
+    "tema": "Término Excluido e Inclusión"
+  },
+  {
+    "texto": "Perímetro: Halla el perímetro de un cuadrado de área 16 m².",
+    "img": "",
+    "opciones": [
+      "16 m",
+      "12 m",
+      "20 m",
+      "8 m"
+    ],
+    "correcta": 0,
+    "tiempo": 20,
+    "curso": "Razonamiento Matemático",
+    "tema": "Áreas y Perímetros"
+  },
+  {
+    "texto": "¿Cuál NO es uno de los 5 sentidos clásicos?",
+    "opciones": [
+      "Vista",
+      "Oído",
+      "Equilibrio (Vestibular)",
+      "Olfato"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Psicología",
+    "tema": "Sensación y Percepción"
+  },
+  {
+    "texto": "¿Cómo se llama el sistema de numeración que usamos cotidianamente (Base 10)?",
+    "img": "",
+    "opciones": [
+      "Binario",
+      "Decimal",
+      "Vigesimal",
+      "Sexagesimal"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Aritmética",
+    "tema": "Numeración"
+  },
+  {
+    "texto": "Enlace Covalente Dativo (Coordinado) ocurre cuando:",
+    "opciones": [
+      "Ambos aportan electrones",
+      "Solo uno aporta el par de electrones",
+      "Se roban electrones",
+      "Hay metales"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Química",
+    "tema": "Enlace Químico"
+  },
+  {
+    "texto": "Si la hipotenusa mide 'm' y un ángulo es 'β', el perímetro del triángulo es:",
+    "img": "",
+    "opciones": [
+      "m(1 + Sen β + Cos β)",
+      "m(Sen β + Cos β)",
+      "m(1 + Tan β)",
+      "m(1 + Sec β + Tan β)"
+    ],
+    "correcta": 0,
+    "tiempo": 55,
+    "curso": "Trigonometría",
+    "tema": "Resolución de Triángulos"
+  },
+  {
+    "texto": "La teoría Sintética de la Evolución (Neodarwinismo) integra a la selección natural con:",
+    "opciones": [
+      "La paleontología",
+      "La genética (mutaciones)",
+      "La ecología",
+      "La etología"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Biología",
+    "tema": "Origen de la Vida y Evolución"
+  },
+  {
+    "texto": "Cortes en Anillo: Para cortar un aro metálico en 3 partes iguales, ¿cuántos cortes se hacen?",
+    "img": "",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "1"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Razonamiento Matemático",
+    "tema": "Psicotécnico y Frecuencia"
+  },
+  {
+    "texto": "DEDO es a ANILLO como CABEZA es a:",
+    "opciones": [
+      "Pelo",
+      "Sombrero",
+      "Cuello",
+      "Cerebro"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Aptitúd Académica",
+    "tema": "Analogías"
+  },
+  {
+    "texto": "Sustantivo que designa seres que se pueden percibir por los sentidos:",
+    "opciones": [
+      "Abstracto",
+      "Concreto",
+      "No contable",
+      "Primitivo"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Lenguaje",
+    "tema": "El Sustantivo"
+  },
+  {
+    "texto": "Célula joven encargada de formar la matriz ósea:",
+    "opciones": [
+      "Osteocito",
+      "Osteoclasto",
+      "Osteoblasto",
+      "Condrocito"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Anatomía",
+    "tema": "Tejido Óseo y Cartilaginoso"
+  },
+  {
+    "texto": "Si A = {x/x es vocal de la palabra 'COCODRILO'}. Halla n(A) (Cardinal).",
+    "img": "",
+    "opciones": [
+      "4",
+      "3",
+      "2",
+      "5"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Aritmética",
+    "tema": "Teoría de Conjuntos"
+  },
+  {
+    "texto": "Producto final de la fotosíntesis liberado al ambiente:",
+    "opciones": [
+      "Dióxido de carbono",
+      "Oxígeno",
+      "Agua",
+      "Metano"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Biología",
+    "tema": "Metabolismo Celular"
+  },
+  {
+    "texto": "Polisacárido de reserva energética en animales (hígado y músculos):",
+    "opciones": [
+      "Almidón",
+      "Celulosa",
+      "Glucógeno",
+      "Quitina"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Biología",
+    "tema": "Biomoléculas Orgánicas"
+  },
+  {
+    "texto": "En 'La Divina Comedia', ¿quién guía a Dante por el Infierno y el Purgatorio?",
+    "opciones": [
+      "Beatriz",
+      "San Bernardo",
+      "Virgilio",
+      "Caronte"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Literatura",
+    "tema": "Clasicismo y Medievalismo"
+  },
+  {
+    "texto": "La Ilustración fue un movimiento intelectual basado en el uso de la:",
+    "img": "",
+    "opciones": [
+      "Fe",
+      "Razón",
+      "Tradición",
+      "Fuerza"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Historia Universal",
+    "tema": "Ilustración y Revoluciones"
+  },
+  {
+    "texto": "El Hemisferio Izquierdo del cerebro suele encargarse de:",
+    "opciones": [
+      "La creatividad y el arte",
+      "El lenguaje y la lógica matemática",
+      "El reconocimiento de rostros",
+      "La intuición"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Psicología",
+    "tema": "Bases Biológicas (Neurociencia)"
+  },
+  {
+    "texto": "MÉDICO es a HOSPITAL como PROFESOR es a:",
+    "opciones": [
+      "Alumno",
+      "Pizarra",
+      "Colegio",
+      "Clase"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Aptitúd Académica",
+    "tema": "Analogías"
+  },
+  {
+    "texto": "Simplifica la expresión: E = (C + S) / (C - S)",
+    "img": "",
+    "opciones": [
+      "10",
+      "9",
+      "19",
+      "20"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Trigonometría",
+    "tema": "Sistema de Medida Angular"
+  },
+  {
+    "texto": "¿Qué grado de parentesco hay entre un tío y su sobrino?",
+    "opciones": [
+      "Segundo",
+      "Tercero",
+      "Cuarto",
+      "Quinto"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Educación Cívica",
+    "tema": "Familia y Parentesco"
+  },
+  {
+    "texto": "La 'Tetrapharmakos' (cuádruple remedio) es una doctrina de la escuela:",
+    "opciones": [
+      "Cínica",
+      "Epicúrea",
+      "Estoica",
+      "Cirenaica"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Filosofía",
+    "tema": "Filosofía Grecorromana"
+  },
+  {
+    "texto": "En el Perú, el sector que genera mayor cantidad de divisas (dólares) es el:",
+    "opciones": [
+      "Secundario (Industria)",
+      "Primario (Minería)",
+      "Terciario (Turismo)",
+      "Financiero"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Economía",
+    "tema": "La Producción"
+  },
+  {
+    "texto": "Atributo de la personalidad que individualiza a la persona:",
+    "opciones": [
+      "Domicilio",
+      "Nombre",
+      "Patrimonio",
+      "Capacidad"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Educación Cívica",
+    "tema": "Sujeto de Derecho"
+  },
+  {
+    "texto": "Institución comercial que controlaba el monopolio desde Lima:",
+    "opciones": [
+      "Casa de Contratación",
+      "Tribunal del Consulado",
+      "Real Hacienda",
+      "Intendencia"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Historia del Perú",
+    "tema": "El Virreinato del Perú"
+  },
+  {
+    "texto": "La fase de relajación y llenado del corazón se llama:",
+    "opciones": [
+      "Sístole",
+      "Diástole",
+      "Gasto cardiaco",
+      "Frecuencia"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Anatomía",
+    "tema": "Aparato Cardiovascular"
+  },
+  {
+    "texto": "¿Cuál es la unidad anatómica y funcional del sistema nervioso?",
+    "opciones": [
+      "Neuroglia",
+      "Neurona",
+      "Axón",
+      "Sinapsis"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Anatomía",
+    "tema": "Tejido Nervioso"
+  },
+  {
+    "texto": "Factoriza por Factor Común: x² + 7x",
+    "img": "",
+    "opciones": [
+      "x(x + 7)",
+      "x(x - 7)",
+      "(x + 1)(x + 7)",
+      "x²(1 + 7)"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Álgebra",
+    "tema": "Factorización"
+  },
+  {
+    "texto": "Aristóteles fue discípulo de Platón y maestro de:",
+    "opciones": [
+      "Pericles",
+      "Alejandro Magno",
+      "Sócrates",
+      "Nerón"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Filosofía",
+    "tema": "Socrática (Platón y Aristóteles)"
+  },
+  {
+    "texto": "Si el Rango es 40 y elegimos 5 intervalos. ¿Cuál es el ancho de clase (w)?",
+    "img": "",
+    "opciones": [
+      "5",
+      "10",
+      "8",
+      "4"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Estadística",
+    "tema": "Tabla de Frecuencias II"
+  },
+  {
+    "texto": "Si el grado del Dividendo es 5 y el del Divisor es 2, ¿cuál es el grado del Cociente?",
+    "img": "",
+    "opciones": [
+      "3",
+      "7",
+      "2.5",
+      "10"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Álgebra",
+    "tema": "División de Polinomios"
+  },
+  {
+    "texto": "En un texto filosófico, el tono suele ser:",
+    "img": "",
+    "opciones": [
+      "Jocoso",
+      "Reflexivo y abstracto",
+      "Informativo",
+      "Coloquial"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Comprensión III: Crítica"
+  },
+  {
+    "texto": "Si la frecuencia porcentual (hi%) es 40% y el total de datos (n) es 200. Halla la frecuencia absoluta (fi).",
+    "img": "",
+    "opciones": [
+      "40",
+      "80",
+      "60",
+      "100"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Estadística",
+    "tema": "Tabla de Frecuencias I"
+  },
+  {
+    "texto": "Halla la suma de sus factores primos: x² - 5x + 6",
+    "img": "",
+    "opciones": [
+      "2x - 5",
+      "2x + 5",
+      "2x - 1",
+      "x - 5"
+    ],
+    "correcta": 0,
+    "tiempo": 70,
+    "curso": "Álgebra",
+    "tema": "Factorización"
+  },
+  {
+    "texto": "El flujo de información genética (Dogma Central) sigue el orden:",
+    "opciones": [
+      "ARN -> ADN -> Proteína",
+      "ADN -> ARN -> Proteína",
+      "Proteína -> ARN -> ADN",
+      "ADN -> Proteína -> ARN"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Biología",
+    "tema": "Vitaminas y Ácidos Nucleicos"
+  },
+  {
+    "texto": "DANTESCO es a TERRIBLE como QUIJOTESCO es a:",
+    "opciones": [
+      "Loco",
+      "Idealista",
+      "Viejo",
+      "Alto"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Aptitúd Académica",
+    "tema": "Analogías"
+  },
+  {
+    "texto": "¿Cuántos divisores tiene el número 36?",
+    "img": "",
+    "opciones": [
+      "6",
+      "8",
+      "9",
+      "12"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Aritmética",
+    "tema": "Números Primos"
+  },
+  {
+    "texto": "Los aceites vegetales son líquidos a temperatura ambiente porque tienen:",
+    "opciones": [
+      "Ácidos grasos saturados",
+      "Ácidos grasos insaturados",
+      "Colesterol",
+      "Ceras"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Biología",
+    "tema": "Biomoléculas Orgánicas"
+  },
+  {
+    "texto": "Condiciones Normales (CN) implican:",
+    "opciones": [
+      "1 atm y 25°C",
+      "1 atm y 0°C (273K)",
+      "1 atm y 100°C",
+      "760 mmHg y 20°C"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Química",
+    "tema": "Estado Gaseoso"
+  },
+  {
+    "texto": "Norma jurídica de mayor jerarquía después de la Constitución:",
+    "opciones": [
+      "Decreto Supremo",
+      "Resolución Ministerial",
+      "Ley",
+      "Ordenanza Municipal"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Educación Cívica",
+    "tema": "Estado y Normas"
+  },
+  {
+    "texto": "Antónimo de CONDONAR:",
+    "opciones": [
+      "Perdonar",
+      "Castigar",
+      "Olvidar",
+      "Premiar"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal I"
+  },
+  {
+    "texto": "Suma de ángulos internos de un cuadrilátero:",
+    "img": "",
+    "opciones": [
+      "180°",
+      "360°",
+      "540°",
+      "90°"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Geometría",
+    "tema": "Polígonos y Cuadriláteros"
+  },
+  {
+    "texto": "Si x + 1/x = 3. Calcula el valor de E = x² + 1/x²",
+    "img": "",
+    "opciones": [
+      "9",
+      "6",
+      "7",
+      "11"
+    ],
+    "correcta": 2,
+    "tiempo": 40,
+    "curso": "Álgebra",
+    "tema": "Productos Notables"
+  },
+  {
+    "texto": "Extrapolación: Si los humanos fueran inmortales, entonces probablemente:",
+    "img": "",
+    "opciones": [
+      "La vida tendría más valor",
+      "No habría sobrepoblación",
+      "La religión y el sentido de la vida cambiarían drásticamente",
+      "Todos serían felices"
+    ],
+    "correcta": 2,
+    "tiempo": 50,
+    "curso": "Aptitúd Académica",
+    "tema": "Comprensión II: Inferencias"
+  },
+  {
+    "texto": "Relación de tiempo: Si el ayer de mañana es lunes, ¿qué día será el mañana de anteayer?",
+    "img": "",
+    "opciones": [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Sábado"
+    ],
+    "correcta": 0,
+    "tiempo": 25,
+    "curso": "Razonamiento Matemático",
+    "tema": "Raz. Lógico y Recreativo"
+  },
+  {
+    "texto": "Autor de la obra 'El Origen de las Especies' (Teoría de la Evolución):",
+    "opciones": [
+      "Lamarck",
+      "Darwin",
+      "Mendel",
+      "Engels"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Historia Universal",
+    "tema": "Antropogénesis"
+  },
+  {
+    "texto": "Líder soviético que impulsó la Perestroika y el fin de la URSS:",
+    "img": "",
+    "opciones": [
+      "Stalin",
+      "Lenin",
+      "Mijail Gorbachov",
+      "Vladimir Putin"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Historia Universal",
+    "tema": "Guerra Fría y Mundo Actual"
+  },
+  {
+    "texto": "Los Sofistas (como Protágoras) se caracterizaban por su:",
+    "opciones": [
+      "Búsqueda de la verdad absoluta",
+      "Relativismo y enseñanza de retórica",
+      "Cientificismo",
+      "Silencio místico"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Filosofía",
+    "tema": "Socrática (Platón y Aristóteles)"
+  },
+  {
+    "texto": "Teoría que propone que el universo se contraerá en un 'Big Crunch':",
+    "opciones": [
+      "Universo Estacionario",
+      "Universo Oscilante o Cíclico",
+      "Universo Inflacionario",
+      "Big Bang"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Geografía",
+    "tema": "El Universo"
+  },
+  {
+    "texto": "El vector unitario sirve para indicar:",
+    "opciones": [
+      "El módulo",
+      "La dirección",
+      "La fuerza",
+      "El tamaño"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Física",
+    "tema": "Vectores"
+  },
+  {
+    "texto": "El uso de los bienes y servicios para satisfacer necesidades es el:",
+    "opciones": [
+      "Ahorro",
+      "Consumo",
+      "Gasto público",
+      "Capital"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Economía",
+    "tema": "Procesos Económicos"
+  },
+  {
+    "texto": "Factoriza la Suma de Cubos: x³ + 1",
+    "img": "",
+    "opciones": [
+      "(x + 1)³",
+      "(x + 1)(x² - x + 1)",
+      "(x + 1)(x² + x + 1)",
+      "(x - 1)(x² + x + 1)"
+    ],
+    "correcta": 1,
+    "tiempo": 50,
+    "curso": "Álgebra",
+    "tema": "Factorización"
+  },
+  {
+    "texto": "Movimiento obrero que destruía máquinas por considerarlas culpables del desempleo:",
+    "img": "",
+    "opciones": [
+      "Cartismo",
+      "Ludismo",
+      "Sindicalismo",
+      "Marxismo"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "Siglo XIX: Industria e Imperialismo"
+  },
+  {
+    "texto": "Faraón que unificó el Alto y Bajo Egipto (Primer Faraón):",
+    "opciones": [
+      "Ramsés II",
+      "Menes (Narmer)",
+      "Keops",
+      "Tutankamón"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "Mesopotamia y Egipto"
+  },
+  {
+    "texto": "Representante del Culteranismo (estilo complejo y metafórico):",
+    "opciones": [
+      "Francisco de Quevedo",
+      "Luis de Góngora",
+      "Garcilaso de la Vega",
+      "Fray Luis de León"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Literatura",
+    "tema": "Siglo de Oro Español"
+  },
+  {
+    "texto": "Batalla donde Túpac Amaru II derrotó a las fuerzas españolas:",
+    "opciones": [
+      "Checacupe",
+      "Sangarará",
+      "Combapata",
+      "Ayacucho"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia del Perú",
+    "tema": "Rebeliones Indígenas"
+  },
+  {
+    "texto": "A largo plazo, si aumentamos todos los factores y la producción crece en mayor proporción, hay:",
+    "opciones": [
+      "Rendimientos decrecientes",
+      "Economías de escala (Rendimientos crecientes)",
+      "Pérdidas",
+      "Estancamiento"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Economía",
+    "tema": "La Producción"
+  },
+  {
+    "texto": "El 'Milagro Mexicano' es consecuencia de la Revolución Mexicana iniciada en 1910 contra:",
+    "img": "",
+    "opciones": [
+      "Porfirio Díaz",
+      "Francisco Villa",
+      "Emiliano Zapata",
+      "Lázaro Cárdenas"
+    ],
+    "correcta": 0,
+    "tiempo": 35,
+    "curso": "Historia Universal",
+    "tema": "Guerras Mundiales y Totalitarismo"
+  },
+  {
+    "texto": "Incipiente, Inicial, Naciente, ... (Sinónimos)",
+    "opciones": [
+      "Final",
+      "Incoativo",
+      "Caducho",
+      "Terminante"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Aptitúd Académica",
+    "tema": "Series Verbales"
+  },
+  {
+    "texto": "Novela picaresca anónima que critica a la sociedad española del siglo XVI:",
+    "opciones": [
+      "La Celestina",
+      "El Lazarillo de Tormes",
+      "Don Quijote",
+      "La Galatea"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Literatura",
+    "tema": "Renacimiento Europeo"
+  },
+  {
+    "texto": "Si Tan(x) > 0 y Sen(x) < 0, ¿en qué cuadrante está 'x'?",
+    "img": "",
+    "opciones": [
+      "I C",
+      "II C",
+      "III C",
+      "IV C"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Trigonometría",
+    "tema": "Ángulos en Posición Normal"
+  },
+  {
+    "texto": "¿Qué unión celular impide el paso de sustancias entre células epiteliales?",
+    "opciones": [
+      "Desmosomas",
+      "Uniones comunicantes",
+      "Uniones estrechas (Oclusivas)",
+      "Hemidesmosomas"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Anatomía",
+    "tema": "Tejido Epitelial"
+  },
+  {
+    "texto": "Teorema de Pitot: En un cuadrilátero circunscrito, la suma de lados opuestos es:",
+    "img": "",
+    "opciones": [
+      "Diferente",
+      "Igual",
+      "El doble",
+      "La mitad"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Geometría",
+    "tema": "Circunferencia"
+  },
+  {
+    "texto": "La 'Paz Armada' fue un periodo caracterizado por:",
+    "img": "",
+    "opciones": [
+      "Guerra total",
+      "Tensión internacional y carrera armamentista sin guerra directa",
+      "Paz absoluta",
+      "Desarme nuclear"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Historia Universal",
+    "tema": "Siglo XIX: Industria e Imperialismo"
+  },
+  {
+    "texto": "Fase donde se trasladan los bienes a los mercados para su venta:",
+    "opciones": [
+      "Producción",
+      "Circulación",
+      "Distribución",
+      "Consumo"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Economía",
+    "tema": "Procesos Económicos"
+  },
+  {
+    "texto": "El papel del Estado como factor productivo es:",
+    "opciones": [
+      "Generar ganancias",
+      "Regular y fiscalizar",
+      "Producir bienes",
+      "Consumir"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Economía",
+    "tema": "Factores de Producción"
+  },
+  {
+    "texto": "Río, Cauce; Mar, ...",
+    "opciones": [
+      "Ola",
+      "Sal",
+      "Marea",
+      "Lecho (Fondo)"
+    ],
+    "correcta": 3,
+    "tiempo": 25,
+    "curso": "Aptitúd Académica",
+    "tema": "Series Verbales"
+  },
+  {
+    "texto": "Filósofo ilustrado que propuso la división de poderes (Ejecutivo, Legislativo, Judicial):",
+    "img": "",
+    "opciones": [
+      "Voltaire",
+      "Rousseau",
+      "Montesquieu",
+      "Diderot"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "Ilustración y Revoluciones"
+  },
+  {
+    "texto": "Marca la palabra con Tilde Diacrítica correctamente usada:",
+    "opciones": [
+      "Tú libro",
+      "El vino ayer",
+      "Té de manzanilla",
+      "Mí casa"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Lenguaje",
+    "tema": "Ortografía"
+  },
+  {
+    "texto": "Líder de la Revolución Cubana (1959):",
+    "img": "",
+    "opciones": [
+      "Che Guevara",
+      "Fidel Castro",
+      "Fulgencio Batista",
+      "Hugo Chávez"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Historia Universal",
+    "tema": "Guerra Fría y Mundo Actual"
+  },
+  {
+    "texto": "La 'Hégira' (622 d.C.) marca el inicio del calendario musulmán y fue:",
+    "opciones": [
+      "El nacimiento de Mahoma",
+      "La huida de Mahoma de La Meca a Medina",
+      "La muerte de Mahoma",
+      "La revelación del Corán"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "El Islam y los Árabes"
+  },
+  {
+    "texto": "Filósofo que consideraba a los 'Números' como el principio de todo:",
+    "opciones": [
+      "Pitágoras",
+      "Anaximandro",
+      "Demócrito",
+      "Empédocles"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Filosofía",
+    "tema": "Filosofía Presocrática"
+  },
+  {
+    "texto": "Halla la cantidad de divisores de 1000 (mil).",
+    "img": "",
+    "opciones": [
+      "10",
+      "12",
+      "16",
+      "20"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Aritmética",
+    "tema": "Números Primos"
+  },
+  {
+    "texto": "¿Qué poeta español introdujo el verso endecasílabo y el soneto en España?",
+    "opciones": [
+      "Fray Luis de León",
+      "Garcilaso de la Vega",
+      "Luis de Góngora",
+      "Quevedo"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Literatura",
+    "tema": "Renacimiento Europeo"
+  },
+  {
+    "texto": "Término Excluido (SENTIDOS):",
+    "opciones": [
+      "Vista",
+      "Oído",
+      "Olfato",
+      "Pensamiento"
+    ],
+    "correcta": 3,
+    "tiempo": 20,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal I"
+  },
+  {
+    "texto": "¿Qué personaje de Calderón de la Barca dice: 'La vida es sueño, y los sueños, sueños son'?",
+    "opciones": [
+      "Basilio",
+      "Clotaldo",
+      "Segismundo",
+      "Astolfo"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Literatura",
+    "tema": "Siglo de Oro Español"
+  },
+  {
+    "texto": "Variable de estado que mide el grado de agitación molecular:",
+    "opciones": [
+      "Presión",
+      "Volumen",
+      "Temperatura",
+      "Moles"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Química",
+    "tema": "Estado Gaseoso"
+  },
+  {
+    "texto": "Garantía que protege la libertad individual y de tránsito:",
+    "opciones": [
+      "Acción de Amparo",
+      "Habeas Data",
+      "Habeas Corpus",
+      "Acción Popular"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Educación Cívica",
+    "tema": "Garantías Constitucionales"
+  },
+  {
+    "texto": "Elimina la oración impertinente: (I) El Sol es una estrella. (II) Es el centro del sistema solar. (III) La Luna tiene fases. (IV) Nos da luz y calor. (V) Su energía permite la vida.",
+    "opciones": [
+      "I",
+      "II",
+      "III",
+      "IV"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal II"
+  },
+  {
+    "texto": "Las necesidades son 'Limitadas en capacidad' porque:",
+    "opciones": [
+      "Nunca se acaban",
+      "El organismo tiene un límite de saturación",
+      "Siempre surgen nuevas",
+      "Se pueden sustituir"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Economía",
+    "tema": "Necesidades y Bienes"
+  },
+  {
+    "texto": "Los bienes adquiridos durante el matrimonio en Sociedad de Gananciales son:",
+    "opciones": [
+      "Bienes propios",
+      "Bienes sociales",
+      "Bienes fiscales",
+      "Bienes muebles"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Educación Cívica",
+    "tema": "El Matrimonio"
+  },
+  {
+    "texto": "Según Freud, la etapa del desarrollo psicosexual donde la libido está 'dormida' es:",
+    "opciones": [
+      "Oral",
+      "Anal",
+      "Latencia",
+      "Fálica"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Psicología",
+    "tema": "Desarrollo Humano"
+  },
+  {
+    "texto": "Si n(A) = 10, n(B) = 12 y n(A ∩ B) = 5. Calcula n(A ∪ B).",
+    "img": "",
+    "opciones": [
+      "22",
+      "17",
+      "15",
+      "7"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Aritmética",
+    "tema": "Teoría de Conjuntos"
+  },
+  {
+    "texto": "Sinónimo Contextual: 'El orador dio un discurso *prolijo* (extenso/detallado)'.",
+    "opciones": [
+      "Breve",
+      "Largo y cuidadoso",
+      "Aburrido",
+      "Confuso"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal II"
+  },
+  {
+    "texto": "El paso del 'Mito al Logos' significa pasar de:",
+    "opciones": [
+      "La razón a la fe",
+      "La creencia fantástica a la explicación racional",
+      "La ignorancia a la duda",
+      "La ciencia a la religión"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Filosofía",
+    "tema": "Historia de la Filosofía"
+  },
+  {
+    "texto": "David Hume llevó el empirismo al extremo, negando la idea de:",
+    "opciones": [
+      "Dios",
+      "Causalidad y Sustancia",
+      "Placer",
+      "Libertad"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Filosofía",
+    "tema": "Filosofía Moderna"
+  },
+  {
+    "texto": "Líder de la rebelión de esclavos más grande contra Roma:",
+    "opciones": [
+      "Espartaco",
+      "Aníbal",
+      "Viriato",
+      "Vercingétorix"
+    ],
+    "correcta": 0,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "Cultura Romana"
+  },
+  {
+    "texto": "El conector lógico 'y' (conjunción) se representa con el símbolo:",
+    "img": "",
+    "opciones": [
+      "∨",
+      "→",
+      "∧",
+      "↔"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Aritmética",
+    "tema": "Lógica Proposicional"
+  },
+  {
+    "texto": "En un triángulo rectángulo, la mediana relativa a la hipotenusa mide:",
+    "img": "",
+    "opciones": [
+      "Igual a la hipotenusa",
+      "La mitad de la hipotenusa",
+      "El doble de la hipotenusa",
+      "Igual a un cateto"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Geometría",
+    "tema": "Congruencia de Triángulos"
+  },
+  {
+    "texto": "El pago o retribución al factor 'Trabajo' se denomina:",
+    "opciones": [
+      "Renta",
+      "Salario",
+      "Interés",
+      "Ganancia"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Economía",
+    "tema": "Procesos Económicos"
+  },
+  {
+    "texto": "Juan Santos Atahualpa se rebeló en la:",
+    "opciones": [
+      "Sierra Sur",
+      "Costa Norte",
+      "Selva Central (Gran Pajonal)",
+      "Sierra Central"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Historia del Perú",
+    "tema": "Rebeliones Indígenas"
+  },
+  {
+    "texto": "Automóvil, Llanta; Árbol, ...",
+    "opciones": [
+      "Bosque",
+      "Hoja",
+      "Sombra",
+      "Verde"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Aptitúd Académica",
+    "tema": "Series Verbales"
+  },
+  {
+    "texto": "¿Qué vitamina se produce en la piel por acción de los rayos UV?",
+    "opciones": [
+      "Vitamina A",
+      "Vitamina C",
+      "Vitamina D",
+      "Vitamina E"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Biología",
+    "tema": "Vitaminas y Ácidos Nucleicos"
+  },
+  {
+    "texto": "Ángulo de lanzamiento para lograr el Alcance Horizontal Máximo:",
+    "opciones": [
+      "30°",
+      "60°",
+      "45°",
+      "90°"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Física",
+    "tema": "Cinemática II (MVCL - MPCL)"
+  },
+  {
+    "texto": "La Reflexología rusa (Pavlov) aportó el concepto de:",
+    "opciones": [
+      "Insight",
+      "Condicionamiento Clásico",
+      "Zona de Desarrollo Próximo",
+      "Inconsciente Colectivo"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Psicología",
+    "tema": "Escuelas Psicológicas"
+  },
+  {
+    "texto": "La etapa prenatal abarca desde la fecundación hasta:",
+    "opciones": [
+      "El primer mes",
+      "El nacimiento",
+      "El primer año",
+      "La concepción"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Psicología",
+    "tema": "Desarrollo Humano"
+  },
+  {
+    "texto": "Creador del mito de Don Juan Tenorio en la obra 'El burlador de Sevilla':",
+    "opciones": [
+      "Lope de Vega",
+      "Calderón de la Barca",
+      "Tirso de Molina",
+      "Guillén de Castro"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Literatura",
+    "tema": "Siglo de Oro Español"
+  },
+  {
+    "texto": "El primer poblador del Perú (Periodo Lítico) se caracterizó por ser:",
+    "opciones": [
+      "Sedentario y agricultor",
+      "Nómada, cazador y recolector",
+      "Constructor de templos",
+      "Ganadero"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia del Perú",
+    "tema": "Poblamiento Americano"
+  },
+  {
+    "texto": "El tema central de los filósofos presocráticos fue:",
+    "opciones": [
+      "El Hombre",
+      "La Moral",
+      "El Arjé (Principio del Cosmos)",
+      "Dios"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Filosofía",
+    "tema": "Filosofía Presocrática"
+  },
+  {
+    "texto": "Actividad extractiva que depreda recursos si no se regula (ej: tala):",
+    "opciones": [
+      "Silvicultura",
+      "Acuicultura",
+      "Ganadería",
+      "Agricultura"
+    ],
+    "correcta": 0,
+    "tiempo": 35,
+    "curso": "Economía",
+    "tema": "La Producción"
+  },
+  {
+    "texto": "Operación Diferencia: Si M = {2; 4; 6} y N = {1; 2; 3}. Halla M - N.",
+    "img": "",
+    "opciones": [
+      "{4; 6}",
+      "{1; 3}",
+      "{2}",
+      "{1; 2; 3; 4; 6}"
+    ],
+    "correcta": 0,
+    "tiempo": 25,
+    "curso": "Aritmética",
+    "tema": "Teoría de Conjuntos"
+  },
+  {
+    "texto": "Los morfemas 'Amalgama' son exclusivos de:",
+    "opciones": [
+      "Sustantivos",
+      "Adjetivos",
+      "Verbos",
+      "Adverbios"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Lenguaje",
+    "tema": "Morfología Lingüística"
+  },
+  {
+    "texto": "Teorema del Resto: Halla el residuo de dividir P(x) entre (x - 3).",
+    "img": "",
+    "opciones": [
+      "P(3)",
+      "P(-3)",
+      "P(0)",
+      "P(1)"
+    ],
+    "correcta": 0,
+    "tiempo": 45,
+    "curso": "Álgebra",
+    "tema": "División de Polinomios"
+  },
+  {
+    "texto": "¿Qué significa el prefijo 'OMNI' (ej: Omnipotente)?",
+    "opciones": [
+      "Todo",
+      "Nada",
+      "Poco",
+      "Mucho"
+    ],
+    "correcta": 0,
+    "tiempo": 20,
+    "curso": "Aptitúd Académica",
+    "tema": "Etimología Grecolatina"
+  },
+  {
+    "texto": "Término Excluido (ESTUDIO):",
+    "opciones": [
+      "Libro",
+      "Cuaderno",
+      "Lápiz",
+      "Pelota"
+    ],
+    "correcta": 3,
+    "tiempo": 20,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal I"
+  },
+  {
+    "texto": "¿Cuántos factores primos tiene: P(x) = x⁴ - 16 ?",
+    "img": "",
+    "opciones": [
+      "2",
+      "3",
+      "4",
+      "1"
+    ],
+    "correcta": 1,
+    "tiempo": 70,
+    "curso": "Álgebra",
+    "tema": "Factorización"
+  },
+  {
+    "texto": "Tierra, Marte, Júpiter, Saturno, ...",
+    "opciones": [
+      "Luna",
+      "Sol",
+      "Urano",
+      "Plutón"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Aptitúd Académica",
+    "tema": "Series Verbales"
+  },
+  {
+    "texto": "Identidad de Legendre: Reduce M = (m + n)² - (m - n)²",
+    "img": "",
+    "opciones": [
+      "2(m² + n²)",
+      "m² - n²",
+      "4mn",
+      "2mn"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Álgebra",
+    "tema": "Productos Notables"
+  },
+  {
+    "texto": "Si p es Verdadero, ¿cuál es el valor de 'no p' (~p)?",
+    "img": "",
+    "opciones": [
+      "Falso",
+      "Verdadero",
+      "Indeterminado",
+      "Posible"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Aritmética",
+    "tema": "Lógica Proposicional"
+  },
+  {
+    "texto": "Nombre verdadero de Túpac Amaru II:",
+    "opciones": [
+      "José Gabriel Condorcanqui",
+      "Juan Santos",
+      "Pedro Vilca Apaza",
+      "Julián Apaza"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Historia del Perú",
+    "tema": "Rebeliones Indígenas"
+  },
+  {
+    "texto": "Antónimo de 'CONDONAR' (Perdonar):",
+    "opciones": [
+      "Indultar",
+      "Castigar",
+      "Olvidar",
+      "Premiar"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Aptitúd Académica",
+    "tema": "Antonimia"
+  },
+  {
+    "texto": "La primera ciudad española fundada en el Perú fue:",
+    "opciones": [
+      "Lima",
+      "Jauja",
+      "San Miguel de Tangarará (Piura)",
+      "Cusco"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Historia del Perú",
+    "tema": "Invasión Europea y Resistencia"
+  },
+  {
+    "texto": "Cultura reconocida por tener los mantos funerarios más finos del mundo:",
+    "opciones": [
+      "Wari",
+      "Tiahuanaco",
+      "Paracas",
+      "Chimú"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Historia del Perú",
+    "tema": "Altas Culturas (Pre-Incas)"
+  },
+  {
+    "texto": "Elimina: (I) El Sol emite radiación. (II) Los planetas giran en órbitas. (III) La fotosíntesis usa luz solar. (IV) La energía solar es renovable. (V) El Sol es una enana amarilla.",
+    "opciones": [
+      "II",
+      "III",
+      "IV",
+      "V"
+    ],
+    "correcta": 0,
+    "tiempo": 35,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal II"
+  },
+  {
+    "texto": "Ley de Morgan: La negación de (p ∧ q) equivale a:",
+    "img": "",
+    "opciones": [
+      "~p ∧ ~q",
+      "~p ∨ ~q",
+      "p ∨ q",
+      "~p → ~q"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Aritmética",
+    "tema": "Lógica Proposicional"
+  },
+  {
+    "texto": "John Locke afirmó que la mente al nacer es como una:",
+    "opciones": [
+      "Computadora llena de datos",
+      "Tabula Rasa (hoja en blanco)",
+      "Semilla lista para germinar",
+      "Idea innata"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Filosofía",
+    "tema": "Filosofía Moderna"
+  },
+  {
+    "texto": "Un texto que solo presenta datos reales y objetivos es:",
+    "img": "",
+    "opciones": [
+      "Argumentativo",
+      "Informativo / Expositivo",
+      "Poético",
+      "Literario"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Aptitúd Académica",
+    "tema": "Comprensión III: Crítica"
+  },
+  {
+    "texto": "El Habeas Data también protege el derecho a:",
+    "opciones": [
+      "La libertad de prensa",
+      "La intimidad personal y familiar (honor bancario)",
+      "El libre tránsito",
+      "La huelga"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Educación Cívica",
+    "tema": "Garantías Constitucionales"
+  },
+  {
+    "texto": "Ordena: 'La digestión'. I. Absorción de nutrientes en el intestino delgado. II. Masticación e insalivación. III. Paso por el esófago. IV. Degradación en el estómago.",
+    "img": "",
+    "opciones": [
+      "II - III - IV - I",
+      "I - II - III - IV",
+      "II - IV - III - I",
+      "II - III - I - IV"
+    ],
+    "correcta": 0,
+    "tiempo": 40,
+    "curso": "Aptitúd Académica",
+    "tema": "Plan de Redacción"
+  },
+  {
+    "texto": "Término Excluido (ABOGADO):",
+    "img": "",
+    "opciones": [
+      "Defensa",
+      "Leyes",
+      "Litigio",
+      "Bisturí"
+    ],
+    "correcta": 3,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Término Excluido e Inclusión"
+  },
+  {
+    "texto": "La relación de fidelidad entre el Señor y el Vasallo se sellaba con:",
+    "img": "",
+    "opciones": [
+      "El matrimonio",
+      "El Homenaje y la Investidura",
+      "Un contrato escrito",
+      "La entrega de dinero"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "Feudalismo y Mercantilismo"
+  },
+  {
+    "texto": "No vino _______ estaba enfermo.",
+    "opciones": [
+      "aunque",
+      "porque",
+      "pero",
+      "y"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal I"
+  },
+  {
+    "texto": "El Ortocentro es el punto de corte de las:",
+    "img": "",
+    "opciones": [
+      "Medianas",
+      "Alturas",
+      "Bisectrices",
+      "Cevianas"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Geometría",
+    "tema": "Puntos Notables"
+  },
+  {
+    "texto": "Según el Código Civil peruano, la vida humana comienza con:",
+    "opciones": [
+      "El nacimiento",
+      "La concepción",
+      "La inscripción en RENIEC",
+      "La mayoría de edad"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Educación Cívica",
+    "tema": "Sujeto de Derecho"
+  },
+  {
+    "texto": "La 'Ley del uso y desuso' fue propuesta por:",
+    "opciones": [
+      "Charles Darwin",
+      "Jean-Baptiste Lamarck",
+      "Gregor Mendel",
+      "Hugo de Vries"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Biología",
+    "tema": "Origen de la Vida y Evolución"
+  },
+  {
+    "texto": "Cero absoluto en escala Kelvin equivale a:",
+    "opciones": [
+      "0°C",
+      "-273°C",
+      "100°C",
+      "273°C"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Química",
+    "tema": "Estado Gaseoso"
+  },
+  {
+    "texto": "El canal central de la osteona por donde pasan vasos sanguíneos se llama:",
+    "opciones": [
+      "Conducto de Volkmann",
+      "Conducto de Havers",
+      "Canalículo calcóforo",
+      "Laguna ósea"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Anatomía",
+    "tema": "Tejido Óseo y Cartilaginoso"
+  },
+  {
+    "texto": "Ideología que defiende la propiedad privada y el libre mercado:",
+    "img": "",
+    "opciones": [
+      "Socialismo",
+      "Liberalismo",
+      "Anarquismo",
+      "Comunismo"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Historia Universal",
+    "tema": "Siglo XIX: Industria e Imperialismo"
+  },
+  {
+    "texto": "Organismo internacional encargado de proteger los DD.HH. en nuestra región:",
+    "opciones": [
+      "OTAN",
+      "Corte Interamericana (CIDH)",
+      "Unión Europea",
+      "Pacto de Varsovia"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Educación Cívica",
+    "tema": "Derechos Humanos"
+  },
+  {
+    "texto": "Regla del Octeto: Los átomos buscan tener ___ electrones en su última capa.",
+    "opciones": [
+      "2",
+      "4",
+      "8",
+      "10"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Química",
+    "tema": "Enlace Químico"
+  },
+  {
+    "texto": "Autor inglés de 'Romeo y Julieta' y 'Hamlet':",
+    "opciones": [
+      "William Shakespeare",
+      "John Milton",
+      "Geoffrey Chaucer",
+      "Christopher Marlowe"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Literatura",
+    "tema": "Renacimiento Europeo"
+  },
+  {
+    "texto": "La familia que incluye padres, hijos, abuelos y tíos se llama:",
+    "opciones": [
+      "Nuclear",
+      "Extensa",
+      "Monoparental",
+      "Reconstituida"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Psicología",
+    "tema": "Factores del Comportamiento"
+  },
+  {
+    "texto": "ISLA es a ARCHIPIÉLAGO como CERDO es a:",
+    "opciones": [
+      "Granja",
+      "Piara",
+      "Jamón",
+      "Lodo"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Aptitúd Académica",
+    "tema": "Analogías"
+  },
+  {
+    "texto": "Sentido encargado de captar la posición y movimiento del cuerpo (músculos):",
+    "opciones": [
+      "Vestibular",
+      "Kinestésico",
+      "Cenestésico",
+      "Táctil"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Psicología",
+    "tema": "Sensación y Percepción"
+  },
+  {
+    "texto": "Diógenes de Sinope, que vivía en un barril buscando lo natural, pertenecía a la escuela:",
+    "opciones": [
+      "Cínica",
+      "Estoica",
+      "Platónica",
+      "Aristotélica"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Filosofía",
+    "tema": "Filosofía Grecorromana"
+  },
+  {
+    "texto": "La Guerra del Peloponeso enfrentó a:",
+    "opciones": [
+      "Griegos vs Persas",
+      "Atenas vs Esparta",
+      "Roma vs Cartago",
+      "Grecia vs Roma"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Historia Universal",
+    "tema": "Cultura Griega"
+  },
+  {
+    "texto": "Vaso sanguíneo que saca sangre oxigenada del ventrículo izquierdo:",
+    "opciones": [
+      "Arteria Pulmonar",
+      "Vena Cava",
+      "Arteria Aorta",
+      "Vena Pulmonar"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Anatomía",
+    "tema": "Aparato Cardiovascular"
+  },
+  {
+    "texto": "El glucocálix es una estructura de reconocimiento celular presente en:",
+    "opciones": [
+      "Células vegetales",
+      "Células animales",
+      "Bacterias",
+      "Hongos"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Biología",
+    "tema": "Citología: Célula Eucariota"
+  },
+  {
+    "texto": "Fórmula de Energía Cinética:",
+    "opciones": [
+      "m.g.h",
+      "1/2 m.v²",
+      "F.d",
+      "m.a"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Física",
+    "tema": "Trabajo y Energía"
+  },
+  {
+    "texto": "Fenómeno que permite la comunicación radial a larga distancia (reflexión de ondas):",
+    "opciones": [
+      "Efecto Invernadero",
+      "Ionización (Capa de Kennelly-Heaviside)",
+      "Inversión Térmica",
+      "Auroras Boreales"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Geografía",
+    "tema": "La Atmósfera"
+  },
+  {
+    "texto": "¿En qué cuadrante el Seno y la Cosecante son positivos?",
+    "img": "",
+    "opciones": [
+      "I y III",
+      "I y II",
+      "II y IV",
+      "Solo en I"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Trigonometría",
+    "tema": "Ángulos en Posición Normal"
+  },
+  {
+    "texto": "La suma de los ángulos internos de un triángulo es:",
+    "img": "",
+    "opciones": [
+      "90°",
+      "180°",
+      "360°",
+      "270°"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Geometría",
+    "tema": "Triángulos"
+  },
+  {
+    "texto": "Propiedad fundamental: F3 (Acumulada) es igual a:",
+    "img": "",
+    "opciones": [
+      "f1 + f2",
+      "f1 + f2 + f3",
+      "f3 + f4",
+      "h3 . n"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Estadística",
+    "tema": "Tabla de Frecuencias I"
+  },
+  {
+    "texto": "¿Qué relación existe entre 'Jauría' y 'Perro'?",
+    "opciones": [
+      "Hiperonimia",
+      "Holonimia (Todo-Parte)",
+      "Antonimia",
+      "Homonimia"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Aptitúd Académica",
+    "tema": "Relaciones Semánticas"
+  },
+  {
+    "texto": "Antónimo de 'CIMA':",
+    "opciones": [
+      "Cumbre",
+      "Sima (Abismo)",
+      "Alto",
+      "Montaña"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Aptitúd Académica",
+    "tema": "Antonimia"
+  },
+  {
+    "texto": "Cuando el código es el centro del mensaje (ej: definiciones), la función es:",
+    "opciones": [
+      "Fática",
+      "Poética",
+      "Metalingüística",
+      "Apelativa"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Lenguaje",
+    "tema": "La Comunicación"
+  },
+  {
+    "texto": "La teoría del 'Big Bang' o Gran Explosión fue planteada inicialmente por:",
+    "opciones": [
+      "Albert Einstein",
+      "George Gamow",
+      "George Lemaitre",
+      "Edwin Hubble"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Geografía",
+    "tema": "El Universo"
+  },
+  {
+    "texto": "Halla la suma de cifras del resultado de: E = (333...333)² (donde hay 9 cifras).",
+    "img": "",
+    "opciones": [
+      "27",
+      "81",
+      "9",
+      "18"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Razonamiento Matemático",
+    "tema": "Inducción y Deducción"
+  },
+  {
+    "texto": "Restos líticos más antiguos de la costa peruana (Taller lítico):",
+    "opciones": [
+      "Pacaicasa",
+      "Chivateros",
+      "Toquepala",
+      "Lauricocha"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia del Perú",
+    "tema": "Poblamiento Americano"
+  },
+  {
+    "texto": "Un vector se define por tener:",
+    "opciones": [
+      "Solo módulo",
+      "Módulo y Dirección",
+      "Solo dirección",
+      "Masa y Peso"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Física",
+    "tema": "Vectores"
+  },
+  {
+    "texto": "Según Kant, lo que conocemos de las cosas (su apariencia) se llama ______ y lo que son en sí mismas ______.",
+    "opciones": [
+      "Noúmeno - Fenómeno",
+      "Fenómeno - Noúmeno",
+      "Idea - Materia",
+      "Sujeto - Objeto"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Filosofía",
+    "tema": "Filosofía Moderna"
+  },
+  {
+    "texto": "Si fueran 5 horas más tarde, faltaría para acabar el día el triple de lo que faltaría si fuera 3 horas más temprano. ¿Qué hora es?",
+    "img": "",
+    "opciones": [
+      "14:00",
+      "15:00",
+      "16:00",
+      "18:00"
+    ],
+    "correcta": 2,
+    "tiempo": 60,
+    "curso": "Razonamiento Matemático",
+    "tema": "Cronometría y Móviles"
+  },
+  {
+    "texto": "La intención comunicativa de un manual de instrucciones es:",
+    "img": "",
+    "opciones": [
+      "Entretener",
+      "Persuadir",
+      "Prescribir o guiar acciones",
+      "Narrar una historia"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Aptitúd Académica",
+    "tema": "Comprensión III: Crítica"
+  },
+  {
+    "texto": "¿Cuál es la principal fuente de energía inmediata para la célula?",
+    "opciones": [
+      "Proteínas",
+      "Lípidos",
+      "Glúcidos (Glucosa)",
+      "Ácidos Nucleicos"
+    ],
+    "correcta": 2,
+    "tiempo": 20,
+    "curso": "Biología",
+    "tema": "Biomoléculas Orgánicas"
+  },
+  {
+    "texto": "Principio de Multiplicación: Tengo 3 camisas y 2 pantalones. ¿De cuántas formas puedo vestirme?",
+    "img": "",
+    "opciones": [
+      "5",
+      "6",
+      "9",
+      "4"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Razonamiento Matemático",
+    "tema": "Combinatoria y Probabilidad"
+  },
+  {
+    "texto": "El 'cerebro' de la célula que contiene el material genético es:",
+    "opciones": [
+      "Nucléolo",
+      "Núcleo",
+      "Citoplasma",
+      "Retículo"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Biología",
+    "tema": "Citología: Célula Eucariota"
+  },
+  {
+    "texto": "Reduce: (x⁴ . x⁶) / x⁵",
+    "img": "",
+    "opciones": [
+      "x²",
+      "x⁵",
+      "x¹⁰",
+      "x"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Álgebra",
+    "tema": "Teoría de Exponentes"
+  },
+  {
+    "texto": "(I) La computadora es una máquina electrónica. (II) Procesa datos. (III) El ábaco fue la primera calculadora. (IV) Tiene hardware y software. (V) Es indispensable hoy en día.",
+    "opciones": [
+      "I",
+      "III",
+      "IV",
+      "V"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Miscelánea Verbal II"
+  },
+  {
+    "texto": "Halla el valor de 'E' = 999 x 1001",
+    "img": "",
+    "opciones": [
+      "999999",
+      "999001",
+      "1000001",
+      "998999"
+    ],
+    "correcta": 0,
+    "tiempo": 50,
+    "curso": "Razonamiento Matemático",
+    "tema": "Inducción y Deducción"
+  },
+  {
+    "texto": "Obra de Aristóteles dedicada a su hijo, donde trata sobre la felicidad y la virtud:",
+    "opciones": [
+      "La República",
+      "El Banquete",
+      "Ética a Nicómaco",
+      "Metafísica"
+    ],
+    "correcta": 2,
+    "tiempo": 40,
+    "curso": "Filosofía",
+    "tema": "Socrática (Platón y Aristóteles)"
+  },
+  {
+    "texto": "Variación Porcentual: Si la base de un triángulo aumenta en 20% y su altura disminuye en 20%, el área:",
+    "img": "",
+    "opciones": [
+      "No varía",
+      "Aumenta 4%",
+      "Disminuye 4%",
+      "Disminuye 1%"
+    ],
+    "correcta": 2,
+    "tiempo": 45,
+    "curso": "Razonamiento Matemático",
+    "tema": "Fracciones y Porcentajes"
+  },
+  {
+    "texto": "Fórmula del Área: Si conoces dos lados (a, b) y el ángulo comprendido (α), el área es:",
+    "img": "",
+    "opciones": [
+      "a.b.Sen(α)",
+      "(a.b)/2 . Sen(α)",
+      "(a.b)/2 . Cos(α)",
+      "a.b"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Trigonometría",
+    "tema": "Resolución de Triángulos"
+  },
+  {
+    "texto": "Ángulo Semi-inscrito: Formado por una tangente y una cuerda. Si el arco es 120°, el ángulo es:",
+    "img": "",
+    "opciones": [
+      "120°",
+      "60°",
+      "240°",
+      "90°"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Geometría",
+    "tema": "Circunferencia"
+  },
+  {
+    "texto": "Monedas: ¿Cuántas monedas del mismo tamaño se pueden colocar tangencialmente alrededor de una moneda central?",
+    "img": "",
+    "opciones": [
+      "4",
+      "5",
+      "6",
+      "8"
+    ],
+    "correcta": 2,
+    "tiempo": 25,
+    "curso": "Razonamiento Matemático",
+    "tema": "Raz. Lógico y Recreativo"
+  },
+  {
+    "texto": "¿Cuál es un sustantivo propio?",
+    "opciones": [
+      "Río",
+      "Montaña",
+      "Amazonas",
+      "País"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Lenguaje",
+    "tema": "El Sustantivo"
+  },
+  {
+    "texto": "Edades: Si actualmente tengo 20 años, ¿qué edad tendré dentro de 'x' años?",
+    "img": "",
+    "opciones": [
+      "20x",
+      "20 - x",
+      "20 + x",
+      "x - 20"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Razonamiento Matemático",
+    "tema": "Planteo de Ecuaciones y Edades"
+  },
+  {
+    "texto": "¿Cuántos ATP netos produce la glucólisis?",
+    "opciones": [
+      "2 ATP",
+      "4 ATP",
+      "36 ATP",
+      "38 ATP"
+    ],
+    "correcta": 0,
+    "tiempo": 25,
+    "curso": "Biología",
+    "tema": "Metabolismo Celular"
+  },
+  {
+    "texto": "El Número Atómico (Z) indica la cantidad de:",
+    "opciones": [
+      "Neutrones",
+      "Protones",
+      "Nucleones",
+      "Electrones de valencia"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Química",
+    "tema": "Estructura Atómica"
+  },
+  {
+    "texto": "El Feudalismo se basó en la propiedad de:",
+    "img": "",
+    "opciones": [
+      "El dinero",
+      "La tierra (El Feudo)",
+      "Las fábricas",
+      "Los esclavos"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Historia Universal",
+    "tema": "Feudalismo y Mercantilismo"
+  },
+  {
+    "texto": "En la 'Alegoría de la Caverna', Platón explica su teoría de:",
+    "opciones": [
+      "Los dos mundos (Sensible e Inteligible)",
+      "La evolución",
+      "La democracia",
+      "Los átomos"
+    ],
+    "correcta": 0,
+    "tiempo": 30,
+    "curso": "Filosofía",
+    "tema": "Socrática (Platón y Aristóteles)"
+  },
+  {
+    "texto": "Para Aristóteles, la filosofía es la ciencia teórica de los:",
+    "opciones": [
+      "Entes ideales",
+      "Primeros principios y primeras causas",
+      "Valores morales",
+      "Fenómenos sociales"
+    ],
+    "correcta": 1,
+    "tiempo": 40,
+    "curso": "Filosofía",
+    "tema": "Historia de la Filosofía"
+  },
+  {
+    "texto": "Unidad básica de la herencia biológica:",
+    "opciones": [
+      "Cromosoma",
+      "Gen",
+      "ADN",
+      "Célula"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Psicología",
+    "tema": "Factores del Comportamiento"
+  },
+  {
+    "texto": "La cultura Nazca es mundialmente famosa por:",
+    "opciones": [
+      "Sus trepanaciones craneanas",
+      "Sus geoglifos (Líneas de Nazca)",
+      "Su orfebrería de oro",
+      "Sus cabezas trofeo"
+    ],
+    "correcta": 1,
+    "tiempo": 20,
+    "curso": "Historia del Perú",
+    "tema": "Altas Culturas (Pre-Incas)"
+  },
+  {
+    "texto": "Yo tengo el doble de la edad que tú tenías cuando yo tenía la edad que tú tienes. Si nuestras edades suman 63, ¿qué edad tengo?",
+    "img": "",
+    "opciones": [
+      "36",
+      "28",
+      "27",
+      "42"
+    ],
+    "correcta": 0,
+    "tiempo": 60,
+    "curso": "Razonamiento Matemático",
+    "tema": "Planteo de Ecuaciones y Edades"
+  },
+  {
+    "texto": "Texto: 'El agua es vital para la vida. Sin ella, los seres vivos morirían de deshidratación. Además, regula el clima.' ¿Cuál es el TEMA?",
+    "img": "",
+    "opciones": [
+      "La deshidratación",
+      "El clima",
+      "El agua",
+      "La muerte"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Comprensión I: Jerarquía"
+  },
+  {
+    "texto": "En un triángulo rectángulo, el lado opuesto al ángulo de 90° es:",
+    "img": "",
+    "opciones": [
+      "Cateto",
+      "Hipotenusa",
+      "Altura",
+      "Mediana"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Geometría",
+    "tema": "Triángulos"
+  },
+  {
+    "texto": "Los 'Cantares de Gesta' son obras de carácter:",
+    "opciones": [
+      "Escrito y culto",
+      "Oral y popular (Anónimo)",
+      "Religioso y teocéntrico",
+      "Filosófico"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Literatura",
+    "tema": "Clasicismo y Medievalismo"
+  },
+  {
+    "texto": "Convierte 50g (grados centesimales) al sistema sexagesimal.",
+    "img": "",
+    "opciones": [
+      "45°",
+      "50°",
+      "40°",
+      "55°"
+    ],
+    "correcta": 0,
+    "tiempo": 25,
+    "curso": "Trigonometría",
+    "tema": "Sistema de Medida Angular"
+  },
+  {
+    "texto": "La Revolución Meiji en Japón significó:",
+    "img": "",
+    "opciones": [
+      "El cierre de fronteras",
+      "La modernización e industrialización",
+      "La vuelta al feudalismo",
+      "La adopción del comunismo"
+    ],
+    "correcta": 1,
+    "tiempo": 25,
+    "curso": "Historia Universal",
+    "tema": "Siglo XIX: Industria e Imperialismo"
+  },
+  {
+    "texto": "Se vende un objeto ganando el 20% del precio de VENTA. Si costó S/80, ¿cuál fue el precio de venta?",
+    "img": "",
+    "opciones": [
+      "S/100",
+      "S/96",
+      "S/110",
+      "S/120"
+    ],
+    "correcta": 0,
+    "tiempo": 45,
+    "curso": "Razonamiento Matemático",
+    "tema": "Fracciones y Porcentajes"
+  },
+  {
+    "texto": "No pueden someterse a referéndum:",
+    "opciones": [
+      "Leyes municipales",
+      "Reformas constitucionales",
+      "Normas tributarias y presupuestales",
+      "Ordenanzas regionales"
+    ],
+    "correcta": 2,
+    "tiempo": 40,
+    "curso": "Educación Cívica",
+    "tema": "Estado y Normas"
+  },
+  {
+    "texto": "Un átomo es Paramagnético si tiene:",
+    "opciones": [
+      "Todos sus electrones apareados",
+      "Al menos un electrón desapareado",
+      "Carga positiva",
+      "Muchos neutrones"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Química",
+    "tema": "Configuración Electrónica"
+  },
+  {
+    "texto": "La célula fundamental de la sociedad según la Constitución es:",
+    "opciones": [
+      "El Individuo",
+      "La Familia",
+      "El Estado",
+      "El Matrimonio"
+    ],
+    "correcta": 1,
+    "tiempo": 15,
+    "curso": "Educación Cívica",
+    "tema": "Familia y Parentesco"
+  },
+  {
+    "texto": "El entorno físico y social que rodea al individuo se denomina:",
+    "opciones": [
+      "Ambiente",
+      "Genética",
+      "Herencia",
+      "Instinto"
+    ],
+    "correcta": 0,
+    "tiempo": 20,
+    "curso": "Psicología",
+    "tema": "Factores del Comportamiento"
+  },
+  {
+    "texto": "Si el autor critica severamente la tecnología moderna, es incompatible afirmar que:",
+    "img": "",
+    "opciones": [
+      "Prefiere lo antiguo",
+      "Cree que la tecnología aísla",
+      "Es un promotor de la Inteligencia Artificial",
+      "Valora la comunicación cara a cara"
+    ],
+    "correcta": 2,
+    "tiempo": 45,
+    "curso": "Aptitúd Académica",
+    "tema": "Comprensión II: Inferencias"
+  },
+  {
+    "texto": "En un triángulo rectángulo, si se conoce la hipotenusa 'H' y el ángulo agudo 'x', ¿cuánto mide el cateto opuesto?",
+    "img": "",
+    "opciones": [
+      "H . Sen(x)",
+      "H . Cos(x)",
+      "H . Tan(x)",
+      "H . Cot(x)"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Trigonometría",
+    "tema": "Resolución de Triángulos"
+  },
+  {
+    "texto": "Si un número es múltiplo de 9, entonces necesariamente es múltiplo de:",
+    "img": "",
+    "opciones": [
+      "2",
+      "5",
+      "3",
+      "6"
+    ],
+    "correcta": 2,
+    "tiempo": 15,
+    "curso": "Aritmética",
+    "tema": "Divisibilidad"
+  },
+  {
+    "texto": "En un edificio de 4 pisos viven 4 amigos. A vive más arriba que B, pero más abajo que C. D vive en el 4to piso. ¿En qué piso vive A?",
+    "img": "",
+    "opciones": [
+      "1ero",
+      "2do",
+      "3ero",
+      "4to"
+    ],
+    "correcta": 2,
+    "tiempo": 30,
+    "curso": "Razonamiento Matemático",
+    "tema": "Orden de Información"
+  },
+  {
+    "texto": "¿Qué partícula descubrió Rutherford con su experimento de la lámina de oro?",
+    "opciones": [
+      "El Electrón",
+      "El Núcleo Atómico",
+      "El Neutrón",
+      "El Quark"
+    ],
+    "correcta": 1,
+    "tiempo": 35,
+    "curso": "Química",
+    "tema": "Estructura Atómica"
+  },
+  {
+    "texto": "Un número es divisible por 2 cuando:",
+    "img": "",
+    "opciones": [
+      "Termina en cero o cifra par",
+      "La suma de sus cifras es par",
+      "Termina en impar",
+      "Es múltiplo de 3"
+    ],
+    "correcta": 0,
+    "tiempo": 15,
+    "curso": "Aritmética",
+    "tema": "Divisibilidad"
+  },
+  {
+    "texto": "Si Sec(2x) = Csc(x + 30°), calcula: M = Tan(2x + 5°)",
+    "img": "",
+    "opciones": [
+      "1",
+      "√3",
+      "√3/3",
+      "2"
+    ],
+    "correcta": 0,
+    "tiempo": 40,
+    "curso": "Trigonometría",
+    "tema": "Propiedades de las R.T."
+  },
+  {
+    "texto": "El grupo sanguíneo considerado 'Receptor Universal' es:",
+    "opciones": [
+      "O Rh-",
+      "A Rh+",
+      "AB Rh+",
+      "O Rh+"
+    ],
+    "correcta": 2,
+    "tiempo": 35,
+    "curso": "Anatomía",
+    "tema": "Tejido Sanguíneo"
+  },
+  {
+    "texto": "(I) La mandarina es un cítrico. (II) Posee vitamina C. (III) Es de color naranja. (IV) Ayuda a prevenir resfriados. (V) La naranja también tiene vitamina C.",
+    "img": "",
+    "opciones": [
+      "IV",
+      "V",
+      "III",
+      "I"
+    ],
+    "correcta": 1,
+    "tiempo": 30,
+    "curso": "Aptitúd Académica",
+    "tema": "Eliminación de Oraciones"
+  },
+  {
+    "texto": "Psicotécnico: ¿Qué figura no guarda relación? (Mental: Cuadrado, Triángulo, Círculo, Cubo)",
+    "img": "",
+    "opciones": [
+      "Cuadrado",
+      "Triángulo",
+      "Círculo",
+      "Cubo"
+    ],
+    "correcta": 3,
+    "tiempo": 15,
+    "curso": "Razonamiento Matemático",
+    "tema": "Psicotécnico y Frecuencia"
+  }
+]

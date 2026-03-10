@@ -75,13 +75,13 @@ const cursosDB = {
             "Antonimia", 
             "Series verbales", 
             "Analogías",
-            "Conectores y Oraciones Incompletas", // Tema 7
-            "Término Excluido e Inclusión",       // Tema 8
-            "Plan de Redacción y Coherencia",     // Tema 9
-            "Eliminación de Oraciones",           // Tema 10 (Pendiente)
-            "Comprensión de Lectura I",           // Tema 11 (Pendiente)
-            "Comprensión de Lectura II",          // Tema 12 (Pendiente)
-            "Comprensión de Lectura III",          // Tema 13 (Pendiente)
+            "Conectores y Oraciones Incompletas",
+            "Término Excluido e Inclusión",
+            "Plan de Redacción y Coherencia",
+            "Eliminación de Oraciones",
+            "Comprensión de Lectura I",
+            "Comprensión de Lectura II",
+            "Comprensión de Lectura III",
             "Miscenalea-I",
             "Miscelanea-II"
         ]
@@ -105,12 +105,12 @@ const cursosDB = {
             "Cultura Romana", 
             "Bárbaros - Carolingio", 
             "Árabes e Imperio Bizantino", // Pequeño ajuste para ser más completo
-            "Feudalismo y Capitalismo Mercantil", // Tema 7
-            "Edad Moderna: Humanismo y Reforma",  // Tema 8
-            "Ilustración y Revoluciones Burguesas", // Tema 9
-            "Siglo XIX: Industria e Imperialismo",  // Tema 10 (Pendiente de preguntas)
-            "Guerras Mundiales y Totalitarismo",    // Tema 11 (Pendiente de preguntas)
-            "Guerra Fría y Mundo Actual"            // Tema 12 (Pendiente de preguntas)
+            "Feudalismo y Capitalismo Mercantil",
+            "Edad Moderna: Humanismo y Reforma",
+            "Ilustración y Revoluciones Burguesas",
+            "Siglo XIX: Industria e Imperialismo",
+            "Guerras Mundiales y Totalitarismo",
+            "Guerra Fría y Mundo Actual"
         ]
     },
     'geografia': {

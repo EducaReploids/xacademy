@@ -81,7 +81,7 @@ const bancoPreguntas = {
             },
             {
                 texto: "Resuelve: 9^(x-1) = 27",
-                img: "img/algebra/ecuacion_exponencial_dificil.jpg", // Recomendado usar imagen
+                img: "", // Recomendado usar imagen
                 opciones: ["2", "2.5", "3", "1.5"],
                 correcta: 1,
                 tiempo: 45

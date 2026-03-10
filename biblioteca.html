@@ -56,7 +56,7 @@
             padding: 10px;
             background: white;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 40px;
             height: 40px;
             display: flex;
@@ -65,7 +65,10 @@
             transition: transform 0.2s;
             -webkit-tap-highlight-color: transparent;
         }
-        .back-btn:active { transform: scale(0.9); }
+
+        .back-btn:active {
+            transform: scale(0.9);
+        }
 
         /* FILTROS */
         .filter-container {
@@ -121,7 +124,9 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        .book-card:active { transform: scale(0.98); }
+        .book-card:active {
+            transform: scale(0.98);
+        }
 
         /* PORTADA */
         .book-cover {
@@ -221,17 +226,32 @@
             display: none;
             text-align: center;
             font-size: 14px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             animation: slideUp 0.3s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes slideUp {
-            from { opacity: 0; transform: translate(-50%, 20px); }
-            to { opacity: 1; transform: translate(-50%, 0); }
+            from {
+                opacity: 0;
+                transform: translate(-50%, 20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
         }
     </style>
 </head>
@@ -257,7 +277,7 @@
     <div id="xpToast">📖 +10 XP</div>
 
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec"
+        const API_URL = "https://script.google.com/macros/s/AKfycbwlNXf36OcyxNbfrdzoj9NVD5nM8HE1mvI-gM0ksF5Ivy1tjkBmMc-TB3W6JWTudfJ50w/exec"
 
         const libraryData = [
             // --- MATEMÁTICAS ---
@@ -350,7 +370,7 @@
             setTimeout(() => {
                 if (url && url.startsWith('http')) {
                     // _blank es universal para abrir en nueva pestaña/navegador
-                    window.open(url, '_blank'); 
+                    window.open(url, '_blank');
                 } else {
                     alert("Enlace no disponible por el momento.");
                 }
@@ -361,4 +381,5 @@
         renderBooks('todos');
     </script>
 </body>
+
 </html>

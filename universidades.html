@@ -1,52 +1,287 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0049c6">
     <title>Zona de Admisión</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/styles.css">
     <style>
-        :root { --primary: #0049c6; --secondary: #002a70; --bg: #f4f6f9; --card: #ffffff; --text: #333; }
-        body { font-family: 'Roboto', sans-serif; background: var(--bg); margin: 0; padding: 20px; padding-bottom: 80px; }
-        .main-wrapper { max-width: 1000px; margin: 0 auto; width: 100%; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .header h1 { font-size: 22px; color: var(--primary); margin: 0; font-weight: 800; flex: 1; text-align: center; margin-right: 40px; }
-        .back-btn { font-size: 20px; color: #333; cursor: pointer; padding: 10px; background: white; border-radius: 50%; border: none; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
-        .filters { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; margin-bottom: 20px; scrollbar-width: none; justify-content: center; }
-        .filter-chip { background: white; padding: 8px 16px; border-radius: 20px; font-size: 13px; border: 1px solid #eee; cursor: pointer; color: #666; white-space: nowrap; }
-        .filter-chip.active { background: var(--primary); color: white; font-weight: bold; }
-        .uni-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; justify-content: center; }
-        .uni-card { background: var(--card); border-radius: 15px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); cursor: pointer; position: relative; display: flex; flex-direction: column; align-items: center; }
-        .uni-card img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 10px; }
-        .uni-name { font-weight: bold; font-size: 14px; text-transform: uppercase; }
-        .info-bubble { position: absolute; top: 10px; right: 10px; width: 24px; height: 24px; background: #e0f0ff; border-radius: 50%; font-size: 12px; color: var(--primary); display: flex; justify-content: center; align-items: center; font-weight: bold; }
-        #blocksView { display: none; animation: fadeIn 0.3s; }
-        .uni-banner { background: linear-gradient(135deg, var(--primary), #002a70); border-radius: 15px; padding: 20px; color: white; text-align: center; margin-bottom: 20px; }
-        .uni-banner img { width: 50px; background: white; border-radius: 50%; padding: 5px; }
-        .block-list { display: flex; flex-direction: column; gap: 12px; }
-        .block-card { background: white; border-radius: 12px; padding: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); cursor: pointer; }
-        .block-icon { width: 40px; height: 40px; background: #e0f0ff; color: var(--primary); border-radius: 10px; display: flex; justify-content: center; align-items: center; font-weight: bold; margin-right: 15px; }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; display: none; justify-content: center; align-items: end; }
-        .modal-content { background: white; width: 100%; border-radius: 20px 20px 0 0; padding: 25px; max-height: 85vh; overflow-y: hidden; display: flex; flex-direction: column; animation: slideUp 0.3s; }
-        .modal-scroll-area { overflow-y: auto; flex: 1; margin-bottom: 10px; }
-        .exam-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #eee; }
-        .btn-group { display: flex; gap: 8px; }
-        .exam-btn { background: var(--primary); color: white; border: none; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; }
-        .rank-btn { background: #ffcc00; color: #333; border: none; padding: 8px 12px; border-radius: 20px; font-size: 14px; cursor: pointer; }
-        .rank-item { display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; font-size: 14px; }
-        .rank-pos { width: 25px; height: 25px; background: #eee; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; margin-right: 10px; }
-        .rank-1 { background: #ffcc00; color: white; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        :root {
+            --primary: #0049c6;
+            --secondary: #002a70;
+            --card: #ffffff;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            padding: 20px;
+            padding-top: calc(20px + env(safe-area-inset-top, 0px));
+            padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+        }
+
+        .main-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 22px;
+            color: var(--primary);
+            margin: 0;
+            font-weight: 800;
+            flex: 1;
+            text-align: center;
+            margin-right: 40px;
+        }
+
+        .back-btn {
+            font-size: 20px;
+            color: #333;
+            cursor: pointer;
+            padding: 10px;
+            background: white;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+            scrollbar-width: none;
+            justify-content: center;
+        }
+
+        .filter-chip {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid #eee;
+            cursor: pointer;
+            color: #666;
+            white-space: nowrap;
+        }
+
+        .filter-chip.active {
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+        }
+
+        .uni-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .uni-card {
+            background: var(--card);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .uni-card img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .uni-name {
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .info-bubble {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background: #e0f0ff;
+            border-radius: 50%;
+            font-size: 12px;
+            color: var(--primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        #blocksView {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .uni-banner {
+            background: linear-gradient(135deg, var(--primary), #002a70);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .uni-banner img {
+            width: 50px;
+            background: white;
+            border-radius: 50%;
+            padding: 5px;
+        }
+
+        .block-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .block-card {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .block-icon {
+            width: 40px;
+            height: 40px;
+            background: #e0f0ff;
+            color: var(--primary);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .modal-scroll-area {
+            overflow-y: auto;
+            flex: 1;
+            margin-bottom: 10px;
+        }
+
+        .exam-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .exam-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .rank-btn {
+            background: #ffcc00;
+            color: #333;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .rank-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .rank-pos {
+            width: 25px;
+            height: 25px;
+            background: #eee;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .rank-1 {
+            background: #ffcc00;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <div class="main-wrapper">
         <div class="header">
-            <button id="backBtn" class="back-btn" onclick="handleNavigation()"><i class="fas fa-arrow-left"></i></button>
+            <button id="backBtn" class="back-btn" onclick="handleNavigation()"><i
+                    class="fas fa-arrow-left"></i></button>
             <h1 id="pageTitle">Universidades</h1>
             <div style="width: 20px;"></div>
         </div>
@@ -77,12 +312,14 @@
                 </div>
                 <div class="uni-card" data-cat="arequipa" onclick="openUni('unsa')">
                     <div class="info-bubble" onclick="openInfoModal('unsa', event)">i</div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBk8nFZZuFX-0aRXyNvFusoxoyFifxct-_eQ&s">
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBk8nFZZuFX-0aRXyNvFusoxoyFifxct-_eQ&s">
                     <div class="uni-name">UNSA</div>
                 </div>
                 <div class="uni-card" data-cat="lima" onclick="openUni('untels')">
                     <div class="info-bubble" onclick="openInfoModal('untels', event)">i</div>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Untels_01.png/250px-Untels_01.png">
+                    <img
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Untels_01.png/250px-Untels_01.png">
                     <div class="uni-name">UNTELS</div>
                 </div>
                 <div class="uni-card" data-cat="cajamarca" onclick="openUni('unc')">
@@ -108,16 +345,20 @@
         </div>
 
     </div>
-    <div id="universalModal" class="modal-overlay" onclick="closeModal(event)">
+    <div id="universalModal" class="modal-overlay" onclick="if(event.target.id === 'universalModal') closeModal('universalModal')">
         <div class="modal-content">
             <h3 id="modalTitle" style="color:#0049c6; margin-top:0; flex-shrink:0;">Título</h3>
             <div id="modalBody" class="modal-scroll-area"></div>
-            <button onclick="document.getElementById('universalModal').style.display='none'" style="width:100%; padding:15px; margin-top:10px; border:none; background:#eee; border-radius:10px; font-weight:bold; flex-shrink:0;">Cerrar</button>
+            <button onclick="closeModal('universalModal')"
+                style="width:100%; padding:15px; margin-top:10px; border:none; background:#eee; border-radius:10px; font-weight:bold; flex-shrink:0;">Cerrar</button>
         </div>
     </div>
 
+    <script src="js/utils.js"></script>
     <script>
-        const API_URL = "https://script.google.com/macros/s/AKfycbyiV4L51lYJ_-P5MrOVyMmJVgKwHsLRn0s3ZQy6GBd8Bc0DEzresGu_0fzwAv10YCL9fw/exec";
+        // API_URL viene de utils.js
+
+        document.addEventListener('DOMContentLoaded', () => initXAcademy({ page: 'exams' }));
 
         const universityData = {
             'unjfsc': {
@@ -130,9 +371,9 @@
                 },
                 blocks: [
                     { id: 'A', name: "Bloque A: Ingenierias", exams: [{ t: "Examen I", l: "Faustino_A", x: 100 }] },
-                    { id: 'B', name: "Bloque B: Salud", exams: [{ t: "Examen I", l: "Faustino_B", x: 100 }]  },
-                    { id: 'C', name: "Bloque C: Ciencias Sociales", exams: [{ t: "Examen I", l: "Faustino_C", x: 100 }]  },
-                    { id: 'D', name: "Bloque D: Economia", exams: [{ t: "Examen I", l: "Faustino_D", x: 100 }]  }
+                    { id: 'B', name: "Bloque B: Salud", exams: [{ t: "Examen I", l: "Faustino_B", x: 100 }] },
+                    { id: 'C', name: "Bloque C: Ciencias Sociales", exams: [{ t: "Examen I", l: "Faustino_C", x: 100 }] },
+                    { id: 'D', name: "Bloque D: Economia", exams: [{ t: "Examen I", l: "Faustino_D", x: 100 }] }
                 ]
             },
             'unmsm': {
@@ -144,9 +385,9 @@
                     requisitos: "DNI, Compra de Prospecto, Pago de inscripción."
                 },
                 blocks: [
-                    { id: 'A', name: "Área A: Ciencias de la Salud", exams: [{ t: "Simulacro 2024-I", l: "unmsm_2024_1", x: 0 }] },
-                    { id: 'B', name: "Área B: Ciencias Básicas", exams: [] },
-                    { id: 'C', name: "Área C: Ingenierías", exams: [] }
+                    { id: 'A', name: "Área A: Ciencias de la Salud", exams: [{ t: "Simulacro Área A", l: "unmsm_A", x: 2000 }] },
+                    { id: 'B', name: "Área B: Ciencias Básicas", exams: [{ t: "Simulacro Área B", l: "unmsm_B", x: 2000 }] },
+                    { id: 'C', name: "Área C: Ingenierías", exams: [{ t: "Simulacro Área C", l: "unmsm_C", x: 2000 }] }
                 ]
             },
             'unab': {
@@ -158,7 +399,7 @@
                     requisitos: "Certificado de estudios, DNI, Pago de tasa."
                 },
                 blocks: [
-                    { id: 'ORD', name: "Examen Ordinario", exams: [] }
+                    { id: 'ORD', name: "Examen Ordinario", exams: [{ t: "Simulacro Ordinario", l: "unab_ord", x: 800 }] }
                 ]
             },
             'untels': {
@@ -170,7 +411,7 @@
                     requisitos: "DNI vigente, Voucher de pago, Constancia de logros."
                 },
                 blocks: [
-                    { id: 'I', name: "Examen General", exams: [] }
+                    { id: 'I', name: "Examen General", exams: [{ t: "Simulacro General", l: "untels_gen", x: 1000 }] }
                 ]
             },
             'unsa': {
@@ -182,8 +423,8 @@
                     requisitos: "Inscripción vía web, DNI, Fotografía digital."
                 },
                 blocks: [
-                    { id: 'ORD', name: "Ordinario I Fase", exams: [] },
-                    { id: 'CEP', name: "CEPRUNSA", exams: [] }
+                    { id: 'ORD', name: "Ordinario I Fase", exams: [{ t: "Simulacro Ordinario", l: "unsa_ord", x: 240 }] },
+                    { id: 'CEP', name: "CEPRUNSA", exams: [{ t: "Simulacro CEPRUNSA", l: "unsa_cep", x: 240 }] }
                 ]
             },
             'unc': {
@@ -195,7 +436,7 @@
                     requisitos: "Certificado de secundaria, DNI, Pago de derecho."
                 },
                 blocks: [
-                    { id: 'G', name: "Examen General", exams: [] }
+                    { id: 'G', name: "Examen General", exams: [{ t: "Simulacro General", l: "unc_gen", x: 360 }] }
                 ]
             },
             'usmp': {
@@ -207,7 +448,7 @@
                     requisitos: "Examen de Admisión Ordinario, Documentos académicos."
                 },
                 blocks: [
-                    { id: 'ORD', name: "Examen Ordinario", exams: [{ t: "Simulacro General 2024", l: "usmp_ordinario_1", x: 0 }] }
+                    { id: 'ORD', name: "Examen Ordinario", exams: [{ t: "Simulacro Ordinario", l: "usmp_ord", x: 1000 }] }
                 ]
             }
         };
@@ -259,7 +500,7 @@
                 </div>`).join('') : "<p style='text-align:center;color:#999;'>No hay exámenes disponibles.</p>";
 
             document.getElementById('modalBody').innerHTML = html;
-            document.getElementById('universalModal').style.display = 'flex';
+            openModal('universalModal');
         }
 
         function fetchRanking(examId, title) {
@@ -268,7 +509,8 @@
 
             fetch(`${API_URL}?action=getRanking&curso=${encodeURIComponent(examId)}`)
                 .then(r => r.json())
-                .then(d => {
+                .then(res => {
+                    const d = Array.isArray(res) ? res : (res.data || []);
                     let h = "";
                     if (d.length === 0) h += "<p align='center'>Sé el primero en el ranking.</p>";
                     d.forEach((u, i) => {
@@ -281,12 +523,15 @@
                           </div>`;
                     });
                     document.getElementById('modalBody').innerHTML = h;
+                })
+                .catch(err => {
+                    document.getElementById('modalBody').innerHTML = "<p align='center' style='color:red;'>Error cargando el ranking.</p>";
                 });
         }
 
         function openInfoModal(k, ev) {
             ev.stopPropagation();
-            const uni = universityData[k]; 
+            const uni = universityData[k];
             const info = uni.info;
 
             document.getElementById('modalTitle').innerText = "Información - " + uni.name;
@@ -309,8 +554,8 @@
                     <h4 style="color:#0049c6; margin-top:20px; margin-bottom:5px;">📋 Requisitos</h4>
                     <p style="margin-top:0; color:#555; line-height:1.4;">${info.requisitos}</p>
                 </div>`;
-                
-            document.getElementById('universalModal').style.display = 'flex';
+
+            openModal('universalModal');
         }
 
         function filterUni(c, btn) {
@@ -318,8 +563,7 @@
             btn.classList.add('active');
             document.querySelectorAll('.uni-card').forEach(u => u.style.display = (c === 'all' || u.dataset.cat === c) ? 'flex' : 'none');
         }
-
-        function closeModal(e) { if (e.target.id === 'universalModal') document.getElementById('universalModal').style.display = 'none'; }
     </script>
 </body>
+
 </html>

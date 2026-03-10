@@ -1,50 +1,786 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Vocacional</title>
-    <link rel="stylesheet" href="css/testStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Test Vocacional | X-Academy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
+        :root {
+            --bg-color: #0d1117;
+            --primary: #2f81f7;
+            --primary-hover: #1f6feb;
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --border: #30363d;
+            --success: #238636;
 
+            --opt-3: #238636;
+            /* Me encanta */
+            --opt-2: #2f81f7;
+            /* Me interesa */
+            --opt-1: #d2a8ff;
+            /* Neutral */
+            --opt-0: #f85149;
+            /* No es lo mio */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at top right, #1f6feb20, transparent 400px),
+                radial-gradient(circle at bottom left, #23863620, transparent 400px);
+            background-attachment: fixed;
+        }
+
+        /* NAVBAR */
+        .header-bar {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(22, 27, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .back-btn {
+            color: var(--text-main);
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: transform 0.2s;
+        }
+
+        .back-btn:active {
+            transform: scale(0.9);
+        }
+
+        .header-title {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        /* SCREENS */
+        .screen {
+            display: none;
+            flex: 1;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* START SCREEN */
+        .start-container {
+            text-align: center;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .start-icon {
+            font-size: 80px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 20px rgba(47, 129, 247, 0.4));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .start-title {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .start-desc {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 0 auto 30px auto;
+            max-width: 300px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .feature-item i {
+            width: 30px;
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(47, 129, 247, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.95);
+        }
+
+        /* PROGRESS BAR */
+        .progress-wrapper {
+            margin-bottom: 30px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-muted);
+        }
+
+        .progress-bar-bg {
+            height: 10px;
+            background: var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* QUESTION CARD */
+        .question-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .q-icon {
+            font-size: 40px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .question-text {
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+            line-height: 1.4;
+        }
+
+        /* OPTIONS */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option-btn {
+            background: var(--card-bg);
+            border: 2px solid var(--border);
+            color: var(--text-main);
+            padding: 16px 20px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            text-align: left;
+        }
+
+        .option-btn i {
+            font-size: 24px;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .opt-3:hover,
+        .opt-3:active {
+            border-color: var(--opt-3);
+            background: rgba(35, 134, 54, 0.1);
+        }
+
+        .opt-3 i {
+            color: var(--opt-3);
+        }
+
+        .opt-2:hover,
+        .opt-2:active {
+            border-color: var(--opt-2);
+            background: rgba(47, 129, 247, 0.1);
+        }
+
+        .opt-2 i {
+            color: var(--opt-2);
+        }
+
+        .opt-1:hover,
+        .opt-1:active {
+            border-color: var(--opt-1);
+            background: rgba(210, 168, 255, 0.1);
+        }
+
+        .opt-1 i {
+            color: var(--opt-1);
+        }
+
+        .opt-0:hover,
+        .opt-0:active {
+            border-color: var(--opt-0);
+            background: rgba(248, 81, 73, 0.1);
+        }
+
+        .opt-0 i {
+            color: var(--opt-0);
+        }
+
+        /* RESULTS SCREEN */
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .result-trophy {
+            font-size: 70px;
+            color: #e3b341;
+            margin-bottom: 10px;
+            filter: drop-shadow(0 0 20px rgba(227, 179, 65, 0.5));
+            animation: bounceIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .result-tagline {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .result-title {
+            font-size: 32px;
+            color: #fff;
+            font-weight: 900;
+            background: -webkit-linear-gradient(45deg, #2f81f7, #d2a8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .careers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .career-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .career-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .career-body {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .career-name {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .career-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .result-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .slide-out {
+            animation: slideOut 0.3s forwards;
+        }
+
+        .slide-in {
+            animation: slideIn 0.3s forwards;
+        }
+
+        @keyframes slideOut {
+            to {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
     </style>
 </head>
+
 <body>
-    <!-- Pantalla inicial -->
-    <div id="tutorial-screen" class="screen active">
-        <h2>Bienvenido al Test Vocacional de X-ACADEMY</h2>
-        <p>Descubre tu camino profesional contestando preguntas rápidas.</p>
-        <img src="img/test.png" alt="Recomendaciones" style="max-width: 100%; height: auto;">
-        <ul>
-            <li>📖 Lee bien cada pregunta.</li>
-            <li>⏳ Tómate el tiempo necesario.</li>
-            <li>✔️ Responde con total sinceridad.</li>
-        </ul>
-        <button id="start-test-btn">Comenzar Test</button>
+
+    <div class="header-bar">
+        <i class="fas fa-arrow-left back-btn" onclick="window.history.back()"></i>
+        <div class="header-title">Orientación Vocacional</div>
     </div>
 
-    <!-- Pantalla de preguntas -->
-    <div id="question-screen" class="screen">
-        <h2>Pregunta <span id="current-question">1</span>/21</h2>
-        <div class="question-container">
-            <p id="question-text"></p>
-            <div class="option" onclick="selectAnswer(0)">Muy de acuerdo</div>
-            <div class="option" onclick="selectAnswer(1)">De acuerdo</div>
-            <div class="option" onclick="selectAnswer(2)">Neutral</div>
-            <div class="option" onclick="selectAnswer(3)">En desacuerdo</div>
+    <!-- 1. START SCREEN -->
+    <div id="screen-start" class="screen active">
+        <div class="start-container">
+            <i class="fas fa-compass start-icon"></i>
+            <h1 class="start-title">Descubre tu Camino</h1>
+            <p class="start-desc">Un test rápido y preciso diseñado para revelar tus verdaderas aptitudes profesionales
+                y la carrera ideal para ti.</p>
+
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <span>Solo 21 preguntas rápidas</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-brain"></i>
+                    <span>Basado en aptitudes reales</span>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Resultados precisos</span>
+                </div>
+            </div>
+
+            <button class="btn-primary" onclick="startTest()">
+                <i class="fas fa-play"></i> Iniciar Test
+            </button>
         </div>
     </div>
 
-    <!-- Pantalla de resultados -->
-    <div id="results-screen" class="screen">
-        <h2>Resultados</h2>
-        <p>Basado en tus respuestas, estas son las carreras sugeridas para ti:</p>
-        <div id="careers-list" class="results-container"></div>
-        <button onclick="resetTest()">Volver a comenzar</button>
+    <!-- 2. QUESTION SCREEN -->
+    <div id="screen-quiz" class="screen">
+        <div class="progress-wrapper">
+            <div class="progress-text">
+                <span>Progreso</span>
+                <span id="progress-text-count">1/21</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-fill" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <div class="question-card" id="q-card">
+            <i class="fas fa-quote-left q-icon"></i>
+            <div class="question-text" id="q-text">Cargando pregunta...</div>
+        </div>
+
+        <div class="options-grid" id="options-container">
+            <!-- Renderizado por JS -->
+        </div>
     </div>
 
-    <script src="scriptTest.js">
-        
+    <!-- 3. RESULTS SCREEN -->
+    <div id="screen-results" class="screen">
+        <div class="result-header">
+            <div class="result-trophy"><i class="fas fa-award"></i></div>
+            <div class="result-tagline">Tu perfil destacado es:</div>
+            <div class="result-title" id="res-title">Desarrollo y Tecnología</div>
+        </div>
+
+        <div class="careers-grid" id="careers-container">
+            <!-- Las carreras sugeridas irán aquí -->
+        </div>
+
+        <div class="result-actions">
+            <button class="btn-primary" style="width: auto;" onclick="window.location.href='index.html'">
+                <i class="fas fa-home"></i> Volver al Inicio
+            </button>
+            <button class="btn-secondary" onclick="resetTest()">
+                <i class="fas fa-undo"></i> Repetir Test
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // DATA
+        // Types: 0 = Ingenierías (A), 1 = Salud (B), 2 = Letras/Sociales (C), 3 = Negocios (D)
+        const questionsData = [
+            { text: "¿Disfrutas resolver problemas matemáticos, acertijos o rompecabezas lógicos?", type: 0 },
+            { text: "¿Te gustaría trabajar en un laboratorio investigando avances médicos o biológicos?", type: 1 },
+            { text: "¿Te atrae diseñar soluciones visuales, textos persuasivos o crear contenido artístico?", type: 2 },
+            { text: "¿Te visualizas desarrollando estrategias para hacer crecer el capital de una empresa?", type: 3 },
+
+            { text: "¿Sientes interés por conocer el funcionamiento interno de las máquinas y computadoras?", type: 0 },
+            { text: "¿Tienes vocación para cuidar personas, entender anatomía o curar lesiones físicas?", type: 1 },
+            { text: "¿Te gusta debatir, analizar problemas sociales o defender los derechos de las personas?", type: 2 },
+            { text: "¿Te consideras bueno liderando equipos, motivando personas y planificando proyectos?", type: 3 },
+
+            { text: "¿Te atrae la idea de diseñar grandes estructuras, edificios o sistemas ambientales?", type: 0 },
+            { text: "¿Te daría satisfacción estudiar la mente humana y ayudar con la salud mental de otros?", type: 1 },
+            { text: "¿Disfrutas enseñar, transmitir conocimientos y guiar el desarrollo de niños o jóvenes?", type: 2 },
+            { text: "¿Comprendes fácilmente temas sobre economía, finanzas y mercado comercial?", type: 3 },
+
+            { text: "¿Te gustaría programar, crear apps o manejar infraestructuras tecnológicas y redes?", type: 0 },
+            { text: "¿Te interesaría investigar sobre química, bioquímica y su efecto en los organismos vivos?", type: 1 },
+            { text: "¿Destacas al expresarte, ya sea hablando en público, actuando o escribiendo historias?", type: 2 },
+            { text: "¿Te ves cerrando tratos de comercio exterior y viajando para negocios internacionales?", type: 3 },
+
+            { text: "¿Te atrae la automatización industrial, robótica o creación de sistemas electrónicos?", type: 0 },
+            { text: "¿Quisieras contribuir a la correcta nutrición y calidad de los alimentos que consumimos?", type: 1 },
+            { text: "¿Sientes pasión por comprender la historia, la cultura y cómo evolucionan las sociedades?", type: 2 },
+            { text: "¿Sueles tomar la iniciativa y administrar los recursos (dinero, tiempo) de tu entorno?", type: 3 },
+
+            { text: "¿Te interesa la optimización de procesos para que una industria produzca de forma más eficiente?", type: 0 }
+        ];
+
+        // Definimos la escala de Likert global. (El index del array equivale al puntaje que otorgará a la categoría)
+        const LIKERT_OPTIONS = [
+            { text: "❌ No es lo mío", class: "opt-0", icon: "fa-times-circle", points: 0 },
+            { text: "🤔 Quizás, no estoy seguro", class: "opt-1", icon: "fa-question-circle", points: 1 },
+            { text: "👍 Me parece interesante", class: "opt-2", icon: "fa-thumbs-up", points: 2 },
+            { text: "🔥 ¡Definitivamente sí!", class: "opt-3", icon: "fa-heart", points: 3 }
+        ];
+
+        const careersBlocks = {
+            0: { // A: Ingenierías
+                title: "Ingeniería y Ciencias Exactas",
+                careers: [
+                    { name: "Ing. de Sistemas", img: "https://worldcampus.saintleo.edu/img/article/estudiar-ingenieria-en-sistemas-cuales-son-los-retos-de-ser-ingenierio-en-sistemas.webp", desc: "Diseña aplicaciones, arquitecturas y redes computacionales del futuro." },
+                    { name: "Ing. Industrial", img: "https://ucontinental.edu.pe/carrera/assets/img/ing-industrial.webp", desc: "Optimiza procesos y sistemas en la gestión de grandes industrias." },
+                    { name: "Ing. Civil", img: "https://micarrerauniversitaria.com/wp-content/uploads/2018/01/construction.jpg", desc: "Diseña y dirige la construcción de puentes, carreteras y rascacielos." },
+                    { name: "Ing. Electrónica", img: "https://www1.utec.edu.pe/sites/default/files/styles/blog_full/public/blog/que_hace_un_ingeniero_electronico_conoce_10_funciones_de_este_profesional.jpg", desc: "Desarrolla robótica, hardware y sistemas de telecomunicaciones avanzados." }
+                ]
+            },
+            1: { // B: Salud
+                title: "Ciencias de la Salud y Vida",
+                careers: [
+                    { name: "Medicina Humana", img: "https://utelesup.edu.pe/wp-content/uploads/2018/11/MEDICINA_HUMANA_TODO_LO_QUE_NECESITAS_SABER.jpg", desc: "Diagnostica, trata y salva vidas humanas en hospitales y clínicas." },
+                    { name: "Enfermería", img: "https://www.tuproyectodevida.pe/wp-content/uploads/2022/02/especialidades-enfermeria-1200x628.jpg", desc: "Brinda atención directa y vital en el proceso de recuperación de pacientes." },
+                    { name: "Psicología", img: "https://img.freepik.com/foto-gratis/psicologo-ayudando-paciente-descubrir-problemas-salud-mental_23-2148992383.jpg", desc: "Estudia el comportamiento mental y ayuda a las personas a encontrar estabilidad." },
+                    { name: "Biología / Biotecnología", img: "https://unjfsc.edu.pe/wp-content/uploads/2020/03/ebb-1.jpg", desc: "Investiga los organismos vivos para desarrollar curas e innovaciones genéticas." }
+                ]
+            },
+            2: { // C: Letras
+                title: "Humanidades, Letras y Educación",
+                careers: [
+                    { name: "Derecho", img: "https://unsm.edu.pe/wp-content/uploads/2016/09/derecho1.jpg", desc: "Defiende causas justas y asesora legalmente frente al sistema jurídico." },
+                    { name: "Ciencias de la Comunicación", img: "https://dondeestudiar.pe/wp-content/uploads/2022/09/carrera-ciencias-de-la-comubicacion.jpg", desc: "Crea mensajes estratégicos, reportajes audiovisuales y relaciones públicas." },
+                    { name: "Educación", img: "https://facultad-educacion.pucp.edu.pe/wp-content/uploads/2023/05/Colegio-La-Union0066_2-scaled.jpg", desc: "Forma y cambia la vida de las futuras generaciones a través de la enseñanza." },
+                    { name: "Sociología / Trabajo Social", img: "https://dondeestudiar.pe/wp-content/uploads/2022/10/trabajo-social-donde-estudiar-en-el-peru.jpg", desc: "Analiza el comportamiento social y actúa en programas de bienestar directo." }
+                ]
+            },
+            3: { // D: Negocios
+                title: "Ciencias Empresariales",
+                careers: [
+                    { name: "Administración", img: "https://isil.pe/blog/wp-content/uploads/2023/09/administracion-empresas.webp", desc: "Dirige equipos y lidera empresas hacia el éxito y la máxima eficiencia." },
+                    { name: "Negocios Internacionales", img: "https://merida.anahuac.mx/hubfs/apreu/Blog/2020%20Blog%20APREU/Portadas/Negocios%20Internacionales%20campo%20laboral.jpg", desc: "Gestiona importaciones, exportaciones y expansiones a nivel global." },
+                    { name: "Contabilidad y Finanzas", img: "https://posgrado.ujcm.edu.pe/wp-content/uploads/2022/06/AAiXt5E.img_.jpg", desc: "Domina el flujo del dinero, tributación y rentabilidad de grandes corporaciones." },
+                    { name: "Turismo y Hotelería", img: "https://isil.pe/blog/wp-content/uploads/2024/02/recepcionistas-trajes-elegantes-horas-trabajo-2.jpg", desc: "Organiza experiencias, viajes y servicios premium en el mundo hotelero." }
+                ]
+            }
+        };
+
+        // VARIABLES DE ESTADO
+        let currentIdx = 0;
+        let scores = { 0: 0, 1: 0, 2: 0, 3: 0 }; // A, B, C, D
+        let isAnimating = false;
+
+        // DOM ELEMENTS
+        const sStart = document.getElementById('screen-start');
+        const sQuiz = document.getElementById('screen-quiz');
+        const sRes = document.getElementById('screen-results');
+
+        const qCard = document.getElementById('q-card');
+        const qText = document.getElementById('q-text');
+        const optContainer = document.getElementById('options-container');
+        const pCount = document.getElementById('progress-text-count');
+        const pBar = document.getElementById('progress-bar');
+
+        function showScreen(screenEl) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            screenEl.classList.add('active');
+        }
+
+        function startTest() {
+            currentIdx = 0;
+            scores = { 0: 0, 1: 0, 2: 0, 3: 0 };
+            isAnimating = false;
+            showScreen(sQuiz);
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            isAnimating = false;
+            const data = questionsData[currentIdx];
+
+            // Actualizar top
+            pCount.innerText = `${currentIdx + 1} / ${questionsData.length}`;
+            pBar.style.width = `${((currentIdx) / questionsData.length) * 100}%`;
+
+            // Animar entrada
+            qCard.classList.remove('slide-in', 'slide-out');
+            optContainer.classList.remove('slide-in', 'slide-out');
+
+            void qCard.offsetWidth; // Trigger reflow
+
+            qCard.classList.add('slide-in');
+            optContainer.classList.add('slide-in');
+
+            qText.innerText = data.text;
+
+            // Render options (invertido para que el mas positivo salga arriba)
+            optContainer.innerHTML = '';
+            [...LIKERT_OPTIONS].reverse().forEach((opt) => {
+                const btn = document.createElement('div');
+                btn.className = `option-btn ${opt.class}`;
+                btn.innerHTML = `<i class="fas ${opt.icon}"></i> <span>${opt.text}</span>`;
+
+                btn.onclick = () => handleAnswer(data.type, opt.points);
+                optContainer.appendChild(btn);
+            });
+        }
+
+        function handleAnswer(categoryType, pointsAwarded) {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            scores[categoryType] += pointsAwarded;
+
+            // Animar salida
+            qCard.classList.remove('slide-in');
+            optContainer.classList.remove('slide-in');
+            qCard.classList.add('slide-out');
+            optContainer.classList.add('slide-out');
+
+            setTimeout(() => {
+                currentIdx++;
+                if (currentIdx < questionsData.length) {
+                    renderQuestion();
+                } else {
+                    pBar.style.width = '100%';
+                    setTimeout(finishTest, 400); // Dar chance a la barra
+                }
+            }, 300);
+        }
+
+        function finishTest() {
+            showScreen(sRes);
+
+            // Encontrar la categoría con MAYOR puntaje
+            let maxScore = -1;
+            let winningCategory = 0;
+
+            for (const type in scores) {
+                if (scores[type] > maxScore) {
+                    maxScore = scores[type];
+                    winningCategory = type;
+                }
+            }
+
+            const winData = careersBlocks[winningCategory];
+
+            // Render Result Info
+            document.getElementById('res-title').innerText = winData.title;
+
+            const contC = document.getElementById('careers-container');
+            contC.innerHTML = '';
+            winData.careers.forEach(car => {
+                contC.innerHTML += `
+                    <div class="career-card">
+                        <img src="${car.img}" alt="${car.name}" class="career-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3589/3589838.png'">
+                        <div class="career-body">
+                            <div class="career-name">${car.name}</div>
+                            <div class="career-desc">${car.desc}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Disparar Confetti
+            fireConfetti();
+        }
+
+        function resetTest() {
+            showScreen(sStart);
+        }
+
+        function fireConfetti() {
+            var duration = 3000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#2f81f7', '#d2a8ff', '#238636']
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#2f81f7', '#d2a8ff', '#238636']
+                });
+
+                if (Date.now() < end) requestAnimationFrame(frame);
+            }());
+        }
+
     </script>
 </body>
+
 </html>
